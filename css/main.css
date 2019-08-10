@@ -1,0 +1,38 @@
+.container {
+    min-height: 700px;
+}
+
+.container__menu {}
+
+.menu {
+    border-radius: 8px 8px 8px 8px;
+}
+
+.container__header {
+}
+
+.header {
+}
+
+.list__img {
+    width: 22px;
+}
+
+.container__form {
+    margin: 0 auto;
+}
+
+.form {
+    width: 400px;
+    padding: 28px 27px 14px;
+}
+
+.form__submit {
+    display: block;
+    width: 100%;
+    margin: 18px auto 0;
+}
+
+.form__link {
+    margin: 19px 0 0;
+}
