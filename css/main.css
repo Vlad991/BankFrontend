@@ -1,38 +1,52 @@
-.container {
-    min-height: 700px;
+.container-fluid {
+    min-height: 1500px;
+    background: #f0f0f0;
 }
 
-.container__menu {}
-
-.menu {
-    border-radius: 8px 8px 8px 8px;
+.layout {
+    display: flex;
+    justify-content: space-between;
 }
 
-.container__header {
+button {
+    cursor: pointer;
 }
 
-.header {
+button:focus {
+    outline: none;
+    cursor: pointer;
 }
 
-.list__img {
-    width: 22px;
+a:hover {
+    text-decoration: none;
 }
 
-.container__form {
-    margin: 0 auto;
+/*/////////////////////////////////////////////////..MENU..//////////////////////////////////////////////////////////*/
+
+.logo-img {
+    width: 40px;
 }
+
+.profile-link {
+
+}
+
+.profile-img {
+    width: 20px;
+}
+
+.login {
+    font-size: 10px;
+    width: 34px;
+}
+
+.loupe {
+    width: 20px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .form {
     width: 400px;
     padding: 28px 27px 14px;
-}
-
-.form__submit {
-    display: block;
-    width: 100%;
-    margin: 18px auto 0;
-}
-
-.form__link {
-    margin: 19px 0 0;
 }
