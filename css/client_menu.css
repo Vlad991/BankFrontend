@@ -3,7 +3,41 @@
 }
 
 .active-page {
-    border-left: #000 1px solid;
-    border-bottom: #000 1px solid;
-    border-top: #000 1px solid;
+    border-left: #fff 1px solid;
+    /*border-right: #fff 1px solid;*/
+    border-bottom: #fff 1px solid;
+    border-top: #fff 1px solid;
+    box-sizing: content-box;
+}
+
+.underline-link:hover {
+    text-decoration: underline;
+    background: #6c857d;
+}
+
+/*///////////////////////////////////////////////////..CREDIT CARD..//////////////////////////////////////////////////*/
+
+.credit-card {
+    width: 430px;
+    height: 270px;
+    border-radius: 16px;
+}
+
+.credit-card:hover {
+    cursor: pointer;
+}
+
+.credit-card__number {
+    top: 150px;
+    left: 61px;
+}
+
+.credit-card__date {
+    top: 160px;
+    left: 230px;
+}
+
+.credit-card__name {
+    top: 134px;
+    left: 50px;
 }
