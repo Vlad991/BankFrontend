@@ -70,15 +70,55 @@ a:hover {
     height: 220px;
 }
 
+.message-wrap {
+    min-height: 40px;
+}
 
 .send-message {
     min-height: 30px;
+    max-width: 200px;
 }
 
 .receive-message {
     min-height: 30px;
+    max-width: 200px;
 }
 
+.send-form {
+    min-height: 36px;
+    width: 220px;
+    margin-top: 3px;
+}
+
+.paperclip-img {
+    width: 16px;
+}
+
+.paperclip-img:hover {
+    cursor: pointer;
+}
+
+.send-area {
+    margin: 0 3px;
+    resize: none;
+    height: 26px;
+}
+
+.send-area:focus {
+    outline: none;
+}
+
+.send-button {
+    height: 26px;
+}
+
+.send-button:hover {
+    background: transparent;
+}
+
+.send-button:focus {
+    outline: none;
+}
 
 
 
