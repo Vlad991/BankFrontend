@@ -1,0 +1,9 @@
+.div-page {
+    min-height: 1000px;
+}
+
+.active-page {
+    border-left: #000 1px solid;
+    border-bottom: #000 1px solid;
+    border-top: #000 1px solid;
+}

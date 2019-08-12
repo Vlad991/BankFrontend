@@ -54,11 +54,11 @@
         </div>
     </nav>
 
-    <header class="container jumbotron text-center">
-        <h1 class="text-dark">Welcome to our bank!</h1>
-    </header>
+<!--    <header class="container jumbotron text-center">-->
+<!--        <h1 class="text-dark">Welcome to our bank!</h1>-->
+<!--    </header>-->
 
-    <div class="messenger jumbotron p-0 float-right fixed-bottom shadow">
+    <div class="messenger jumbotron p-0 float-right fixed-bottom shadow d-none">
         <div class="messenger__header p-0 rounded-top bg-secondary">
             <img src="img/messanger/manager.svg" alt="Manager"
                  class="img-fluid align-top rounded-circle border border-dark manager-img m-1">
@@ -68,33 +68,88 @@
         </div>
         <div class="messenger__body">
             <div class="messages overflow-auto bg-dark p-2">
-                <div class="message-wrap"><div
-                        class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">Hello!</div></div>
-                <div class="message-wrap"><div
-                        class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">Hello!</div></div>
-                <div class="message-wrap"><div
-                        class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">Can I help you?
-                    !</div></div>
-                <div class="message-wrap"><div
-                        class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">Yes, you can!</div></div>
-                <div class="message-wrap"><div
-                        class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">How?</div></div>
-                <div class="message-wrap"><div
-                        class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">Please tell me how your bank client management works? I don't understand how to manage my client menu!</div></div>
-                <div class="message-wrap"><div
-                        class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">Ok, just a
-                    minute...</div></div>
-                <div class="message-wrap"><div
-                        class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">I'm waiting!</div></div>
+                <div class="message-wrap">
+                    <div
+                            class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">
+                        Hello!
+                    </div>
+                </div>
+                <div class="message-wrap">
+                    <div
+                            class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
+                        Hello!
+                    </div>
+                </div>
+                <div class="message-wrap">
+                    <div
+                            class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">Can
+                        I help you?
+                        !
+                    </div>
+                </div>
+                <div class="message-wrap">
+                    <div
+                            class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
+                        Yes, you can!
+                    </div>
+                </div>
+                <div class="message-wrap">
+                    <div
+                            class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">How?
+                    </div>
+                </div>
+                <div class="message-wrap">
+                    <div
+                            class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
+                        Please tell me how your bank client management works? I don't understand how to manage my client
+                        menu!
+                    </div>
+                </div>
+                <div class="message-wrap">
+                    <div
+                            class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">Ok,
+                        just a
+                        minute...
+                    </div>
+                </div>
+                <div class="message-wrap">
+                    <div
+                            class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
+                        I'm waiting!
+                    </div>
+                </div>
             </div>
         </div>
         <div class="messenger__footer p-2">
-            <form action="" class="form send-form d-block mx-auto p-1 d-inline-flex bg-light border border-secondary rounded">
-                <div class="paperclip d-inline-block"><img src="img/messanger/smile.svg" class="paperclip-img" alt="Smiles"></div>
+            <form action=""
+                  class="form send-form d-block mx-auto p-1 d-inline-flex bg-light border border-secondary rounded">
+                <div class="paperclip d-inline-block"><img src="img/messanger/smile.svg" class="paperclip-img"
+                                                           alt="Smiles"></div>
                 <textarea class="send-area border-0 bg-light" name="" id="" cols="20" rows="1"></textarea>
                 <input type="submit" class="send-button border-0 bg-light" value="Send">
             </form>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2 p-0">
+            <ul class="navbar-nav bg-secondary mt-5">
+                <li class="nav-item active-page"><a class="nav-link">Personal Info</a></li>
+                <li class="nav-item"><a class="nav-link">Credit Cards</a></li>
+                <li class="nav-item"><a class="nav-link">Something</a></li>
+                <li class="nav-item"><a class="nav-link">Settings</a></li>
+            </ul>
+        </div>
+        <div class="div-page col-8 bg-secondary p-5">
+            <div class="">Login: <span>vlad99</span></div>
+            <div class="">Name: <span>Vladyslav</span></div>
+            <div class="">Surname: <span>Kuzma</span></div>
+            <div class="">Birthday: <span>14/10/1999</span></div>
+            <div class="">Address: <span>Ukraine, Kiev, Malosemelna 13</span></div>
+            <div class="">Email: <span>vladkuzma99@gmail.com</span></div>
+            <div class="">Phone: <span>+380662873382</span></div>
+        </div>
+        <div class="col-2"></div>
     </div>
 
 </div>
