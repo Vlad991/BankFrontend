@@ -121,7 +121,32 @@ a:hover {
     outline: none;
 }
 
+/*///////////////////////////////////////////////////..CREDIT CARD..//////////////////////////////////////////////////*/
 
+.credit-card {
+    width: 430px;
+    height: 270px;
+    border-radius: 16px;
+}
+
+.credit-card:hover {
+    cursor: pointer;
+}
+
+.credit-card__number {
+    top: 150px;
+    left: 61px;
+}
+
+.credit-card__date {
+    top: 160px;
+    left: 230px;
+}
+
+.credit-card__name {
+    top: 134px;
+    left: 50px;
+}
 
 
 
