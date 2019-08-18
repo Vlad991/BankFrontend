@@ -1,5 +1,5 @@
 .container-fluid {
-    min-height: 1000px;
+    min-height: 700px;
     background: #f0f0f0;
 }
 
@@ -47,9 +47,20 @@ a:hover {
 
 /*//////////////////////////////////////////////////////..LOGIN../////////////////////////////////////////////////////*/
 
+.header {
+    height: 100px;
+}
+
 .form {
     width: 400px;
     padding: 28px 27px 14px;
+    margin-top: 140px;
+    margin-bottom: 140px;
+}
+
+.footer {
+    height: 200px;
+    background: #000;
 }
 
 /*//////////////////////////////////////////////////////..MESSENGER../////////////////////////////////////////////////////*/
