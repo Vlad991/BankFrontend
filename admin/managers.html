@@ -15,8 +15,7 @@
 <div class="container-fluid bg-dark p-1">
     <nav class="row navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
         <div class="col-3 col-sm-1 col-lg-1 order-1">
-            <a href="../index.html" class="navbar-brand"><img class="logo-img" src="../img/menu/logo.svg"
-                                                              alt="Logo"></a>
+            <a href="../index.html" class="navbar-brand"><img class="logo-img" src="../img/menu/logo.svg" alt="Logo"></a>
         </div>
         <div class="col-3 col-sm-2 col-lg-auto order-3 order-lg-2">
             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -58,54 +57,149 @@
         </div>
     </nav>
 
-    <div id="client-info" class="row">
-        <div class="col-2 py-0 pr-0">
-            <ul class="navbar-nav bg-secondary mt-5">
-                <li class="nav-item active-page"><a class="nav-link underline-link p-1">Personal Info</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Credit Cards</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Something</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Settings</a></li>
-            </ul>
+    <div class="container">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-info-tab" data-toggle="pill" href="#pills-info" role="tab"
+                   aria-controls="pills-info" aria-selected="true">Managers Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-card-tab" data-toggle="pill" href="#pills-card" role="tab"
+                   aria-controls="pills-card" aria-selected="false">Actions Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-settings-tab" data-toggle="pill" href="#pills-settings"
+                   role="tab"
+                   aria-controls="pills-settings" aria-selected="false">Settings</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
+                <div class="div-page p-0">
+                    <table class="table table-hover table-dark">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#id</th>
+                            <th scope="col">Login</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Surname</th>
+                            <th scope="col">Birthday</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>vlad99</td>
+                            <td>Vladyslav</td>
+                            <td>Kuzma</td>
+                            <td>14/10/1999</td>
+                            <td>Ukraine, Kiev, Malosemelna 13</td>
+                            <td>vladkuzma99@gmail.com</td>
+                            <td>+380 66 287 33 82</td>
+                            <th scope="col"><button class="btn btn-outline-light">BLOCK</button></th>
+                        </tr>
+                        <tr class="bg-success">
+                            <th scope="row">1</th>
+                            <td>vlad99</td>
+                            <td>Vladyslav</td>
+                            <td>Kuzma</td>
+                            <td>14/10/1999</td>
+                            <td>Ukraine, Kiev, Malosemelna 13</td>
+                            <td>vladkuzma99@gmail.com</td>
+                            <td>+380 66 287 33 82</td>
+                            <th scope="col"><button class="btn btn-outline-light">BLOCK</button></th>
+                        </tr>
+                        <tr class="">
+                            <th scope="row">1</th>
+                            <td>vlad99</td>
+                            <td>Vladyslav</td>
+                            <td>Kuzma</td>
+                            <td>14/10/1999</td>
+                            <td>Ukraine, Kiev, Malosemelna 13</td>
+                            <td>vladkuzma99@gmail.com</td>
+                            <td>+380 66 287 33 82</td>
+                            <th scope="col"><button class="btn btn-outline-light">BLOCK</button></th>
+                        </tr>
+                        <tr class="bg-danger">
+                            <th scope="row">1</th>
+                            <td>vlad99</td>
+                            <td>Vladyslav</td>
+                            <td>Kuzma</td>
+                            <td>14/10/1999</td>
+                            <td>Ukraine, Kiev, Malosemelna 13</td>
+                            <td>vladkuzma99@gmail.com</td>
+                            <td>+380 66 287 33 82</td>
+                            <th scope="col"><button class="btn btn-outline-light">UNBLOCK</button></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-card" role="tabpanel" aria-labelledby="pills-card-tab">
+                <div class="div-page">
+                    <table class="table table-hover table-dark">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#id</th>
+                            <th scope="col">Number</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Code</th>
+                            <th scope="col">Sum</th>
+                            <th scope="col">Owner</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>1414 1234 5678 1234</td>
+                            <td>14/22</td>
+                            <td>345</td>
+                            <td>1000$</td>
+                            <td>Kuzma Vladyslav</td>
+                            <th scope="col"><button class="btn btn-outline-light">OPENED</button></th>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>1414 1234 5678 1234</td>
+                            <td>14/22</td>
+                            <td>345</td>
+                            <td>1000$</td>
+                            <td>Kuzma Vladyslav</td>
+                            <th scope="col"><button class="btn btn-outline-light">OPENED</button></th>
+                        </tr>
+                        <tr class="">
+                            <th scope="row">1</th>
+                            <td>1414 1234 5678 1234</td>
+                            <td>14/22</td>
+                            <td>345</td>
+                            <td>1000$</td>
+                            <td>Kuzma Vladyslav</td>
+                            <th scope="col"><button class="btn btn-outline-light">OPENED</button></th>
+                        </tr>
+                        <tr class="bg-danger">
+                            <th scope="row">1</th>
+                            <td>1414 1234 5678 1234</td>
+                            <td>14/22</td>
+                            <td>345</td>
+                            <td>1000$</td>
+                            <td>Kuzma Vladyslav</td>
+                            <th scope="col"><button class="btn btn-outline-light">BLOCKED</button></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">
+                <div class="div-page">
+                    <p class="text-light">Here should be some manager settings.</p>
+                </div>
+            </div>
         </div>
-        <div class="div-page col-8 bg-secondary p-5 border border-light">
-            <div class="">Login: <span>vlad99</span></div>
-            <div class="">Name: <span>Vladyslav</span></div>
-            <div class="">Surname: <span>Kuzma</span></div>
-            <div class="">Birthday: <span>14/10/1999</span></div>
-            <div class="">Address: <span>Ukraine, Kiev, Malosemelna 13</span></div>
-            <div class="">Email: <span>vladkuzma99@gmail.com</span></div>
-            <div class="">Phone: <span>+380662873382</span></div>
-        </div>
-        <div class="col-2"></div>
-    </div>
-
-    <div id="credit-cards" class="row d-none">
-        <div class="col-2 py-0 pr-0">
-            <ul class="navbar-nav bg-secondary mt-5">
-                <li class="nav-item"><a class="nav-link underline-link p-1">Personal Info</a></li>
-                <li class="nav-item active-page"><a class="nav-link underline-link p-1">Credit Cards</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Something</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Settings</a></li>
-            </ul>
-        </div>
-        <div class="div-page col-8 bg-secondary p-5 border border-light">
-            <nav class="">
-                <ul class="navbar-nav">
-                    <li class="position-relative">
-                        <div class="credit-card p-3 jumbotron bg-dark shadow">
-                            <div class="credit-card__bank d-inline-block ml-2 mr-5 text-light">
-                                <img class="w-25 mr-2" src="../img/menu/logo.svg" alt="Logo">MyBank
-                            </div>
-                            <div class="credit-card__type d-inline-block ml-4 text-light"> Credit card "Universal"</div>
-                            <h3 class="credit-card__number position-absolute text-light">1414 1234 5678 1234</h3>
-                            <div class="credit-card__date text-light position-relative">05/22</div>
-                            <div class="credit-card__name text-light position-relative">Kuzma Vladyslav</div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="col-2"></div>
     </div>
 
     <footer class="page-footer font-small unique-color-dark" style="background: #1c2330;">
