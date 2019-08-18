@@ -127,54 +127,63 @@
         </div>
     </div>
 
-    <div id="client-info" class="row">
-        <div class="col-2 py-0 pr-0">
-            <ul class="navbar-nav bg-secondary mt-5">
-                <li class="nav-item active-page"><a class="nav-link underline-link p-1">Personal Info</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Credit Cards</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Something</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Settings</a></li>
-            </ul>
+    <div class="row">
+        <div class="col-2 mt-5">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+                   aria-controls="v-pills-home" aria-selected="true">Personal Info</a>
+                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+                   aria-controls="v-pills-profile" aria-selected="false">Credit Cards</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
+                   aria-controls="v-pills-messages" aria-selected="false">Something</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+                   aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+            </div>
         </div>
-        <div class="div-page col-8 bg-secondary p-5 border border-light">
-            <div class="">Login: <span>vlad99</span></div>
-            <div class="">Name: <span>Vladyslav</span></div>
-            <div class="">Surname: <span>Kuzma</span></div>
-            <div class="">Birthday: <span>14/10/1999</span></div>
-            <div class="">Address: <span>Ukraine, Kiev, Malosemelna 13</span></div>
-            <div class="">Email: <span>vladkuzma99@gmail.com</span></div>
-            <div class="">Phone: <span>+380662873382</span></div>
+        <div class="col-8">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="div-page bg-secondary p-5">
+                        <div class="">Login: <span>vlad99</span></div>
+                        <div class="">Name: <span>Vladyslav</span></div>
+                        <div class="">Surname: <span>Kuzma</span></div>
+                        <div class="">Birthday: <span>14/10/1999</span></div>
+                        <div class="">Address: <span>Ukraine, Kiev, Malosemelna 13</span></div>
+                        <div class="">Email: <span>vladkuzma99@gmail.com</span></div>
+                        <div class="">Phone: <span>+380662873382</span></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <div class="div-page bg-secondary p-5">
+                        <nav class="">
+                            <ul class="navbar-nav">
+                                <li class="position-relative">
+                                    <div class="credit-card p-3 jumbotron bg-dark shadow">
+                                        <div class="credit-card__bank d-inline-block ml-2 mr-5 text-light">
+                                            <img class="w-25 mr-2" src="../img/menu/logo.svg" alt="Logo">MyBank
+                                        </div>
+                                        <div class="credit-card__type d-inline-block ml-4 text-light"> Credit card "Universal"</div>
+                                        <h3 class="credit-card__number position-absolute text-light">1414 1234 5678 1234</h3>
+                                        <div class="credit-card__date text-light position-relative">05/22</div>
+                                        <div class="credit-card__name text-light position-relative">Kuzma Vladyslav</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <div class="div-page bg-secondary p-5">
+                        <p>Here can be some more information about client.</p>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    <div class="div-page bg-secondary p-5">
+                        <p>Here should be some client settings.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-2"></div>
-    </div>
-
-    <div id="credit-cards" class="row d-none">
-        <div class="col-2 py-0 pr-0">
-            <ul class="navbar-nav bg-secondary mt-5">
-                <li class="nav-item"><a class="nav-link underline-link p-1">Personal Info</a></li>
-                <li class="nav-item active-page"><a class="nav-link underline-link p-1">Credit Cards</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Something</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Settings</a></li>
-            </ul>
-        </div>
-        <div class="div-page col-8 bg-secondary p-5 border border-light">
-            <nav class="">
-                <ul class="navbar-nav">
-                    <li class="position-relative">
-                        <div class="credit-card p-3 jumbotron bg-dark shadow">
-                            <div class="credit-card__bank d-inline-block ml-2 mr-5 text-light">
-                                <img class="w-25 mr-2" src="../img/menu/logo.svg" alt="Logo">MyBank
-                            </div>
-                            <div class="credit-card__type d-inline-block ml-4 text-light"> Credit card "Universal"</div>
-                            <h3 class="credit-card__number position-absolute text-light">1414 1234 5678 1234</h3>
-                            <div class="credit-card__date text-light position-relative">05/22</div>
-                            <div class="credit-card__name text-light position-relative">Kuzma Vladyslav</div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="col-2"></div>
     </div>
 
     <footer class="page-footer font-small unique-color-dark" style="background: #1c2330;">

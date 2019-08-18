@@ -5,8 +5,9 @@
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <!--    <link rel="stylesheet" href="../css/mdb.css">-->
+<!--    <link rel="stylesheet" href="css/mdb.css">-->
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/client_menu.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
@@ -26,14 +27,14 @@
         </div>
         <div class="col-lg-5 collapse navbar-collapse order-4 order-lg-3" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a href="home.html" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a href="client_menu.html" class="nav-link">Client Menu</a>
+                <li class="nav-item active">
+                    <a href="clients.html" class="nav-link">Clients</a>
                 </li>
                 <li class="nav-item">
-                    <a href="card_menu.html" class="nav-link">Card Menu</a>
+                    <a href="managers.html" class="nav-link">Managers</a>
                 </li>
                 <!--                <li class="nav-item">-->
                 <!--                    <a href="#" class="nav-link disabled">Active Clients</a>-->
@@ -57,86 +58,55 @@
         </div>
     </nav>
 
-    <div class="container-fluid__messenger messenger jumbotron p-0 shadow">
-        <div class="messenger__header p-0 rounded-top bg-secondary">
-            <img src="../img/messanger/manager.svg" alt="Manager"
-                 class="img-fluid align-top rounded-circle border border-dark manager-img m-1">
-            <div class="d-inline-block">Manager Michael
-                <div class="text-light">Online</div>
-            </div>
+    <div id="client-info" class="row">
+        <div class="col-2 py-0 pr-0">
+            <ul class="navbar-nav bg-secondary mt-5">
+                <li class="nav-item active-page"><a class="nav-link underline-link p-1">Personal Info</a></li>
+                <li class="nav-item"><a class="nav-link underline-link p-1">Credit Cards</a></li>
+                <li class="nav-item"><a class="nav-link underline-link p-1">Something</a></li>
+                <li class="nav-item"><a class="nav-link underline-link p-1">Settings</a></li>
+            </ul>
         </div>
-        <div class="messenger__body">
-            <div class="messages overflow-auto bg-dark p-2">
-                <div class="message-wrap">
-                    <div
-                            class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">
-                        Hello!
-                    </div>
-                </div>
-                <div class="message-wrap">
-                    <div
-                            class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
-                        Hello!
-                    </div>
-                </div>
-                <div class="message-wrap">
-                    <div
-                            class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">Can
-                        I help you?
-                        !
-                    </div>
-                </div>
-                <div class="message-wrap">
-                    <div
-                            class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
-                        Yes, you can!
-                    </div>
-                </div>
-                <div class="message-wrap">
-                    <div
-                            class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">How?
-                    </div>
-                </div>
-                <div class="message-wrap">
-                    <div
-                            class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
-                        Please tell me how your bank client management works? I don't understand how to manage my client
-                        menu!
-                    </div>
-                </div>
-                <div class="message-wrap">
-                    <div
-                            class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">Ok,
-                        just a
-                        minute...
-                    </div>
-                </div>
-                <div class="message-wrap">
-                    <div
-                            class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
-                        I'm waiting!
-                    </div>
-                </div>
-            </div>
+        <div class="div-page col-8 bg-secondary p-5 border border-light">
+            <div class="">Login: <span>vlad99</span></div>
+            <div class="">Name: <span>Vladyslav</span></div>
+            <div class="">Surname: <span>Kuzma</span></div>
+            <div class="">Birthday: <span>14/10/1999</span></div>
+            <div class="">Address: <span>Ukraine, Kiev, Malosemelna 13</span></div>
+            <div class="">Email: <span>vladkuzma99@gmail.com</span></div>
+            <div class="">Phone: <span>+380662873382</span></div>
         </div>
-        <div class="messenger__footer p-2">
-            <form action=""
-                  class="form send-form d-block mx-auto p-1 d-inline-flex bg-light border border-secondary rounded">
-                <div class="paperclip d-inline-block"><img src="../img/messanger/smile.svg" class="paperclip-img"
-                                                           alt="Smiles"></div>
-                <textarea class="send-area border-0 bg-light" name="" id="" cols="20" rows="1"></textarea>
-                <input type="submit" class="send-button border-0 bg-light" value="Send">
-            </form>
-        </div>
+        <div class="col-2"></div>
     </div>
 
-    <header class="container jumbotron text-center header p-2 my-4">
-        <h1 class="text-dark align-middle mt-3">About MyBank...</h1>
-    </header>
-
-    <p class="jumbotron container bg-secondary">MyBank - is my Java Spring Web Application. In this app I use similarity
-        of REST microservice architecture (Authorization Keycloak Service and Main Business Logic Service) that
-        connected with JMS using Kafka. Frontend is written in pure Java.</p>
+    <div id="credit-cards" class="row d-none">
+        <div class="col-2 py-0 pr-0">
+            <ul class="navbar-nav bg-secondary mt-5">
+                <li class="nav-item"><a class="nav-link underline-link p-1">Personal Info</a></li>
+                <li class="nav-item active-page"><a class="nav-link underline-link p-1">Credit Cards</a></li>
+                <li class="nav-item"><a class="nav-link underline-link p-1">Something</a></li>
+                <li class="nav-item"><a class="nav-link underline-link p-1">Settings</a></li>
+            </ul>
+        </div>
+        <div class="div-page col-8 bg-secondary p-5 border border-light">
+            <nav class="">
+                <ul class="navbar-nav">
+                    <li class="position-relative">
+                        <div class="credit-card p-3 jumbotron bg-dark shadow">
+                            <div class="credit-card__bank d-inline-block ml-2 mr-5 text-light">
+                                <img class="w-25 mr-2" src="../img/menu/logo.svg" alt="Logo">MyBank
+                            </div>
+                            <div class="credit-card__type d-inline-block ml-4 text-light"> Credit card "Universal"</div>
+                            <h3 class="credit-card__number position-absolute text-light">1414 1234 5678 1234</h3>
+                            <div class="credit-card__date text-light position-relative">05/22</div>
+                            <div class="credit-card__name text-light position-relative">Kuzma Vladyslav</div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-2"></div>
+    </div>
 
     <footer class="page-footer font-small unique-color-dark" style="background: #1c2330;">
         <div style="background-color: #6351ce;">
@@ -164,16 +134,14 @@
             <div class="row mt-3">
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <h6 class="text-uppercase font-weight-bold">MyBank Web Application</h6>
-                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                        style="width: 60px; background:#6e46e1">
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background:#6e46e1">
                     <p>This is my Java Spring Web Application. In this app I use similarity of REST microservice
                         architecture (Authorization Keycloak Service and Main Business Logic Service) that connected
                         with JMS using Kafka. Frontend is written in pure Java.</p>
                 </div>
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                     <h6 class="text-uppercase font-weight-bold">Languages</h6>
-                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                        style="width: 60px; background:#6e46e1">
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background:#6e46e1">
                     <p><a class="text-light" href="https://getbootstrap.com/">HTML/CSS/Bootstrap</a></p>
                     <p><a class="text-light" href="https://jquery.com/">JavaScript/jQuery</a></p>
                     <p><a class="text-light" href="https://spring.io/projects/spring-boot">Java(Spring Boot 2)</a></p>
@@ -181,8 +149,7 @@
                 </div>
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                     <h6 class="text-uppercase font-weight-bold">Useful links</h6>
-                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                        style="width: 60px; background:#6e46e1">
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background:#6e46e1">
                     <p><a class="text-light" href="client_menu.html">Your Account</a></p>
                     <p><a class="text-light" href="card_menu.html">Your Credit Cards</a></p>
                     <p><a class="text-light" href="client_menu.html">Account Settings</a></p>
@@ -190,8 +157,7 @@
                 </div>
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                     <h6 class="text-uppercase font-weight-bold">Contact</h6>
-                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                        style="width: 60px; background:#6e46e1">
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background:#6e46e1">
                     <p><i class="fas fa-home mr-3"></i> Kiev, Ukraine</p>
                     <p><i class="fas fa-envelope mr-3"></i> vladkuzma99@gmail.com</p>
                     <p><i class="fas fa-phone mr-3"></i> 066 287 33 82</p>
@@ -199,8 +165,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-copyright text-center py-3 text-secondary" style="background-color: #161c25;">© 2018
-            Copyright:
+        <div class="footer-copyright text-center py-3 text-secondary" style="background-color: #161c25;">© 2018 Copyright:
             <a class="text-light" href="../index.html"> MyBank.com</a>
         </div>
     </footer>
@@ -210,5 +175,6 @@
 <script src="../js/jquery-3.4.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <!--<script src="js/mdb.min.js"></script>-->
+<script src="../js/main.js"></script>
 </body>
 </html>

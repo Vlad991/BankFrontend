@@ -125,91 +125,85 @@
         </div>
     </div>
 
-    <div id="card-info" class="row">
-        <div class="col-2 py-0 pr-0">
-            <ul class="navbar-nav bg-secondary mt-5">
-                <li class="nav-item active-page"><a class="nav-link underline-link p-1">Credit Card Info</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Send Money</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Block Card</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Settings</a></li>
-            </ul>
+    <div class="row">
+        <div class="col-2 mt-5">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+                   aria-controls="v-pills-home" aria-selected="true">Credit Card Info</a>
+                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+                   aria-controls="v-pills-profile" aria-selected="false">Send Money</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
+                   aria-controls="v-pills-messages" aria-selected="false">Block Card</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+                   aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+            </div>
         </div>
-        <div class="div-page col-8 bg-secondary p-5 border border-light">
-            <nav class="">
-                <ul class="navbar-nav">
-                    <li class="position-relative">
-                        <div class="credit-card p-3 jumbotron bg-dark shadow d-inline-block">
-                            <div class="credit-card__bank d-inline-block ml-2 mr-5 text-light">
-                                <img class="w-25 mr-2" src="../img/menu/logo.svg" alt="Logo">MyBank
+        <div class="col-8">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="div-page bg-secondary p-5">
+                        <nav class="">
+                            <ul class="navbar-nav">
+                                <li class="position-relative">
+                                    <div class="credit-card p-3 jumbotron bg-dark shadow d-inline-block">
+                                        <div class="credit-card__bank d-inline-block ml-2 mr-5 text-light">
+                                            <img class="w-25 mr-2" src="../img/menu/logo.svg" alt="Logo">MyBank
+                                        </div>
+                                        <div class="credit-card__type d-inline-block ml-4 text-light">Credit card "Universal"</div>
+                                        <h3 class="credit-card__number position-absolute text-light">1414 1234 5678 1234</h3>
+                                        <div class="credit-card__date text-light position-relative">05/22</div>
+                                        <div class="credit-card__name text-light position-relative">Kuzma Vladyslav</div>
+                                    </div>
+                                    <div class="d-inline-block ml-5">Sum: <span class="text-info">100000$</span></div>
+                                    <div class="d-inline-block ml-5">Status: <span class="text-info">OPENED</span></div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <div class="div-page bg-secondary p-5">
+                        <form class="w-50">
+                            <div class="form-group">
+                                <label for="senderCard">Sender Card</label>
+                                <input type="email" class="form-control bg-transparent text-dark border-dark"
+                                       id="senderCard" aria-describedby="emailHelp" placeholder="Enter your card number">
                             </div>
-                            <div class="credit-card__type d-inline-block ml-4 text-light">Credit card "Universal"</div>
-                            <h3 class="credit-card__number position-absolute text-light">1414 1234 5678 1234</h3>
-                            <div class="credit-card__date text-light position-relative">05/22</div>
-                            <div class="credit-card__name text-light position-relative">Kuzma Vladyslav</div>
-                        </div>
-                        <div class="d-inline-block ml-5">Sum: <span class="text-info">100000$</span></div>
-                        <div class="d-inline-block ml-5">Status: <span class="text-info">OPENED</span></div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-<!--        <div class="col-2"></div>-->
-    </div>
-
-    <div id="send-money" class="row d-none">
-        <div class="col-2 py-0 pr-0">
-            <ul class="navbar-nav bg-secondary mt-5">
-                <li class="nav-item"><a class="nav-link underline-link p-1">Credit Card Info</a></li>
-                <li class="nav-item active-page"><a class="nav-link underline-link p-1">Send Money</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Block Card</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Settings</a></li>
-            </ul>
-        </div>
-        <div class="div-page col-8 bg-secondary p-5 border border-light">
-            <form class="w-50">
-                <div class="form-group">
-                    <label for="senderCard">Sender Card</label>
-                    <input type="email" class="form-control bg-transparent text-dark border-dark"
-                           id="senderCard" aria-describedby="emailHelp" placeholder="Enter your card number">
+                            <div class="form-group">
+                                <label for="receiverCard">Receiver Card</label>
+                                <input type="email" class="form-control bg-transparent text-dark border-dark" id="receiverCard" aria-describedby="emailHelp" placeholder="Enter receiver card number">
+                            </div>
+                            <div class="form-group">
+                                <label for="pin">Pin</label>
+                                <input type="password" class="form-control bg-transparent text-dark border-dark" id="pin" placeholder="Your pin">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Send</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="receiverCard">Receiver Card</label>
-                    <input type="email" class="form-control bg-transparent text-dark border-dark" id="receiverCard" aria-describedby="emailHelp" placeholder="Enter receiver card number">
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <div class="div-page bg-secondary p-5">
+                        <form class="w-50">
+                            <div class="form-group">
+                                <label for="actionsCard">Card</label>
+                                <input type="text" class="form-control bg-transparent text-dark border-dark"
+                                       id="actionsCard" aria-describedby="emailHelp" placeholder="Enter your card number">
+                            </div>
+                            <div class="form-group">
+                                <label for="pin">Pin</label>
+                                <input type="password" class="form-control bg-transparent text-dark border-dark" id="pin" placeholder="Your pin">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">BLOCK</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="pin">Pin</label>
-                    <input type="password" class="form-control bg-transparent text-dark border-dark" id="pin" placeholder="Your pin">
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    <div class="div-page bg-secondary p-5">
+                        <p>Here should be some credit card settings.</p>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Send</button>
-            </form>
+            </div>
         </div>
-        <div class="col-2"></div>
-    </div>
-
-    <div id="block-card" class="row d-none">
-        <div class="col-2 py-0 pr-0">
-            <ul class="navbar-nav bg-secondary mt-5">
-                <li class="nav-item"><a class="nav-link underline-link p-1">Credit Card Info</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Send Money</a></li>
-                <li class="nav-item active-page"><a class="nav-link underline-link p-1">Block Card</a></li>
-                <li class="nav-item"><a class="nav-link underline-link p-1">Settings</a></li>
-            </ul>
-        </div>
-        <div class="div-page col-8 bg-secondary p-5 border border-light">
-            <form class="w-50">
-                <div class="form-group">
-                    <label for="actionsCard">Card</label>
-                    <input type="text" class="form-control bg-transparent text-dark border-dark"
-                           id="actionsCard" aria-describedby="emailHelp" placeholder="Enter your card number">
-                </div>
-                <div class="form-group">
-                    <label for="pin">Pin</label>
-                    <input type="password" class="form-control bg-transparent text-dark border-dark" id="pin" placeholder="Your pin">
-                </div>
-                <button type="submit" class="btn btn-primary mt-3">BLOCK</button>
-            </form>
-        </div>
-        <div class="col-2"></div>
     </div>
 
     <footer class="page-footer font-small unique-color-dark" style="background: #1c2330;">
