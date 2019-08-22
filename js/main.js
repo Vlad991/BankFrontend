@@ -1,9 +1,9 @@
 var doc = document;
 
-document.addEventListener("DOMContentLoaded", myLoad);
+doc.addEventListener("DOMContentLoaded", myLoad);
 
 function myLoad() {
-    document.getElementById("loginButton").addEventListener("click", sendLoginPassword);
+    doc.getElementById("loginButton").addEventListener("click", sendLoginPassword);
 }
 
 function sendLoginPassword() {
@@ -15,8 +15,8 @@ function sendLoginPassword() {
         data: jQuery.param({
             grant_type: "password",
             client_id: "ADMIN-UI",
-            username: document.getElementById("login").value,
-            password: document.getElementById("password").value
+            username: doc.getElementById("login").value,
+            password: doc.getElementById("password").value
         }),
 
         success: function (xhr, ajaxOptions, thrownError) {
@@ -44,7 +44,7 @@ function sendLoginPassword() {
             console.log(xhr.status);
             var errorJson = JSON.parse(xhr.responseText);
             var message = errorJson.message;
-            document.getElementById("errorMessage").innerText = message;
+            doc.getElementById("errorMessage").innerText = message;
         }
     });
 }

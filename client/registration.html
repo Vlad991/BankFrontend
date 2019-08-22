@@ -51,12 +51,12 @@
         </div>
     </nav>
 
-    <header class="container jumbotron text-center">
-        <h1 class="text-dark">Registration</h1>
+    <header class="container jumbotron text-center header p-2 my-4">
+        <h1 class="text-dark align-middle mt-3">Registration</h1>
     </header>
 
     <div class="container">
-        <form class="mr-auto form jumbotron bg-dark" action="">
+        <form class="mr-auto form jumbotron bg-dark mt-2" action="">
             <div class="form-group">
                 <label class="text-light" for="login">Login:</label>
                 <input type="text" class="form-control bg-dark text-light" id="login" placeholder="Login">
@@ -79,8 +79,15 @@
                        placeholder="Year">
             </div>
             <div class="form-group">
-                <label class="text-light" for="address">Address:</label>
-                <input type="text" class="form-control bg-dark text-light" id="address" placeholder="Address">
+                <label class="text-light" for="country">Address:</label><br>
+                <input type="text" class="form-control form-inline bg-dark text-light w-25 mr-1 d-inline-block" id="country"
+                       placeholder="Country">
+                <input type="text" class="form-control form-inline bg-dark text-light w-25 mr-1 d-inline-block" id="city"
+                       placeholder="City">
+                <input type="text" class="form-control form-inline bg-dark text-light w-25 mr-1 d-inline-block" id="street"
+                       placeholder="Street">
+                <input type="text" class="form-control form-inline bg-dark text-light w-75 mr-1 mt-2 d-inline-block" id="postcode"
+                       placeholder="Postcode">
             </div>
             <div class="form-group">
                 <label class="text-light" for="email">Email:</label>
@@ -94,12 +101,8 @@
                 <label class="text-light" for="password">Password:</label>
                 <input type="password" class="form-control bg-dark text-light" id="password" placeholder="Password">
             </div>
-<!--            <div class="form-group form-check">-->
-<!--                <label class="form-check-label text-light">-->
-<!--                    <input class="form-check-input" type="checkbox"> Remember me-->
-<!--                </label>-->
-<!--            </div>-->
-            <button type="submit" class="btn btn-light w-100 mt-3">Register</button>
+            <span id="errorMessage" class="text-danger">Error: something went wrong!</span>
+            <button id="registerButton" type="submit" class="btn btn-light w-100 mt-3">Register</button>
         </form>
     </div>
 
