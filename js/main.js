@@ -30,11 +30,11 @@ function sendLoginPassword() {
             var accessTokenJSON = JSON.parse(window.atob(base64Url));
             var roles = accessTokenJSON.resource_access["bank-web"].roles;
 
-            if (roles[0].includes("ROLE_ADMIN")) {
+            if (roles.includes("ROLE_ADMIN")) {
                 window.location.href = "http://127.0.0.1/admin/home.html";
-            } else if (roles[0].includes("ROLE_MANAGER")) {
+            } else if (roles.includes("ROLE_MANAGER")) {
                 window.location.href = "http://127.0.0.1/manager/home.html";
-            } else if (roles[0].includes("ROLE_CLIENT")) {
+            } else if (roles.includes("ROLE_CLIENT")) {
                 window.location.href = "http://127.0.0.1/client/home.html";
             }
             console.log("success");

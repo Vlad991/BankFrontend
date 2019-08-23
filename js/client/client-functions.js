@@ -64,6 +64,47 @@ function refreshClientAccessToken() {
     });
 }
 
+function getCreditCardAccessToken() {
+    return window.localStorage.getItem("cardAccess");
+}
+
+function setCreditCardAccessToken(access) {
+    window.localStorage.setItem("cardAccess", access);
+}
+
+function getCreditCardRefreshToken() {
+    return window.localStorage.getItem("cardRefresh");
+}
+
+function setCreditCardRefreshToken(refresh) {
+    window.localStorage.setItem("cardRefresh", refresh);
+}
+
+function refreshCreditCardAccessToken() {
+    $.ajax({
+        type: "POST",
+        contentType: 'application/x-www-form-urlencoded',
+        url: 'http://127.0.0.1:8080/auth/realms/credit-card/protocol/openid-connect/token',
+        dataType: 'json',
+        data: jQuery.param({
+            grant_type: "refresh_token",
+            client_id: "ADMIN-UI",
+            refresh_token: getCreditCardRefreshToken()
+        }),
+        success: function (data, textstatus, error) {
+            var tokens = data;
+            var accessToken = tokens.access_token;
+            var refreshToken = tokens.refresh_token;
+            setCreditCardAccessToken(accessToken);
+            setCreditCardRefreshToken(refreshToken);
+        },
+
+        error: function (xhr, ajaxOptions, thrownError) {
+            window.location.href = "http://127.0.0.1/index.html";
+        }
+    });
+}
+
 function showClientInfo() {
     var doc = document;
     $.ajax({
@@ -153,5 +194,193 @@ function showCreditCardList() {
 function goToCreditCardMenu(cardNumber) {
     setCardNumber(cardNumber);
     window.location.href = "http://127.0.0.1/client/card_menu.html";
+}
 
+function showCreditCardInfo() {
+    var doc = document;
+    $.ajax({
+        type: "GET",
+        contentType: 'application/JSON',
+        url: 'http://127.0.0.1:8087/card/' + getCardNumber() + '/info',
+        dataType: 'json',
+        headers: {
+            "Authorization": "bearer " + getClientAccessToken(),
+        },
+        success: function (data, textstatus, error) {
+            var cardInfo = data;
+            console.log(cardInfo);
+
+            doc.querySelector("#cardNumber").innerText = cardInfo.number;
+            doc.querySelector("#cardDate").innerText = cardInfo.date;
+            doc.querySelector("#cardName").innerText = cardInfo.client.surname + cardInfo.client.name;
+            doc.querySelector("#cardSum").innerText = cardInfo.sum;
+            doc.querySelector("#cardStatus").innerText = cardInfo.status;
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            switch (xhr.status) {
+                case 0:
+                    refreshClientAccessToken();
+                    showCreditCardInfo();
+                    break;
+                default: {
+                    var errorJson = xhr.status;
+                    var message = errorJson.message;
+                    document.getElementById("errorMessage").innerText = message;
+                }
+            }
+        }
+    });
+}
+
+function sendMoney() {
+    var doc = document;
+    var senderCardNumber = doc.getElementById("senderCard").value;
+    var receiverCardNumber = doc.getElementById("receiverCard").value;
+    var sum = doc.getElementById("sum").value;
+    var pin = doc.getElementById("pinToSend").value;
+
+    $.ajax({
+        type: "POST",
+        contentType: 'application/x-www-form-urlencoded',
+        url: 'http://127.0.0.1:8080/auth/realms/credit-card/protocol/openid-connect/token',
+        crossOrigin: false,
+        data: jQuery.param({
+            grant_type: "password",
+            client_id: "ADMIN-UI",
+            username: senderCardNumber,
+            password: pin
+        }),
+
+        success: function (xhr, ajaxOptions, thrownError) {
+            var accessToken = xhr.access_token;
+            var refreshToken = xhr.refresh_token;
+            setCreditCardAccessToken(accessToken);
+            setCreditCardRefreshToken(refreshToken);
+
+            var array_access_token = accessToken.split('.');
+            var base64Url = array_access_token[1];
+            var accessTokenJSON = JSON.parse(window.atob(base64Url));
+            var roles = accessTokenJSON.resource_access["card-web"].roles;
+
+            if (!roles[0].includes("ROLE_OWNER")) {
+                window.location.href = "http://127.0.0.1/client/home.html";
+                doc.getElementById("errorMessage").innerText = "Error: Incorrect pin!";
+            }
+            console.log("success");
+        },
+
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            var errorJson = JSON.parse(xhr.responseText);
+            var message = errorJson.message;
+            doc.getElementById("errorMessage").innerText = message;
+        }
+    });
+
+    $.ajax({
+        type: "PUT",
+        contentType: 'application/JSON',
+        url: 'http://127.0.0.1:8087/card/' + senderCardNumber + '/send',
+        dataType: 'json',
+        headers: {
+            "Authorization": "bearer " + getCreditCardAccessToken(),
+        },
+        data: JSON.stringify({
+            "senderCardNumber": senderCardNumber,
+            "receiverCardNumber": receiverCardNumber,
+            "sum": sum
+        }),
+
+        success: function (data, textstatus, error) {
+            console.log("success");
+            doc.getElementById("resultMessage").innerText = "Result: success!";
+        },
+
+        error: function (xhr, ajaxOptions, thrownError) {
+            switch (xhr.status) {
+                case 0:
+                    refreshCreditCardAccessToken();
+                    sendMoney();
+                    break;
+                default: {
+                    var errorJson = xhr.status;
+                    var message = errorJson.message;
+                    document.getElementById("errorMessage").innerText = message;
+                }
+            }
+        }
+    });
+}
+
+function blockCard() {
+    var doc = document;
+    var cardNumber = doc.getElementById("actionsCard").value;
+    var pin = doc.getElementById("pinToBlock").value;
+
+    $.ajax({
+        type: "POST",
+        contentType: 'application/x-www-form-urlencoded',
+        url: 'http://127.0.0.1:8080/auth/realms/credit-card/protocol/openid-connect/token',
+        crossOrigin: false,
+        data: jQuery.param({
+            grant_type: "password",
+            client_id: "ADMIN-UI",
+            username: cardNumber,
+            password: pin
+        }),
+
+        success: function (xhr, ajaxOptions, thrownError) {
+            var accessToken = xhr.access_token;
+            var refreshToken = xhr.refresh_token;
+            setCreditCardAccessToken(accessToken);
+            setCreditCardRefreshToken(refreshToken);
+
+            var array_access_token = accessToken.split('.');
+            var base64Url = array_access_token[1];
+            var accessTokenJSON = JSON.parse(window.atob(base64Url));
+            var roles = accessTokenJSON.resource_access["card-web"].roles;
+
+            if (!roles[0].includes("ROLE_OWNER")) {
+                window.location.href = "http://127.0.0.1/client/home.html";
+                doc.getElementById("errorMessage").innerText = "Error: Incorrect pin!";
+            }
+            console.log("success");
+        },
+
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            var errorJson = JSON.parse(xhr.responseText);
+            var message = errorJson.message;
+            doc.getElementById("errorMessage").innerText = message;
+        }
+    });
+
+    $.ajax({
+        type: "PUT",
+        contentType: 'application/JSON',
+        url: 'http://127.0.0.1:8087/card/' + cardNumber + '/block',
+        dataType: 'json',
+        headers: {
+            "Authorization": "bearer " + getCreditCardAccessToken()
+        },
+
+        success: function (data, textstatus, error) {
+            console.log("success");
+            doc.getElementById("resultMessage").innerText = "Result: success!";
+        },
+
+        error: function (xhr, ajaxOptions, thrownError) {
+            switch (xhr.status) {
+                case 0:
+                    refreshCreditCardAccessToken();
+                    blockCard();
+                    break;
+                default: {
+                    var errorJson = xhr.status;
+                    var message = errorJson.message;
+                    document.getElementById("errorMessage").innerText = message;
+                }
+            }
+        }
+    });
 }
