@@ -7,6 +7,7 @@ function myLoad() {
 }
 
 function sendLogin() {
+    console.log('sendLogin');
     $.ajax({
         type: "POST",
         contentType: "application/JSON",
@@ -14,17 +15,18 @@ function sendLogin() {
         data: JSON.stringify({
             "login": doc.getElementById("login").value,
             "name": doc.getElementById("name").value,
-            "surname": JSON.stringify({
+            "surname": doc.getElementById("name").value,
+            "birthday": {
                 "day": doc.getElementById("day").value,
                 "month": doc.getElementById("month").value,
                 "year": doc.getElementById("year").value
-            }),
-            "address": JSON.stringify({
+            },
+            "address": {
                 "country": doc.getElementById("country").value,
                 "city": doc.getElementById("city").value,
                 "street": doc.getElementById("street").value,
                 "postcode": doc.getElementById("postcode").value
-            }),
+            },
             "email": doc.getElementById("email").value,
             "phone": doc.getElementById("phone").value,
             "password": doc.getElementById("password").value

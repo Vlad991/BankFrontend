@@ -80,10 +80,7 @@
                     </div>
                 </div>
                 <div class="message-wrap">
-                    <div
-                            class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">Can
-                        I help you?
-                        !
+                    <div class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">Can I help you?
                     </div>
                 </div>
                 <div class="message-wrap">
@@ -120,12 +117,10 @@
             </div>
         </div>
         <div class="messenger__footer p-2">
-            <form action=""
-                  class="form send-form d-block mx-auto p-1 d-inline-flex bg-light border border-secondary rounded">
-                <div class="paperclip d-inline-block"><img src="../img/messanger/smile.svg" class="paperclip-img"
-                                                           alt="Smiles"></div>
+            <form action="" class="form send-form d-block mx-auto p-1 d-inline-flex bg-light border border-secondary rounded">
+                <div class="paperclip d-inline-block"><img src="../img/messanger/smile.svg" class="paperclip-img" alt="Smiles"></div>
                 <textarea class="send-area border-0 bg-light" name="" id="" cols="20" rows="1"></textarea>
-                <input type="submit" class="send-button border-0 bg-light" value="Send">
+                <button id="sendButton" type="button" class="send-button border-0 bg-light" value="Send"></button>
             </form>
         </div>
     </div>
@@ -133,6 +128,8 @@
     <header class="container jumbotron text-center header p-2 my-4">
         <h1 class="text-dark align-middle mt-3">About MyBank...</h1>
     </header>
+
+    <div id="errorMessage" class="container text-danger">Error: something went wrong!</div>
 
     <p class="jumbotron container bg-secondary">MyBank - is my Java Spring Web Application. In this app I use similarity
         of REST microservice architecture (Authorization Keycloak Service and Main Business Logic Service) that

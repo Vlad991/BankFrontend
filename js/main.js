@@ -42,8 +42,15 @@ function sendLoginPassword() {
 
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status);
-            var errorJson = JSON.parse(xhr.responseText);
-            var message = errorJson.message;
+            var errorJson;
+            var message;
+            if (typeof xhr.responseText !== 'undefined') {
+                errorJson = "No error information!";
+                message = errorJson;
+            } else {
+                errorJson = JSON.parse(xhr.responseText);
+                message = errorJson.message;
+            }
             doc.getElementById("errorMessage").innerText = message;
         }
     });

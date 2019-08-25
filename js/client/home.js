@@ -6,7 +6,7 @@ var ws = new SockJS("http://127.0.0.1:8087/client-socket?Authorization=" + getCl
 function myLoad() {
 // Socket events
     doc.getElementById("sendButton").addEventListener("click", sendMessage);
-    doc.getElementById("comment").addEventListener("click", sendComment); //todo
+//    doc.getElementById("comment").addEventListener("click", sendComment); //todo
     window.addEventListener("unload", sendLogout);
 
     ws.onopen = function () {
