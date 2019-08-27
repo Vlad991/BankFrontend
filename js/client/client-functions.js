@@ -112,9 +112,11 @@ function showClientInfo() {
         contentType: 'application/JSON',
         url: 'http://127.0.0.1:8087/client/' + getLogin() + '/info',
         dataType: 'json',
+        crossOrigin: true,
         headers: {
             "Authorization": "bearer " + getClientAccessToken(),
         },
+
         success: function (data, textstatus, error) {
             var clientInfo = data;
             console.log(clientInfo);
@@ -126,16 +128,17 @@ function showClientInfo() {
             doc.getElementById("clientEmail").innerText = clientInfo.email;
             doc.getElementById("clientPhone").innerText = clientInfo.phone;
         },
+
         error: function (xhr, ajaxOptions, thrownError) {
             switch (xhr.status) {
                 case 0:
                     refreshClientAccessToken();
-                    showClientInfo();
+                    // showClientInfo();
                     break;
                 default: {
                     var errorJson = xhr.status;
                     var message = errorJson.message;
-                    document.getElementById("errorMessage").innerText = message;
+                    document.getElementById("errorMessage").innerText = "Error: " + message;
                 }
             }
         }
@@ -179,7 +182,7 @@ function showCreditCardList() {
             switch (xhr.status) {
                 case 0:
                     refreshClientAccessToken();
-                    showCreditCardList();
+//                    showCreditCardList();
                     break;
                 default: {
                     var errorJson = xhr.status;
@@ -220,7 +223,7 @@ function showCreditCardInfo() {
             switch (xhr.status) {
                 case 0:
                     refreshClientAccessToken();
-                    showCreditCardInfo();
+//                    showCreditCardInfo();
                     break;
                 default: {
                     var errorJson = xhr.status;
@@ -373,7 +376,7 @@ function blockCard() {
             switch (xhr.status) {
                 case 0:
                     refreshCreditCardAccessToken();
-                    blockCard();
+//                    blockCard();
                     break;
                 default: {
                     var errorJson = xhr.status;

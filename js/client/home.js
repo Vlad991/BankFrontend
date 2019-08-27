@@ -9,6 +9,9 @@ function myLoad() {
 //    doc.getElementById("comment").addEventListener("click", sendComment); //todo
     window.addEventListener("unload", sendLogout);
 
+    // ws.dataType = "jsonp";
+    // ws.crossOrigin = true;
+
     ws.onopen = function () {
         console.log("socket connection establish");
     };

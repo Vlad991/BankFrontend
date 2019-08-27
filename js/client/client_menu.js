@@ -11,7 +11,7 @@ function myLoad() {
 
 // Socket events
     doc.getElementById("sendButton").addEventListener("click", sendMessage);
-    doc.getElementById("comment").addEventListener("click", sendComment); //todo
+//    doc.getElementById("comment").addEventListener("click", sendComment); //todo
     window.addEventListener("unload", sendLogout);
 
     ws.onopen = function () {

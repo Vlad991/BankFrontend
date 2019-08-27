@@ -7,11 +7,12 @@ function myLoad() {
 }
 
 function sendLoginPassword() {
+    window.localStorage.setItem("login", doc.getElementById("login").value);
     $.ajax({
         type: "POST",
         contentType: 'application/x-www-form-urlencoded',
         url: 'http://127.0.0.1:8080/auth/realms/bank/protocol/openid-connect/token',
-        crossOrigin: false,
+        crossOrigin: true,
         data: jQuery.param({
             grant_type: "password",
             client_id: "ADMIN-UI",
@@ -22,8 +23,8 @@ function sendLoginPassword() {
         success: function (xhr, ajaxOptions, thrownError) {
             var accessToken = xhr.access_token;
             var refreshToken = xhr.refresh_token;
-            window.localStorage.setItem("access", accessToken);
-            window.localStorage.setItem("refresh", refreshToken);
+            window.localStorage.setItem("clientAccess", accessToken);
+            window.localStorage.setItem("clientRefresh", refreshToken);
 
             var array_access_token = accessToken.split('.');
             var base64Url = array_access_token[1];
