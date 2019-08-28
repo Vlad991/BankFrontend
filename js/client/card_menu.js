@@ -7,10 +7,11 @@ function myLoad() {
     showCreditCardInfo();
 // Card Menu events
     doc.getElementById("v-pills-home-tab").addEventListener("click", showCreditCardInfo);
+    doc.getElementById("sendSumButton").addEventListener("click", sendMoney);
 
 // Socket events
     doc.getElementById("sendButton").addEventListener("click", sendMessage);
-    doc.getElementById("comment").addEventListener("click", sendComment); //todo
+//    doc.getElementById("comment").addEventListener("click", sendComment); //todo
     window.addEventListener("unload", sendLogout);
 
     ws.onopen = function () {

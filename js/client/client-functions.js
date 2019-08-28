@@ -162,11 +162,12 @@ function showCreditCardList() {
             var creditCardElement = doc.getElementById("creditCard");
             cardListUl = doc.getElementById("cardList");
 
-            for (var i = 1; i < cardList.length; i++) {
+            for (var i = 0; i < cardList.length; i++) {
                 var card = cardList[i];
                 doc.querySelector("#cardList li:last-child div .credit-card__number").innerText = card.number;
-                doc.querySelector("#cardList li:last-child div .credit-card__date").innerText = card.date;
-                doc.querySelector("#cardList li:last-child div .credit-card__name").innerText = card.client.surname + card.client.name;
+                doc.querySelector("#cardList li:last-child div .credit-card__date").innerText =
+                    ((card.date.month < 10) ? ("0" + card.date.month) : card.date.month) + "/" + card.date.year;
+                doc.querySelector("#cardList li:last-child div .credit-card__name").innerText = card.client.surname + " " + card.client.name;
                 doc.querySelector("#cardList li:last-child div").classList.remove("bg-dark");
                 doc.querySelector("#cardList li:last-child div").style.background = getRandomColor();
                 doc.querySelector("#cardList li:last-child div").addEventListener("click", function () {
@@ -214,8 +215,9 @@ function showCreditCardInfo() {
             console.log(cardInfo);
 
             doc.querySelector("#cardNumber").innerText = cardInfo.number;
-            doc.querySelector("#cardDate").innerText = cardInfo.date;
-            doc.querySelector("#cardName").innerText = cardInfo.client.surname + cardInfo.client.name;
+            doc.querySelector("#cardDate").innerText =
+                ((cardInfo.date.month < 10) ? ("0" + cardInfo.date.month) : cardInfo.date.month) + "/" + cardInfo.date.year;
+            doc.querySelector("#cardName").innerText = cardInfo.client.surname + " " + cardInfo.client.name;
             doc.querySelector("#cardSum").innerText = cardInfo.sum;
             doc.querySelector("#cardStatus").innerText = cardInfo.status;
         },
@@ -246,7 +248,7 @@ function sendMoney() {
         type: "POST",
         contentType: 'application/x-www-form-urlencoded',
         url: 'http://127.0.0.1:8080/auth/realms/credit-card/protocol/openid-connect/token',
-        crossOrigin: false,
+        crossOrigin: true,
         data: jQuery.param({
             grant_type: "password",
             client_id: "ADMIN-UI",
@@ -265,10 +267,10 @@ function sendMoney() {
             var accessTokenJSON = JSON.parse(window.atob(base64Url));
             var roles = accessTokenJSON.resource_access["card-web"].roles;
 
-            if (!roles[0].includes("ROLE_OWNER")) {
-                window.location.href = "http://127.0.0.1/client/home.html";
-                doc.getElementById("errorMessage").innerText = "Error: Incorrect pin!";
-            }
+            // if (!roles[0].includes("ROLE_OWNER")) {
+            //     window.location.href = "http://127.0.0.1/client/home.html";
+            //     doc.getElementById("errorMessage").innerText = "Error: Incorrect pin!";
+            // } todo
             console.log("success");
         },
 
@@ -283,8 +285,9 @@ function sendMoney() {
     $.ajax({
         type: "PUT",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/card/' + senderCardNumber + '/send',
+        url: 'http://127.0.0.1:8086/card/' + senderCardNumber + '/send',
         dataType: 'json',
+        crossOrigin: true,
         headers: {
             "Authorization": "bearer " + getCreditCardAccessToken(),
         },
@@ -303,7 +306,7 @@ function sendMoney() {
             switch (xhr.status) {
                 case 0:
                     refreshCreditCardAccessToken();
-                    sendMoney();
+//                    sendMoney();
                     break;
                 default: {
                     var errorJson = xhr.status;
@@ -361,7 +364,7 @@ function blockCard() {
     $.ajax({
         type: "PUT",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/card/' + cardNumber + '/block',
+        url: 'http://127.0.0.1:8086/card/' + cardNumber + '/block',
         dataType: 'json',
         headers: {
             "Authorization": "bearer " + getCreditCardAccessToken()
