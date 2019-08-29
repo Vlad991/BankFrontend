@@ -4,6 +4,7 @@ doc.addEventListener("DOMContentLoaded", myLoad);
 
 function myLoad() {
     doc.getElementById("loginButton").addEventListener("click", sendLoginPassword);
+    doc.getElementById("logoLink").addEventListener("click", logout);
 }
 
 function sendLoginPassword() {

@@ -244,6 +244,92 @@ function sendMoney() {
     var sum = doc.getElementById("sum").value;
     var pin = doc.getElementById("pinToSend").value;
 
+//     $.ajax({
+//         type: "POST",
+//         contentType: 'application/x-www-form-urlencoded',
+//         url: 'http://127.0.0.1:8080/auth/realms/credit-card/protocol/openid-connect/token',
+//         crossOrigin: true,
+//         data: jQuery.param({
+//             grant_type: "password",
+//             client_id: "ADMIN-UI",
+//             username: senderCardNumber,
+//             password: pin
+//         }),
+//
+//         success: function (xhr, ajaxOptions, thrownError) {
+//             var accessToken = xhr.access_token;
+//             var refreshToken = xhr.refresh_token;
+//             setCreditCardAccessToken(accessToken);
+//             setCreditCardRefreshToken(refreshToken);
+//
+//             var array_access_token = accessToken.split('.');
+//             var base64Url = array_access_token[1];
+//             var accessTokenJSON = JSON.parse(window.atob(base64Url));
+//             var roles = accessTokenJSON.resource_access["card-web"].roles;
+//
+//             // if (!roles[0].includes("ROLE_OWNER")) {
+//             //     window.location.href = "http://127.0.0.1/client/home.html";
+//             //     doc.getElementById("errorMessage").innerText = "Error: Incorrect pin!";
+//             // } todo
+//             console.log("success");
+//
+//             $.ajax({
+//                 type: "PUT",
+//                 contentType: 'application/JSON',
+//                 url: 'http://127.0.0.1:8086/card/' + senderCardNumber + '/send',
+//                 dataType: 'json',
+//                 crossOrigin: true,
+//                 headers: {
+//                     "Authorization": "bearer " + getCreditCardAccessToken(),
+//                 },
+//                 data: JSON.stringify({
+//                     "senderCardNumber": senderCardNumber,
+//                     "receiverCardNumber": receiverCardNumber,
+//                     "sum": sum
+//                 }),
+//
+//                 success: function (data, textstatus, error) {
+//                     console.log("success");
+//                     doc.getElementById("resultMessage").innerText = "Result: success!";
+//                 },
+//
+//                 error: function (xhr, ajaxOptions, thrownError) {
+//                     switch (xhr.status) {
+//                         case 0:
+//                             refreshCreditCardAccessToken();
+// //                    sendMoney();
+//                             break;
+//                         default: {
+//                             var errorJson = xhr.status;
+//                             var message = errorJson.message;
+//                             document.getElementById("errorMessage").innerText = message;
+//                         }
+//                     }
+//                 }
+//             });
+//
+//         },
+//
+//         error: function (xhr, ajaxOptions, thrownError) {
+//             console.log(xhr.status);
+//             var errorJson = JSON.parse(xhr.responseText);
+//             var message = errorJson.message;
+//             doc.getElementById("errorMessage").innerText = message;
+//         }
+//     });
+
+    getCardTokensFromAuthServer();
+
+    doSendMoneyRequest();
+}
+
+function getCardTokensFromAuthServer() {
+    var doc = document;
+    var senderCardNumber = doc.getElementById("senderCard").value;
+    var receiverCardNumber = doc.getElementById("receiverCard").value;
+    var sum = doc.getElementById("sum").value;
+    var pin = doc.getElementById("pinToSend").value;
+
     $.ajax({
         type: "POST",
         contentType: 'application/x-www-form-urlencoded',
@@ -281,13 +367,18 @@ function sendMoney() {
             doc.getElementById("errorMessage").innerText = message;
         }
     });
+}
+
+function doSendMoneyRequest() {
+    var doc = document;
+    var senderCardNumber = doc.getElementById("senderCard").value;
+    var receiverCardNumber = doc.getElementById("receiverCard").value;
+    var sum = doc.getElementById("sum").value;
 
     $.ajax({
         type: "PUT",
         contentType: 'application/JSON',
         url: 'http://127.0.0.1:8086/card/' + senderCardNumber + '/send',
-        dataType: 'json',
-        crossOrigin: true,
         headers: {
             "Authorization": "bearer " + getCreditCardAccessToken(),
         },
