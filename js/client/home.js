@@ -9,9 +9,6 @@ function myLoad() {
 //    doc.getElementById("comment").addEventListener("click", sendComment); //todo
     window.addEventListener("unload", sendLogout);
 
-    // ws.dataType = "jsonp";
-    // ws.crossOrigin = true;
-
     ws.onopen = function () {
         console.log("socket connection establish");
     };
@@ -57,7 +54,7 @@ function myLoad() {
                 var messengerBody = doc.getElementById("messengerBody");
                 var receiveMessageElement = doc.getElementById("receiveMessage");
                 var receiveMessageElementClone = receiveMessageElement.cloneNode(true);
-                messageBody.appendChild(receiveMessageElementClone);
+                messengerBody.appendChild(receiveMessageElementClone);
 
                 doc.querySelector("#messengerBody div:last-child div").innerText = messageBody;
                 break;
@@ -83,6 +80,15 @@ function sendMessage() {
     jsonSend["receiver"] = receiver;
     jsonSend["message"] = messageBody;
     ws.send(JSON.stringify(jsonSend));
+
+    var messengerBody = doc.getElementById("messengerBody");
+    var sendMessageElement = doc.getElementById("sendMessageBlock");
+    var sendMessageElementClone = sendMessageElement.cloneNode(true);
+    messengerBody.appendChild(sendMessageElementClone);
+
+    doc.querySelector("#messengerBody div:last-child div").innerText = messageBody;
+    doc.getElementById("messengerBody").scrollTop = doc.getElementById("messengerBody").scrollHeight;
+    doc.getElementById("sendMessage").value = "";
 }
 
 function sendComment() {
