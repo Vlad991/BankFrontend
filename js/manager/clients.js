@@ -54,16 +54,16 @@ function myLoad() {
                 break;
             }
             case "PRIVATE": {
-                var messageSender = receiveJson.sender;
-                var messageBody = receiveJson.message;
-                doc.getElementById("messageSender").innerText = "Manager " + messageSender;
-
-                var messengerBody = doc.getElementById("messengerBody");
-                var receiveMessageElement = doc.getElementById("receiveMessage");
-                var receiveMessageElementClone = receiveMessageElement.cloneNode(true);
-                messageBody.appendChild(receiveMessageElementClone);
-
-                doc.querySelector("#messengerBody div:last-child div").innerText = messageBody;
+                // var messageSender = receiveJson.sender;
+                // var messageBody = receiveJson.message;
+                // doc.getElementById("messageSender").innerText = "Manager " + messageSender;
+                //
+                // var messengerBody = doc.getElementById("messengerBody");
+                // var receiveMessageElement = doc.getElementById("receiveMessage");
+                // var receiveMessageElementClone = receiveMessageElement.cloneNode(true);
+                // messageBody.appendChild(receiveMessageElementClone);
+                //
+                // doc.querySelector("#messengerBody div:last-child div").innerText = messageBody;
                 break;
             }
 
