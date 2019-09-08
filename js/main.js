@@ -24,8 +24,6 @@ function sendLoginPassword() {
         success: function (xhr, ajaxOptions, thrownError) {
             var accessToken = xhr.access_token;
             var refreshToken = xhr.refresh_token;
-            window.localStorage.setItem("clientAccess", accessToken);
-            window.localStorage.setItem("clientRefresh", refreshToken);
 
             var array_access_token = accessToken.split('.');
             var base64Url = array_access_token[1];
@@ -33,10 +31,16 @@ function sendLoginPassword() {
             var roles = accessTokenJSON.resource_access["bank-web"].roles;
 
             if (roles.includes("ROLE_ADMIN")) {
+                window.localStorage.setItem("adminAccess", accessToken);
+                window.localStorage.setItem("adminRefresh", refreshToken);
                 window.location.href = "http://127.0.0.1/admin/home.html";
             } else if (roles.includes("ROLE_MANAGER")) {
+                window.localStorage.setItem("managerAccess", accessToken);
+                window.localStorage.setItem("managerRefresh", refreshToken);
                 window.location.href = "http://127.0.0.1/manager/home.html";
             } else if (roles.includes("ROLE_CLIENT")) {
+                window.localStorage.setItem("clientAccess", accessToken);
+                window.localStorage.setItem("clientRefresh", refreshToken);
                 window.location.href = "http://127.0.0.1/client/home.html";
             }
             console.log("success");

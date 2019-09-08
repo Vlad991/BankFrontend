@@ -4,6 +4,7 @@ doc.addEventListener("DOMContentLoaded", myLoad);
 var ws = new SockJS("http://127.0.0.1:8087/client-socket?Authorization=" + getClientAccessToken());
 
 function myLoad() {
+    doc.getElementById("headerLogin").innerText = getLogin();
     showClientInfo();
 // Client Menu events
     doc.getElementById("v-pills-info-tab").addEventListener("click", showClientInfo);

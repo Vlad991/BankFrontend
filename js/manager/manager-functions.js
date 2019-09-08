@@ -15,14 +15,6 @@ function setLogin(login) {
     window.localStorage.setItem("login", login);
 }
 
-function getCardNumber() {
-    return window.localStorage.getItem("cardNumber");
-}
-
-function setCardNumber(cardNumber) {
-    window.localStorage.setItem("cardNumber", cardNumber);
-}
-
 function getManagerAccessToken() {
     return window.localStorage.getItem("managerAccess");
 }
@@ -65,13 +57,25 @@ function refreshManagerAccessToken() {
     });
 }
 
+function clearClientsInfoTable() {
+    var doc = document;
+    var tableRows = doc.querySelector("#clientInfoTable").children;
+    if (tableRows.length > 1) {
+        for (var i = 0; i < tableRows.length - 1; i++) {
+            doc.querySelector("#clientInfoTable tr:last-child").remove();
+        }
+    }
+}
+
 function showClientsInfo() {
     var doc = document;
+    clearClientsInfoTable();
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
         url: 'http://127.0.0.1:8087/manager/clients',
         dataType: 'json',
+        crossOrigin: true,
         headers: {
             "Authorization": "bearer " + getManagerAccessToken(),
         },
@@ -86,13 +90,15 @@ function showClientsInfo() {
             for (var i = 0; i < clients.length; i++) {
                 var clientInfo = clients[i];
                 doc.querySelector("#clientInfoTable tr:last-child th").innerText = i;
-                doc.querySelector("#clientInfoTable tr:last-child table__login").innerText = clientInfo.login;
-                doc.querySelector("#clientInfoTable tr:last-child table__name").innerText = clientInfo.name;
-                doc.querySelector("#clientInfoTable tr:last-child table__surname").innerText = clientInfo.surname;
-                doc.querySelector("#clientInfoTable tr:last-child table__date").innerText = clientInfo.date;
-                doc.querySelector("#clientInfoTable tr:last-child table__address").innerText = clientInfo.address;
-                doc.querySelector("#clientInfoTable tr:last-child table__email").innerText = clientInfo.email;
-                doc.querySelector("#clientInfoTable tr:last-child table__phone").innerText = clientInfo.phone;
+                doc.querySelector("#clientInfoTable tr:last-child .table__login").innerText = clientInfo.login;
+                doc.querySelector("#clientInfoTable tr:last-child .table__name").innerText = clientInfo.name;
+                doc.querySelector("#clientInfoTable tr:last-child .table__surname").innerText = clientInfo.surname;
+                doc.querySelector("#clientInfoTable tr:last-child .table__date")
+                    .innerText = clientInfo.birthday.day + "/" + clientInfo.birthday.month + "/" + clientInfo.birthday.year;
+                doc.querySelector("#clientInfoTable tr:last-child .table__address")
+                    .innerText = clientInfo.address.country + ', ' + clientInfo.address.city + ', ' + clientInfo.address.street + ' ' + clientInfo.address.postcode;
+                doc.querySelector("#clientInfoTable tr:last-child .table__email").innerText = clientInfo.email;
+                doc.querySelector("#clientInfoTable tr:last-child .table__phone").innerText = clientInfo.phone;
 
                 var clientInfoRowClone = clientInfoRow.cloneNode(true);
                 clientInfoTable.appendChild(clientInfoRowClone);
@@ -116,43 +122,63 @@ function showClientsInfo() {
     });
 }
 
+function clearCreditCardTable() {
+    var doc = document;
+    var tableRows = doc.querySelector("#cardsInfoTable").children;
+    if (tableRows.length > 1) {
+        for (var i = 0; i < tableRows.length - 1; i++) {
+            doc.querySelector("#cardsInfoTable tr:last-child").remove();
+        }
+    }
+}
+
 function showCreditCardList() {
     var doc = document;
+    clearCreditCardTable();
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/client/' + getLogin() + '/cards',
+        url: 'http://127.0.0.1:8087/manager/cards',
         dataType: 'json',
         headers: {
-            "Authorization": "bearer " + getClientAccessToken(),
+            "Authorization": "bearer " + getManagerAccessToken(),
         },
         success: function (data, textstatus, error) {
             var cardList = data;
             console.log(cardList);
 
-            var creditCardElement = doc.getElementById("creditCard");
-            cardListUl = doc.getElementById("cardList");
+            var cardInfoTable = doc.getElementById("cardsInfoTable");
+            var cardInfoRow = doc.getElementById("cardInfo");
 
-            for (var i = 1; i < cardList.length; i++) {
-                var card = cardList[i];
-                doc.querySelector("#cardList li:last-child div .credit-card__number").innerText = card.number;
-                doc.querySelector("#cardList li:last-child div .credit-card__date").innerText = card.date;
-                doc.querySelector("#cardList li:last-child div .credit-card__name").innerText = card.client.surname + card.client.name;
-                doc.querySelector("#cardList li:last-child div").classList.remove("bg-dark");
-                doc.querySelector("#cardList li:last-child div").style.background = getRandomColor();
-                doc.querySelector("#cardList li:last-child div").addEventListener("click", function () {
-                    goToCreditCardMenu(card.number);
-                });
+            for (var i = 0; i < cardList.length; i++) {
+                var cardInfo = cardList[i];
+                doc.querySelector("#cardsInfoTable tr:last-child th").innerText = i;
+                doc.querySelector("#cardsInfoTable tr:last-child .table__number").innerText = cardInfo.number;
+                doc.querySelector("#cardsInfoTable tr:last-child .table__date")
+                    .innerText = ((cardInfo.date.month < 10) ? ("0" + cardInfo.date.month) : cardInfo.date.month) + "/" + cardInfo.date.year;
+                doc.querySelector("#cardsInfoTable tr:last-child .table__code").innerText = cardInfo.code;
+                doc.querySelector("#cardsInfoTable tr:last-child .table__sum").innerText = cardInfo.sum;
+                doc.querySelector("#cardsInfoTable tr:last-child .table__name").innerText = cardInfo.client.surname + " " + cardInfo.client.name;
+                doc.querySelector("#cardsInfoTable tr:last-child .table__status").innerText = cardInfo.status;
+                doc.querySelector("#cardsInfoTable tr:last-child .table__status").addEventListener('click', function (event) {
+                    changeCardStatus(event.target);
+                }, false);
 
-                var creditCardElementClone = creditCardElement.cloneNode(true);
-                cardListUl.appendChild(creditCardElementClone);
+                if (cardInfo.status === "BLOCKED") {
+                    doc.querySelector("#cardsInfoTable tr:last-child").classList.add("bg-danger");
+                } else {
+                    doc.querySelector("#cardsInfoTable tr:last-child").classList.remove("bg-danger");
+                }
+
+                var cardInfoRowClone = cardInfoRow.cloneNode(true);
+                cardInfoTable.appendChild(cardInfoRowClone);
             }
-            cardListUl.removeChild(cardListUl.lastChild);
+            cardInfoTable.removeChild(cardInfoTable.lastChild);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             switch (xhr.status) {
                 case 0:
-                    refreshClientAccessToken();
+                    refreshManagerAccessToken();
                     showCreditCardList();
                     break;
                 default: {
@@ -165,116 +191,37 @@ function showCreditCardList() {
     });
 }
 
-function goToCreditCardMenu(cardNumber) {
-    setCardNumber(cardNumber);
-    window.location.href = "http://127.0.0.1/client/card_menu.html";
-}
+function changeCardStatus(target) {
+    var prevStatus = target.innerText;
 
-function showCreditCardInfo() {
-    var doc = document;
-    $.ajax({
-        type: "GET",
-        contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/card/' + getCardNumber() + '/info',
-        dataType: 'json',
-        headers: {
-            "Authorization": "bearer " + getClientAccessToken(),
-        },
-        success: function (data, textstatus, error) {
-            var cardInfo = data;
-            console.log(cardInfo);
-
-            doc.querySelector("#cardNumber").innerText = cardInfo.number;
-            doc.querySelector("#cardDate").innerText = cardInfo.date;
-            doc.querySelector("#cardName").innerText = cardInfo.client.surname + cardInfo.client.name;
-            doc.querySelector("#cardSum").innerText = cardInfo.sum;
-            doc.querySelector("#cardStatus").innerText = cardInfo.status;
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            switch (xhr.status) {
-                case 0:
-                    refreshClientAccessToken();
-                    showCreditCardInfo();
-                    break;
-                default: {
-                    var errorJson = xhr.status;
-                    var message = errorJson.message;
-                    document.getElementById("errorMessage").innerText = message;
-                }
-            }
-        }
-    });
-}
-
-function sendMoney() {
-    var doc = document;
-    var senderCardNumber = doc.getElementById("senderCard").value;
-    var receiverCardNumber = doc.getElementById("receiverCard").value;
-    var sum = doc.getElementById("sum").value;
-    var pin = doc.getElementById("pinToSend").value;
-
-    $.ajax({
-        type: "POST",
-        contentType: 'application/x-www-form-urlencoded',
-        url: 'http://127.0.0.1:8080/auth/realms/credit-card/protocol/openid-connect/token',
-        crossOrigin: false,
-        data: jQuery.param({
-            grant_type: "password",
-            client_id: "ADMIN-UI",
-            username: senderCardNumber,
-            password: pin
-        }),
-
-        success: function (xhr, ajaxOptions, thrownError) {
-            var accessToken = xhr.access_token;
-            var refreshToken = xhr.refresh_token;
-            setCreditCardAccessToken(accessToken);
-            setCreditCardRefreshToken(refreshToken);
-
-            var array_access_token = accessToken.split('.');
-            var base64Url = array_access_token[1];
-            var accessTokenJSON = JSON.parse(window.atob(base64Url));
-            var roles = accessTokenJSON.resource_access["card-web"].roles;
-
-            if (!roles[0].includes("ROLE_OWNER")) {
-                window.location.href = "http://127.0.0.1/client/home.html";
-                doc.getElementById("errorMessage").innerText = "Error: Incorrect pin!";
-            }
-            console.log("success");
-        },
-
-        error: function (xhr, ajaxOptions, thrownError) {
-            console.log(xhr.status);
-            var errorJson = JSON.parse(xhr.responseText);
-            var message = errorJson.message;
-            doc.getElementById("errorMessage").innerText = message;
-        }
-    });
+    var cardInfoElement = target.parentNode.parentNode;
+    var cardNumber = cardInfoElement.querySelector(".table__number").innerText;
 
     $.ajax({
         type: "PUT",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/card/' + senderCardNumber + '/send',
-        dataType: 'json',
+        url: 'http://127.0.0.1:8087/manager/' + cardNumber + '/change',
+        crossOrigin: true,
         headers: {
-            "Authorization": "bearer " + getCreditCardAccessToken(),
+            "Authorization": "bearer " + getManagerAccessToken()
         },
-        data: JSON.stringify({
-            "senderCardNumber": senderCardNumber,
-            "receiverCardNumber": receiverCardNumber,
-            "sum": sum
-        }),
 
         success: function (data, textstatus, error) {
             console.log("success");
-            doc.getElementById("resultMessage").innerText = "Result: success!";
+            if (prevStatus == "OPEN") {
+                target.innerText = "BLOCKED";
+                cardInfoElement.classList.add("bg-danger");
+            } else {
+                target.innerText = "OPEN";
+                cardInfoElement.classList.remove("bg-danger");
+            }
         },
 
         error: function (xhr, ajaxOptions, thrownError) {
             switch (xhr.status) {
                 case 0:
-                    refreshCreditCardAccessToken();
-                    sendMoney();
+                    refreshManagerAccessToken();
+                    changeCardStatus(target);
                     break;
                 default: {
                     var errorJson = xhr.status;
@@ -286,75 +233,36 @@ function sendMoney() {
     });
 }
 
-function blockCard() {
+function clearActiveClientsInfoTable() {
     var doc = document;
-    var cardNumber = doc.getElementById("actionsCard").value;
-    var pin = doc.getElementById("pinToBlock").value;
-
-    $.ajax({
-        type: "POST",
-        contentType: 'application/x-www-form-urlencoded',
-        url: 'http://127.0.0.1:8080/auth/realms/credit-card/protocol/openid-connect/token',
-        crossOrigin: false,
-        data: jQuery.param({
-            grant_type: "password",
-            client_id: "ADMIN-UI",
-            username: cardNumber,
-            password: pin
-        }),
-
-        success: function (xhr, ajaxOptions, thrownError) {
-            var accessToken = xhr.access_token;
-            var refreshToken = xhr.refresh_token;
-            setCreditCardAccessToken(accessToken);
-            setCreditCardRefreshToken(refreshToken);
-
-            var array_access_token = accessToken.split('.');
-            var base64Url = array_access_token[1];
-            var accessTokenJSON = JSON.parse(window.atob(base64Url));
-            var roles = accessTokenJSON.resource_access["card-web"].roles;
-
-            if (!roles[0].includes("ROLE_OWNER")) {
-                window.location.href = "http://127.0.0.1/client/home.html";
-                doc.getElementById("errorMessage").innerText = "Error: Incorrect pin!";
-            }
-            console.log("success");
-        },
-
-        error: function (xhr, ajaxOptions, thrownError) {
-            console.log(xhr.status);
-            var errorJson = JSON.parse(xhr.responseText);
-            var message = errorJson.message;
-            doc.getElementById("errorMessage").innerText = message;
+    var clientCards = doc.querySelector("#activeClients").children;
+    if (clientCards.length > 1) {
+        for (var i = 0; i < clientCards.length - 1; i++) {
+            doc.querySelector("#activeClients div:last-child").remove();
         }
-    });
+    }
+}
 
-    $.ajax({
-        type: "PUT",
-        contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/card/' + cardNumber + '/block',
-        dataType: 'json',
-        headers: {
-            "Authorization": "bearer " + getCreditCardAccessToken()
-        },
+function showActiveClientsList(activeUsers) {
+    var doc = document;
+    clearActiveClientsInfoTable();
+    var activeClientsElement = doc.getElementById("activeClients");
+    var activeClientCard = doc.getElementById("activeClientCard");
 
-        success: function (data, textstatus, error) {
-            console.log("success");
-            doc.getElementById("resultMessage").innerText = "Result: success!";
-        },
+    for(var i = 0; i < activeUsers.length; i++){
+        var user = activeUsers[i];
 
-        error: function (xhr, ajaxOptions, thrownError) {
-            switch (xhr.status) {
-                case 0:
-                    refreshCreditCardAccessToken();
-                    blockCard();
-                    break;
-                default: {
-                    var errorJson = xhr.status;
-                    var message = errorJson.message;
-                    document.getElementById("errorMessage").innerText = message;
-                }
-            }
-        }
-    });
+        doc.querySelector("#activeClients div:last-child .card-title").innerText = user;
+        doc.querySelector("#activeClients div:last-child .card-body__button").addEventListener('click', function () {
+            connectToClient(user);
+        }, false);
+
+        var activeClientCardClone = activeClientCard.cloneNode(true);
+        activeClientsElement.appendChild(activeClientCardClone);
+    }
+    activeClientsElement.removeChild(activeClientsElement.lastChild);
+}
+
+function connectToClient(client) {
+    //todo
 }

@@ -456,7 +456,6 @@ function blockCard() {
         type: "PUT",
         contentType: 'application/JSON',
         url: 'http://127.0.0.1:8086/card/' + cardNumber + '/block',
-        dataType: 'json',
         headers: {
             "Authorization": "bearer " + getCreditCardAccessToken()
         },
@@ -470,7 +469,7 @@ function blockCard() {
             switch (xhr.status) {
                 case 0:
                     refreshCreditCardAccessToken();
-//                    blockCard();
+                    blockCard();
                     break;
                 default: {
                     var errorJson = xhr.status;

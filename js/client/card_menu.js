@@ -4,10 +4,12 @@ doc.addEventListener("DOMContentLoaded", myLoad);
 var ws = new SockJS("http://127.0.0.1:8087/client-socket?Authorization=" + getClientAccessToken());
 
 function myLoad() {
+    doc.getElementById("headerLogin").innerText = getLogin();
     showCreditCardInfo();
 // Card Menu events
     doc.getElementById("v-pills-home-tab").addEventListener("click", showCreditCardInfo);
     doc.getElementById("sendSumButton").addEventListener("click", sendMoney);
+    doc.getElementById("blockCardBtn").addEventListener("click", blockCard);
 
 // Socket events
     doc.getElementById("sendButton").addEventListener("click", sendMessage);
