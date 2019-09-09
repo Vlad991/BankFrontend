@@ -1,6 +1,7 @@
 .div-page {
     min-height: 600px;
     width: 100%;
+    background: #161616;
 }
 
 .active-page {

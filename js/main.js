@@ -33,15 +33,15 @@ function sendLoginPassword() {
             if (roles.includes("ROLE_ADMIN")) {
                 window.localStorage.setItem("adminAccess", accessToken);
                 window.localStorage.setItem("adminRefresh", refreshToken);
-                window.location.href = "http://127.0.0.1/admin/home.html";
+                window.location.href = "../admin/home.php";
             } else if (roles.includes("ROLE_MANAGER")) {
                 window.localStorage.setItem("managerAccess", accessToken);
                 window.localStorage.setItem("managerRefresh", refreshToken);
-                window.location.href = "http://127.0.0.1/manager/home.html";
+                window.location.href = "../manager/home.php";
             } else if (roles.includes("ROLE_CLIENT")) {
                 window.localStorage.setItem("clientAccess", accessToken);
                 window.localStorage.setItem("clientRefresh", refreshToken);
-                window.location.href = "http://127.0.0.1/client/home.html";
+                window.location.href = "../client/home.php";
             }
             console.log("success");
         },

@@ -12,6 +12,7 @@ function sendLogin() {
         type: "POST",
         contentType: "application/JSON",
         url: 'http://127.0.0.1:8087/registration',
+        crossOrigin: true,
         data: JSON.stringify({
             "login": doc.getElementById("login").value,
             "name": doc.getElementById("name").value,
@@ -33,7 +34,7 @@ function sendLogin() {
         }),
 
         success: function (xhr, ajaxOptions, thrownError) {
-            window.location.href = 'http://127.0.0.1/index.html';
+            window.location.href = '../../index.php';
             console.log("success");
         },
 

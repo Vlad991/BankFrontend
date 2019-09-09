@@ -106,5 +106,5 @@ function sendLogout() {
     var jsonSend = {};
     jsonSend["type"] = "LOGOUT";
     ws.send(JSON.stringify(jsonSend));
-    window.location.href = "http://127.0.0.1/index.html";
+    window.location.href = "../../index.php";
 }

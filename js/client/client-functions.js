@@ -59,7 +59,7 @@ function refreshClientAccessToken() {
         },
 
         error: function (xhr, ajaxOptions, thrownError) {
-            window.location.href = "http://127.0.0.1/index.html";
+            window.location.href = "../../index.php";
         }
     });
 }
@@ -100,7 +100,7 @@ function refreshCreditCardAccessToken() {
         },
 
         error: function (xhr, ajaxOptions, thrownError) {
-            window.location.href = "http://127.0.0.1/index.html";
+            window.location.href = "../../index.php";
         }
     });
 }
@@ -197,7 +197,7 @@ function showCreditCardList() {
 
 function goToCreditCardMenu(cardNumber) {
     setCardNumber(cardNumber);
-    window.location.href = "http://127.0.0.1/client/card_menu.html";
+    window.location.href = "../../client/card_menu.php";
 }
 
 function showCreditCardInfo() {
@@ -438,7 +438,7 @@ function blockCard() {
             var roles = accessTokenJSON.resource_access["card-web"].roles;
 
             if (!roles[0].includes("ROLE_OWNER")) {
-                window.location.href = "http://127.0.0.1/client/home.html";
+                window.location.href = "../../client/home.php";
                 doc.getElementById("errorMessage").innerText = "Error: Incorrect pin!";
             }
             console.log("success");

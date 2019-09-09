@@ -52,7 +52,7 @@ function refreshManagerAccessToken() {
         },
 
         error: function (xhr, ajaxOptions, thrownError) {
-            window.location.href = "http://127.0.0.1/index.html";
+            window.location.href = "../../index.php";
         }
     });
 }
@@ -60,8 +60,9 @@ function refreshManagerAccessToken() {
 function clearClientsInfoTable() {
     var doc = document;
     var tableRows = doc.querySelector("#clientInfoTable").children;
-    if (tableRows.length > 1) {
-        for (var i = 0; i < tableRows.length - 1; i++) {
+    var initialLength = tableRows.length;
+    if (initialLength > 1) {
+        for (var i = 0; i < initialLength - 1; i++) {
             doc.querySelector("#clientInfoTable tr:last-child").remove();
         }
     }
@@ -125,8 +126,9 @@ function showClientsInfo() {
 function clearCreditCardTable() {
     var doc = document;
     var tableRows = doc.querySelector("#cardsInfoTable").children;
-    if (tableRows.length > 1) {
-        for (var i = 0; i < tableRows.length - 1; i++) {
+    var initialLength = tableRows.length;
+    if (initialLength > 1) {
+        for (var i = 0; i < initialLength - 1; i++) {
             doc.querySelector("#cardsInfoTable tr:last-child").remove();
         }
     }

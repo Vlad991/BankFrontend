@@ -1,6 +1,7 @@
 .container-fluid {
     min-height: 700px;
-    background: #f0f0f0;
+    background: #161616;
+    padding: 0;
 }
 
 .layout {
@@ -24,7 +25,10 @@ a:hover {
 
 /*/////////////////////////////////////////////////..MENU..//////////////////////////////////////////////////////////*/
 
-.menu-content {
+.navigation {
+    background: #161616;
+    box-shadow: 0 2px 10px -2px #fff;
+    margin: 0;
 }
 
 .logo-img {
@@ -52,6 +56,7 @@ a:hover {
 
 .header {
     height: 100px;
+    background: #b63363;
 }
 
 .form {
@@ -59,6 +64,7 @@ a:hover {
     padding: 28px 27px 14px;
     margin-top: 140px;
     margin-bottom: 140px;
+    background: #b63363;
 }
 
 .footer {
