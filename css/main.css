@@ -23,6 +23,13 @@ a:hover {
     cursor: pointer;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #161616 inset !important;
+}
+
 /*/////////////////////////////////////////////////..MENU..//////////////////////////////////////////////////////////*/
 
 .navigation {
@@ -56,7 +63,8 @@ a:hover {
 
 .header {
     height: 100px;
-    background: #b63363;
+    /* background: #b63363; */
+    /* background: #faaa19; */
 }
 
 .form {
@@ -64,7 +72,8 @@ a:hover {
     padding: 28px 27px 14px;
     margin-top: 140px;
     margin-bottom: 140px;
-    background: #b63363;
+    /* background: #b63363; */
+    /* background: #faaa19; */
 }
 
 .footer {

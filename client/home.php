@@ -52,6 +52,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="../js/main-functions.js"></script>
+<script src="../js/main.js"></script>
 <script src="../js/client/client-functions.js"></script>
 <script src="../js/client/home.js"></script>
 </body>

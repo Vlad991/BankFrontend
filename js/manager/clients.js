@@ -7,9 +7,6 @@ function myLoad() {
     showClientsInfo();
     doc.getElementById("pills-info-tab").addEventListener("click", showClientsInfo);
     doc.getElementById("pills-card-tab").addEventListener("click", showCreditCardList);
-    // doc.getElementById("pills-address-tab").addEventListener("click", function () {
-    //     showActiveClientsList(ws);
-    // });
 
     ws.onopen = function () {
         console.log("socket connection establish");

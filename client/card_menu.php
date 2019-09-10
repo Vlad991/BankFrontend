@@ -5,7 +5,6 @@
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <!--    <link rel="stylesheet" href="css/mdb.css">-->
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/card_menu.css">
 </head>
@@ -27,7 +26,7 @@
     include("./messenger.php");
     ?>
 
-    <div class="row">
+    <div class="row w-100">
         <div class="col-2 mt-5">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
@@ -44,7 +43,7 @@
         <div class="col-8">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <div class="div-page bg-secondary p-5">
+                    <div class="div-page p-5">
                         <div class="credit-card p-3 jumbotron bg-dark shadow d-inline-block position-relative">
                             <div class="credit-card__bank d-inline-block ml-2 mr-5 text-light">
                                 <img class="w-25 mr-2" src="../img/menu/logo.svg" alt="Logo">MyBank
@@ -60,7 +59,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="div-page bg-secondary p-5">
+                    <div class="div-page p-5">
                         <form class="w-50">
                             <div class="form-group">
                                 <label for="senderCard">Sender Card</label>
@@ -91,7 +90,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    <div class="div-page bg-secondary p-5">
+                    <div class="div-page p-5">
                         <form class="w-50">
                             <div class="form-group">
                                 <label for="actionsCard">Card</label>
@@ -108,7 +107,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    <div class="div-page bg-secondary p-5">
+                    <div class="div-page p-5">
                         <p>Here should be some credit card settings.</p>
                     </div>
                 </div>
@@ -125,9 +124,9 @@
 
 <script src="../js/jquery-3.4.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-<!--<script src="js/mdb.min.js"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="../js/main-functions.js"></script>
+<script src="../js/main.js"></script>
 <script src="../js/client/client-functions.js"></script>
 <script src="../js/client/card_menu.js"></script>
 </body>

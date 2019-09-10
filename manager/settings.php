@@ -37,7 +37,9 @@
 
 <script src="../js/jquery-3.4.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-<!--<script src="js/mdb.min.js"></script>-->
+<script src="../js/main-functions.js"></script>
 <script src="../js/main.js"></script>
+<script src="../js/manager/manager-functions.js"></script>
+<script src="../js/manager/settings.js"></script>
 </body>
 </html>

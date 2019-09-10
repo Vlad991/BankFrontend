@@ -57,6 +57,10 @@ function refreshManagerAccessToken() {
     });
 }
 
+function logout() {
+
+}
+
 function clearClientsInfoTable() {
     var doc = document;
     var tableRows = doc.querySelector("#clientInfoTable").children;
