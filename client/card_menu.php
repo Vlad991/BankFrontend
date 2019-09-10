@@ -27,7 +27,7 @@
     ?>
 
     <div class="row w-100">
-        <div class="col-2 mt-5">
+        <div class="col-2 mt-5  ml-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
                    aria-controls="v-pills-home" aria-selected="true">Credit Card Info</a>
@@ -37,7 +37,7 @@
                    aria-controls="v-pills-messages" aria-selected="false">Block Card</a>
                 <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
                    aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-                <span id="errorMessage" class="text-danger">Error: something went wrong!</span>
+                <span id="errorMessage" class="text-danger"></span>
             </div>
         </div>
         <div class="col-8">
@@ -63,29 +63,29 @@
                         <form class="w-50">
                             <div class="form-group">
                                 <label for="senderCard">Sender Card</label>
-                                <input type="text" class="form-control bg-transparent text-dark border-dark"
+                                <input type="text" class="form-control bg-transparent text-light border-light"
                                        id="senderCard" aria-describedby="emailHelp"
                                        placeholder="Enter your card number">
                             </div>
                             <div class="form-group">
                                 <label for="receiverCard">Receiver Card</label>
-                                <input type="text" class="form-control bg-transparent text-dark border-dark"
+                                <input type="text" class="form-control bg-transparent text-light border-light"
                                        id="receiverCard" aria-describedby="emailHelp"
                                        placeholder="Enter receiver card number">
                             </div>
                             <div class="form-group">
                                 <label for="sum">Sum</label>
-                                <input type="text" class="form-control bg-transparent text-dark border-dark"
+                                <input type="text" class="form-control bg-transparent text-light border-light"
                                        id="sum" aria-describedby="emailHelp"
                                        placeholder="Enter sum you want to send">
                             </div>
                             <div class="form-group">
                                 <label for="pinToSend">Pin</label>
-                                <input type="password" class="form-control bg-transparent text-dark border-dark"
+                                <input type="password" class="form-control bg-transparent text-light border-light"
                                        id="pinToSend" placeholder="Your pin">
                             </div>
                             <span id="resultMessage" class="text-success"></span><br>
-                            <button id="sendSumButton" type="button" class="btn btn-primary mt-3">Send</button>
+                            <button id="sendSumButton" type="button" class="btn btn-light mt-3">Send</button>
                         </form>
                     </div>
                 </div>
@@ -94,15 +94,15 @@
                         <form class="w-50">
                             <div class="form-group">
                                 <label for="actionsCard">Card</label>
-                                <input type="text" class="form-control bg-transparent text-dark border-dark"
+                                <input type="text" class="form-control bg-transparent border-dark"
                                        id="actionsCard" aria-describedby="emailHelp" placeholder="Enter your card number">
                             </div>
                             <div class="form-group">
                                 <label for="pinToBlock">Pin</label>
-                                <input type="password" class="form-control bg-transparent text-dark border-dark"
+                                <input type="password" class="form-control bg-transparent border-dark"
                                        id="pinToBlock" placeholder="Your pin">
                             </div>
-                            <button id="blockCardBtn" type="button" class="btn btn-primary mt-3">BLOCK</button>
+                            <button id="blockCardBtn" type="button" class="btn btn-light mt-3">BLOCK</button>
                         </form>
                     </div>
                 </div>

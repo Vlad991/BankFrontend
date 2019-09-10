@@ -29,8 +29,8 @@
     include("./messenger.php");
     ?>
 
-    <div class="row">
-        <div class="col-2 mt-5">
+    <div class="row w-100">
+        <div class="col-2 mt-5 ml-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="v-pills-info-tab" data-toggle="pill" href="#v-pills-info" role="tab"
                    aria-controls="v-pills-info" aria-selected="true">Personal Info</a>
@@ -40,13 +40,13 @@
                    aria-controls="v-pills-something" aria-selected="false">Something</a>
                 <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
                    aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-                <span id="errorMessage" class="text-danger">Error: something went wrong!</span>
+                <span id="errorMessage" class="text-danger"></span>
             </div>
         </div>
         <div class="col-8">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-info" role="tabpanel" aria-labelledby="v-pills-info-tab">
-                    <div class="div-page bg-secondary p-5">
+                    <div class="div-page p-5">
                         <div class="">Login: <span id="clientLogin"></span></div>
                         <div class="">Name: <span id="clientName"></span></div>
                         <div class="">Surname: <span id="clientSurname"></span></div>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-cards" role="tabpanel" aria-labelledby="v-pills-cards-tab">
-                    <div class="div-page bg-secondary p-5">
+                    <div class="div-page p-5">
                         <nav class="">
                             <ul id="cardList" class="navbar-nav">
                                 <li id="creditCard" class="position-relative">
@@ -76,12 +76,12 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-something" role="tabpanel" aria-labelledby="v-pills-something-tab">
-                    <div class="div-page bg-secondary p-5">
+                    <div class="div-page p-5">
                         <p>Here can be some more information about client.</p>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    <div class="div-page bg-secondary p-5">
+                    <div class="div-page p-5">
                         <p>Here should be some client settings.</p>
                     </div>
                 </div>

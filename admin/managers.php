@@ -26,7 +26,7 @@
     ?>
 
     <div class="container">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <ul class="nav nav-pills my-4" id="pills-tab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="pills-info-tab" data-toggle="pill" href="#pills-info" role="tab"
                    aria-controls="pills-info" aria-selected="true">Managers Info</a>
