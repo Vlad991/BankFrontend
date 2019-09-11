@@ -61,7 +61,7 @@
                         <nav class="">
                             <ul id="cardList" class="navbar-nav">
                                 <li id="creditCard" class="position-relative">
-                                    <div class="credit-card p-3 jumbotron bg-dark shadow">
+                                    <div class="credit-card p-3 jumbotron">
                                         <div class="credit-card__bank d-inline-block ml-2 mr-5 text-light">
                                             <img class="w-25 mr-2" src="../img/menu/logo.svg" alt="Logo">MyBank
                                         </div>

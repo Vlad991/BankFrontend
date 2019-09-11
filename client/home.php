@@ -34,7 +34,7 @@
     include("./messenger.php");
     ?>
 
-    <div id="errorMessage" class="container text-danger">Error: something went wrong!</div>
+    <div id="errorMessage" class="container text-danger"></div>
 
     <p class="jumbotron container bg-secondary">MyBank - is my Java Spring Web Application. In this app I use similarity
         of REST microservice architecture (Authorization Keycloak Service and Main Business Logic Service) that

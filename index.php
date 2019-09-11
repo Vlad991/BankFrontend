@@ -47,7 +47,7 @@
         </div>
         <button id="loginButton" type="button" class="btn btn-dark w-100">Login</button>
         <a href="client/registration.php" class="nav-link mt-2 text-dark">Not registered yet?</a>
-        <span id="errorMessage" class="text-danger">Error: something went wrong!</span>
+        <span id="errorMessage" class="text-danger"></span>
     </form>
 
     <!--  Footer  -->

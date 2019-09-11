@@ -28,53 +28,51 @@
     ?>
 
     <div class="container">
-        <form class="mr-auto form jumbotron bg-dark mt-2" action="">
+        <form class="mr-auto form jumbotron mt-2 py-4" action="">
             <div class="form-group">
-                <label class="text-light" for="login">Login:</label>
-                <input type="text" class="form-control bg-dark text-light" id="login" placeholder="Login">
+                <label class="" for="login">Login:</label>
+                <input type="text" class="form-control text-dark" id="login" placeholder="Login">
             </div>
             <div class="form-group">
-                <label class="text-light" for="name">Name:</label>
-                <input type="text" class="form-control bg-dark text-light" id="name" placeholder="Name">
+                <label class="" for="name">Name:</label>
+                <input type="text" class="form-control text-dark" id="name" placeholder="Name">
             </div>
             <div class="form-group">
-                <label class="text-light" for="surname">Surname:</label>
-                <input type="text" class="form-control bg-dark text-light" id="surname" placeholder="Surname">
+                <label class="" for="surname">Surname:</label>
+                <input type="text" class="form-control text-dark" id="surname" placeholder="Surname">
             </div>
             <div class="form-group">
-                <label class="text-light" for="day">Birthday:</label><br>
-                <input type="text" class="form-control form-inline bg-dark text-light w-25 mr-4 d-inline-block" id="day"
+                <label class="" for="day">Birthday:</label><br>
+                <input type="text" class="form-control form-inline text-dark w-25 mr-4 d-inline-block" id="day"
                        placeholder="Day">
-                <input type="text" class="form-control form-inline bg-dark text-light w-25 mr-4 d-inline-block"
+                <input type="text" class="form-control form-inline text-dark w-25 mr-4 d-inline-block"
                        id="month" placeholder="Month">
-                <input type="text" class="form-control form-inline bg-dark text-light w-25 d-inline-block" id="year"
+                <input type="text" class="form-control form-inline text-dark w-25 d-inline-block" id="year"
                        placeholder="Year">
             </div>
             <div class="form-group">
-                <label class="text-light" for="country">Address:</label><br>
-                <input type="text" class="form-control form-inline bg-dark text-light w-25 mr-1 d-inline-block" id="country"
+                <label class="" for="country">Address:</label><br>
+                <input type="text" class="form-control form-inline w-25 mr-1 d-inline-block text-dark" id="country"
                        placeholder="Country">
-                <input type="text" class="form-control form-inline bg-dark text-light w-25 mr-1 d-inline-block" id="city"
+                <input type="text" class="form-control form-inline w-25 mr-1 d-inline-block text-dark" id="city"
                        placeholder="City">
-                <input type="text" class="form-control form-inline bg-dark text-light w-25 mr-1 d-inline-block" id="street"
-                       placeholder="Street">
-                <input type="text" class="form-control form-inline bg-dark text-light w-75 mr-1 mt-2 d-inline-block" id="postcode"
-                       placeholder="Postcode">
+                <input type="text" class="form-control form-inline w-25 mr-1 d-inline-block text-dark" id="street" placeholder="Street">
+                <input type="text" class="form-control form-inline w-75 mr-1 mt-2 d-inline-block text-dark" id="postcode" placeholder="Postcode">
             </div>
             <div class="form-group">
-                <label class="text-light" for="email">Email:</label>
-                <input type="text" class="form-control bg-dark text-light" id="email" placeholder="Email">
+                <label class="" for="email">Email:</label>
+                <input type="text" class="form-control text-dark" id="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <label class="text-light" for="phone">Phone:</label>
-                <input type="text" class="form-control bg-dark text-light" id="phone" placeholder="Phone">
+                <label class="" for="phone">Phone:</label>
+                <input type="text" class="form-control text-dark" id="phone" placeholder="Phone">
             </div>
             <div class="form-group">
-                <label class="text-light" for="password">Password:</label>
-                <input type="password" class="form-control bg-dark text-light" id="password" placeholder="Password">
+                <label class="" for="password">Password:</label>
+                <input type="password" class="form-control text-dark" id="password" placeholder="Password">
             </div>
-            <span id="errorMessage" class="text-danger">Error: something went wrong!</span>
-            <button id="registerButton" type="button" class="btn btn-light w-100 mt-3">Register</button>
+            <span id="errorMessage" class="text-danger"></span>
+            <button id="registerButton" type="button" class="btn btn-dark w-100 mt-3">Register</button>
         </form>
     </div>
 

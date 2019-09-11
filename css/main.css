@@ -27,8 +27,9 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px #161616 inset !important;
-    -webkit-text-fill-color: #fff;
+    /* -webkit-box-shadow: 0 0 0 30px #161616 inset !important; */
+    /* -webkit-box-shadow: 0 0 0 30px #fff inset !important; */
+    /* -webkit-text-fill-color: #000; */
 }
 
 /*/////////////////////////////////////////////////..MENU..//////////////////////////////////////////////////////////*/
@@ -75,6 +76,7 @@ input:-webkit-autofill:active  {
     margin-bottom: 140px;
     /* background: #b63363; */
     /* background: #faaa19; */
+    /* color: #fff; */
 }
 
 .footer {
@@ -164,6 +166,9 @@ input:-webkit-autofill:active  {
     width: 430px;
     height: 270px;
     border-radius: 16px;
+    /* background: #faaa19; */
+    background: url(../img/test/test.png) no-repeat top center;
+    box-shadow: 0 0 25px rgba(255, 255, 255);
 }
 
 .credit-card:hover {

@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/card_menu.css">
+    <style>
+        input {
+            webkit-box-shadow: 0 0 0 30px #161616 inset !important;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -42,20 +47,22 @@
         </div>
         <div class="col-8">
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                     aria-labelledby="v-pills-home-tab">
                     <div class="div-page p-5">
-                        <div class="credit-card p-3 jumbotron bg-dark shadow d-inline-block position-relative">
+                        <div class="credit-card p-3 jumbotron d-inline-block position-relative">
                             <div class="credit-card__bank d-inline-block ml-2 mr-5 text-light">
                                 <img class="w-25 mr-2" src="../img/menu/logo.svg" alt="Logo">MyBank
                             </div>
                             <div class="credit-card__type d-inline-block ml-4 text-light">Credit card "Universal"</div>
-                            <h3 id="cardNumber" class="credit-card__number position-absolute text-light">???? ???? ???? ????</h3>
+                            <h3 id="cardNumber" class="credit-card__number position-absolute text-light">???? ???? ????
+                                ????</h3>
                             <div id="cardDate" class="credit-card__date text-light position-relative">??/??</div>
                             <div id="cardName" class="credit-card__name text-light position-relative">????? ?????</div>
                         </div>
-                        <div class="d-inline-block ml-5">Sum: <span id="cardSum"  class="text-info">0</span>$</div>
+                        <div class="d-inline-block ml-5">Sum: <span id="cardSum" class="text-info">0</span>$</div>
                         <div class="d-inline-block ml-5">Status:
-                            <span id="cardStatus"  class="text-info">????</span></div>
+                            <span id="cardStatus" class="text-info">????</span></div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
@@ -95,7 +102,8 @@
                             <div class="form-group">
                                 <label for="actionsCard">Card</label>
                                 <input type="text" class="form-control bg-transparent border-dark"
-                                       id="actionsCard" aria-describedby="emailHelp" placeholder="Enter your card number">
+                                       id="actionsCard" aria-describedby="emailHelp"
+                                       placeholder="Enter your card number">
                             </div>
                             <div class="form-group">
                                 <label for="pinToBlock">Pin</label>
