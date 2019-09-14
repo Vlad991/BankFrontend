@@ -34,6 +34,9 @@
         of REST microservice architecture (Authorization Keycloak Service and Main Business Logic Service) that
         connected with JMS using Kafka. Frontend is written in pure Java.</p>
 
+    <!--  Comments  -->
+    <?php include("../comments.php") ?>
+
     <!--  Footer  -->
     <?php
     include("../footer.php");

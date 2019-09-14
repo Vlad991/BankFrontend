@@ -168,7 +168,8 @@ input:-webkit-autofill:active  {
     border-radius: 16px;
     /* background: #faaa19; */
     background: url(../img/test/test.png) no-repeat top center;
-    box-shadow: 0 0 25px rgba(255, 255, 255);
+    box-shadow: 0 0 10px rgba(255, 255, 255);
+    border: 1px solid #fff;
 }
 
 .credit-card:hover {

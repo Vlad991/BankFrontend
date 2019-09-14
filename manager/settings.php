@@ -27,6 +27,9 @@
 
     <p class="jumbotron container bg-secondary my-5">Here can be some manager settings.</p>
 
+    <!--  Comments  -->
+    <?php include("../comments.php") ?>
+
     <!--  Footer  -->
     <?php
     include("../footer.php");

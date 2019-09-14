@@ -5,6 +5,8 @@ var ws = new SockJS("http://127.0.0.1:8087/client-socket?Authorization=" + getCl
 
 function myLoad() {
     doc.getElementById("headerLogin").innerText = getLogin();
+    dragElement(doc.getElementById("messenger"));
+    showMessenger(doc.getElementById("messengerHeader"));
     showCreditCardInfo();
 // Card Menu events
     doc.getElementById("v-pills-home-tab").addEventListener("click", showCreditCardInfo);

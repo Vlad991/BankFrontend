@@ -89,6 +89,9 @@
         </div>
     </div>
 
+    <!--  Comments  -->
+    <?php include("../comments.php") ?>
+
     <!--  Footer  -->
     <?php
     include("../footer.php");

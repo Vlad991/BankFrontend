@@ -5,7 +5,8 @@ var ws = new SockJS("http://127.0.0.1:8087/client-socket?Authorization=" + getCl
 
 function myLoad() {
     doc.getElementById("headerLogin").innerText = getLogin();
-
+    dragElement(doc.getElementById("messenger"));
+    showMessenger(doc.getElementById("messengerHeader"));
 // Socket events
     doc.getElementById("sendButton").addEventListener("click", sendMessage);
 //    doc.getElementById("comment").addEventListener("click", sendComment); //todo
