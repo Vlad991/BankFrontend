@@ -8,30 +8,30 @@ function getRandomColor() {
 }
 
 function getLogin() {
-    return window.localStorage.getItem("login");
+    return window.localStorage.getItem("adminLogin");
 }
 
 function setLogin(login) {
-    window.localStorage.setItem("login", login);
+    window.localStorage.setItem("adminLogin", login);
 }
 
-function getManagerAccessToken() {
-    return window.localStorage.getItem("managerAccess");
+function getAdminAccessToken() {
+    return window.localStorage.getItem("adminAccess");
 }
 
-function setManagerAccessToken(access) {
-    window.localStorage.setItem("managerAccess", access);
+function setAdminAccessToken(access) {
+    window.localStorage.setItem("adminAccess", access);
 }
 
-function getManagerRefreshToken() {
-    return window.localStorage.getItem("managerRefresh");
+function getAdminRefreshToken() {
+    return window.localStorage.getItem("adminRefresh");
 }
 
-function setManagerRefreshToken(refresh) {
-    window.localStorage.setItem("managerRefresh", refresh);
+function setAdminRefreshToken(refresh) {
+    window.localStorage.setItem("adminRefresh", refresh);
 }
 
-function refreshManagerAccessToken() {
+function refreshAdminAccessToken() {
     $.ajax({
         type: "POST",
         contentType: 'application/x-www-form-urlencoded',
@@ -40,25 +40,21 @@ function refreshManagerAccessToken() {
         data: jQuery.param({
             grant_type: "refresh_token",
             client_id: "ADMIN-UI",
-            refresh_token: getManagerRefreshToken()
+            refresh_token: getAdminRefreshToken()
         }),
 
         success: function (data, textstatus, error) {
             var tokens = data;
             var accessToken = tokens.access_token;
             var refreshToken = tokens.refresh_token;
-            setManagerAccessToken(accessToken);
-            setManagerRefreshToken(refreshToken);
+            setAdminAccessToken(accessToken);
+            setAdminRefreshToken(refreshToken);
         },
 
         error: function (xhr, ajaxOptions, thrownError) {
             window.location.href = "../../index.php";
         }
     });
-}
-
-function logout() {
-
 }
 
 function clearClientsInfoTable() {
@@ -72,17 +68,87 @@ function clearClientsInfoTable() {
     }
 }
 
+function changeClientStatus(target) {
+    var prevStatus = target.innerText;
+
+    var clientInfoElement = target.parentNode.parentNode;
+    var clientLogin = clientInfoElement.querySelector(".table__login").innerText;
+
+    if (prevStatus == "BLOCK") {
+        $.ajax({
+            type: "PATCH",
+            contentType: 'application/JSON',
+            url: 'http://127.0.0.1:8087/admin/block/' + clientLogin,
+            crossOrigin: true,
+            data: "ADVERTISING",
+            headers: {
+                "Authorization": "bearer " + getAdminAccessToken()
+            },
+
+            success: function (data, textstatus, error) {
+                console.log("success");
+                target.innerText = "UNBLOCK";
+                clientInfoElement.classList.add("bg-danger");
+            },
+
+            error: function (xhr, ajaxOptions, thrownError) {
+                switch (xhr.status) {
+                    case 0:
+                        refreshAdminAccessToken();
+                        changeClientStatus(target);
+                        break;
+                    default: {
+                        var errorJson = xhr.status;
+                        var message = errorJson.message;
+                        document.getElementById("errorMessage").innerText = message;
+                    }
+                }
+            }
+        });
+    } else {
+        $.ajax({
+            type: "DELETE",
+            contentType: 'application/JSON',
+            url: 'http://127.0.0.1:8087/admin/block/' + clientLogin,
+            crossOrigin: true,
+            headers: {
+                "Authorization": "bearer " + getAdminAccessToken()
+            },
+
+            success: function (data, textstatus, error) {
+                console.log("success");
+                target.innerText = "BLOCK";
+                clientInfoElement.classList.remove("bg-danger");
+            },
+
+            error: function (xhr, ajaxOptions, thrownError) {
+                switch (xhr.status) {
+                    case 0:
+                        refreshAdminAccessToken();
+                        // changeClientStatus(target);
+                        break;
+                    default: {
+                        var errorJson = xhr.status;
+                        var message = errorJson.message;
+                        document.getElementById("errorMessage").innerText = message;
+                    }
+                }
+            }
+        });
+    }
+}
+
 function showClientsInfo() {
     var doc = document;
     clearClientsInfoTable();
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/manager/clients',
+        url: 'http://127.0.0.1:8087/admin/clients',
         dataType: 'json',
         crossOrigin: true,
         headers: {
-            "Authorization": "bearer " + getManagerAccessToken(),
+            "Authorization": "bearer " + getAdminAccessToken(),
         },
 
         success: function (data, textstatus, error) {
@@ -104,6 +170,16 @@ function showClientsInfo() {
                     .innerText = clientInfo.address.country + ', ' + clientInfo.address.city + ', ' + clientInfo.address.street + ' ' + clientInfo.address.postcode;
                 doc.querySelector("#clientInfoTable tr:last-child .table__email").innerText = clientInfo.email;
                 doc.querySelector("#clientInfoTable tr:last-child .table__phone").innerText = clientInfo.phone;
+                doc.querySelector("#clientInfoTable tr:last-child .table__action").innerText = (clientInfo.blocked) ? "UNBLOCK" : "BLOCK";
+                doc.querySelector("#clientInfoTable tr:last-child .table__action").addEventListener('click', function (event) {
+                    changeClientStatus(event.target);
+                }, false);
+
+                if (clientInfo.blocked) {
+                    doc.querySelector("#clientInfoTable tr:last-child").classList.add("bg-danger");
+                } else {
+                    doc.querySelector("#clientInfoTable tr:last-child").classList.remove("bg-danger");
+                }
 
                 var clientInfoRowClone = clientInfoRow.cloneNode(true);
                 clientInfoTable.appendChild(clientInfoRowClone);
@@ -114,7 +190,7 @@ function showClientsInfo() {
         error: function (xhr, ajaxOptions, thrownError) {
             switch (xhr.status) {
                 case 0:
-                    refreshManagerAccessToken();
+                    refreshAdminAccessToken();
                     showClientsInfo();
                     break;
                 default: {
@@ -144,10 +220,10 @@ function showCreditCardList() {
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/manager/cards',
+        url: 'http://127.0.0.1:8087/admin/cards',
         dataType: 'json',
         headers: {
-            "Authorization": "bearer " + getManagerAccessToken(),
+            "Authorization": "bearer " + getAdminAccessToken(),
         },
         success: function (data, textstatus, error) {
             var cardList = data;
@@ -184,7 +260,7 @@ function showCreditCardList() {
         error: function (xhr, ajaxOptions, thrownError) {
             switch (xhr.status) {
                 case 0:
-                    refreshManagerAccessToken();
+                    refreshAdminAccessToken();
                     showCreditCardList();
                     break;
                 default: {
@@ -206,10 +282,10 @@ function changeCardStatus(target) {
     $.ajax({
         type: "PUT",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/manager/' + cardNumber + '/change',
+        url: 'http://127.0.0.1:8087/admin/' + cardNumber + '/change',
         crossOrigin: true,
         headers: {
-            "Authorization": "bearer " + getManagerAccessToken()
+            "Authorization": "bearer " + getAdminAccessToken()
         },
 
         success: function (data, textstatus, error) {
@@ -226,7 +302,7 @@ function changeCardStatus(target) {
         error: function (xhr, ajaxOptions, thrownError) {
             switch (xhr.status) {
                 case 0:
-                    refreshManagerAccessToken();
+                    refreshAdminAccessToken();
                     changeCardStatus(target);
                     break;
                 default: {
@@ -239,34 +315,91 @@ function changeCardStatus(target) {
     });
 }
 
-function clearActiveClientsInfoTable() {
-    var doc = document;
-    var clientCards = doc.querySelector("#activeClients").children;
-    if (clientCards.length > 1) {
-        for (var i = 0; i < clientCards.length - 1; i++) {
-            doc.querySelector("#activeClients div:last-child").remove();
-        }
-    }
+function sendComment() {
+    var messageBody = document.getElementById("sendComment").value;
+    var jsonSend = {};
+    jsonSend["type"] = "COMMENT";
+    jsonSend["message"] = messageBody;
+    ws.send(JSON.stringify(jsonSend));
+
+    doc.getElementById("sendComment").value = "";
 }
 
-function showActiveClientsList(activeUsers) {
-    var doc = document;
-    clearActiveClientsInfoTable();
-    var activeClientsElement = doc.getElementById("activeClients");
-    var activeClientCard = doc.getElementById("activeClientCard");
+function sendLogout() {
+    var jsonSend = {};
+    jsonSend["type"] = "LOGOUT";
+    ws.send(JSON.stringify(jsonSend));
+    window.location.href = "../../index.php";
+}
 
-    for(var i = 0; i < activeUsers.length; i++){
-        var user = activeUsers[i];
+function homeWebSocketFunction(ws) {
+    doc.getElementById("sendCommentButton").addEventListener("click", sendComment);
+    window.addEventListener("unload", sendLogout);
+    doc.getElementById("logoLink").addEventListener("click", sendLogout);
 
-        doc.querySelector("#activeClients div:last-child .card-title").innerText = user;
-        doc.querySelector("#activeClients div:last-child .card-body__button").addEventListener('click', function () {
-            connectToClient(user);
-        }, false);
+    ws.onopen = function () {
+        console.log("socket connection establish");
+    };
 
-        var activeClientCardClone = activeClientCard.cloneNode(true);
-        activeClientsElement.appendChild(activeClientCardClone);
+    ws.onclose = function (event) {
+        if (event.wasClean) {
+            console.log("disconnected");
+        } else {
+            switch (event.status) {
+                case '401': {
+                    refreshAdminAccessToken();
+                    ws = new SockJS("http://127.0.0.1:8087/admin-socket?Authorization=" + getAdminAccessToken());
+                    break;
+                }
+                default: {
+                    doc.getElementById("errorMessage").value = event.status;
+                }
+            }
+        }
+    };
+
+    ws.onerror = function (event) {
+        switch (event.status) {
+            case '401': {
+                refreshAdminAccessToken();
+                ws = new SockJS("http://127.0.0.1:8087/admin-socket?Authorization=" + getAdminAccessToken());
+                break;
+            }
+            default: {
+                doc.getElementById("errorMessage").value = event.status;
+            }
+        }
+    };
+
+    ws.onmessage = function (event) {
+        var receiveJson = JSON.parse(event.data);
+        switch (receiveJson.type) {
+            case "PRIVATE": {
+                // var menuElementList = doc.querySelector("#navbarSupportedContent ul").childNodes;
+                // var menuElement = menuElementList[3];
+                // menuElement.classList.add("new-message-icon");
+                // break;
+            }
+
+            case "COMMENT": {
+                var messageSender = receiveJson.sender;
+                var messageBody = receiveJson.message;
+
+
+                var comments = doc.getElementById("comments");
+                var sendCommentElement = doc.getElementById("sendCommentBlock");
+                var sendCommentElementClone = sendCommentElement.cloneNode(true);
+                sendCommentElementClone.classList.remove("d-none");
+                sendCommentElementClone.classList.add("d-flex");
+                comments.insertBefore(sendCommentElementClone, comments.childNodes[0]);
+
+                doc.querySelector("#comments div:first-child div div").innerText = messageBody;
+                doc.querySelector("#comments div:first-child div span").innerText = messageSender;
+                doc.getElementById("sendComment").value = "";
+                break;
+            }
+        }
     }
-    activeClientsElement.removeChild(activeClientsElement.lastChild);
 }
 
 function connectToClient(client) {

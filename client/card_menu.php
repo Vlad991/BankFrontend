@@ -60,9 +60,12 @@
                             <div id="cardDate" class="credit-card__date text-light position-relative">??/??</div>
                             <div id="cardName" class="credit-card__name text-light position-relative">????? ?????</div>
                         </div>
-                        <div class="d-inline-block ml-5">Sum: <span id="cardSum" class="text-info">0</span>$</div>
-                        <div class="d-inline-block ml-5">Status:
-                            <span id="cardStatus" class="text-info">????</span></div>
+                        <div class="d-inline-block">
+                            <div class="d-inline-block ml-5">Sum: <span id="cardSum" class="text-info">0</span>$</div>
+                            <div class="d-inline-block ml-5">Status:
+                                <span id="cardStatus" class="text-info">????</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
@@ -101,14 +104,11 @@
                         <form class="w-50">
                             <div class="form-group">
                                 <label for="actionsCard">Card</label>
-                                <input type="text" class="form-control bg-transparent border-dark"
-                                       id="actionsCard" aria-describedby="emailHelp"
-                                       placeholder="Enter your card number">
+                                <input type="text" class="form-control bg-transparent border-dark" id="actionsCard" autocomplete="off" aria-describedby="emailHelp" placeholder="Enter your card number">
                             </div>
                             <div class="form-group">
                                 <label for="pinToBlock">Pin</label>
-                                <input type="password" class="form-control bg-transparent border-dark"
-                                       id="pinToBlock" placeholder="Your pin">
+                                <input type="password" class="form-control bg-transparent border-dark" id="pinToBlock" placeholder="Your pin">
                             </div>
                             <button id="blockCardBtn" type="button" class="btn btn-light mt-3">BLOCK</button>
                         </form>

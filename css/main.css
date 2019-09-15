@@ -61,6 +61,25 @@ input:-webkit-autofill:active  {
     width: 20px;
 }
 
+.new-message-icon::after {
+    content: "";
+    background: url("../img/menu/message.svg") no-repeat center;
+    background-size: 72%;
+    display: block;
+    height: 15px;
+    width: 15px;
+    background-color: #F81242;
+    border-radius: 50%;
+    position: absolute;
+    top: 6px;
+    right: -2px;
+}
+
+.nav-item .new-message-icon::after {
+    top: 6px;
+    right: 6px;
+}
+
 /*//////////////////////////////////////////////////////..LOGIN../////////////////////////////////////////////////////*/
 
 .header {

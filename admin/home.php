@@ -47,6 +47,7 @@
 
 <script src="../js/jquery-3.4.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="../js/main-functions.js"></script>
 <script src="../js/main.js"></script>
 <script src="../js/admin/admin-functions.js"></script>

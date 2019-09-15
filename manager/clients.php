@@ -41,7 +41,7 @@
                    aria-controls="pills-address" aria-selected="false">Active Clients</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-settings-tab" data-toggle="pill" href="#pills-settings"
+                <a class="nav-link position-relative" id="pills-settings-tab" data-toggle="pill" href="#pills-settings"
                    role="tab"
                    aria-controls="pills-settings" aria-selected="false">Connected Client</a>
             </li>
@@ -107,7 +107,7 @@
             </div>
             <div class="tab-pane fade" id="pills-address" role="tabpanel" aria-labelledby="pills-address-tab">
                 <div id="activeClients" class="div-page row justify-content-around">
-                    <div id="activeClientCard" class="card shadow my-3 bg-secondary" style="width: 230px;height:386px;">
+                    <div id="activeClientCard" class="card shadow my-3 bg-secondary d-none" style="width: 230px;height:386px;">
                         <img src="../img/client-card/boss.svg" class="card-img-top" alt="Man" style="width: 230px;">
                         <div class="card-body">
                             <h5 class="card-title">??????</h5>
@@ -119,74 +119,29 @@
             </div>
             <div class="tab-pane fade" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">
                 <div class="div-page">
-                    <div class="jumbotron p-0 shadow" style="width: 500px;">
-                        <div class="messenger__header p-0 rounded-top bg-secondary">
-                            <img src="../img/client-card/boss.svg" alt="Manager"
-                                 class="img-fluid align-top rounded-circle border border-dark manager-img m-1">
-                            <div class="d-inline-block">Kuzma Vladyslav
+                    <div id="messenger" class="messenger jumbotron p-0 shadow">
+                        <div id="messengerHeader" class="messenger__header p-0 rounded-top bg-secondary">
+                            <img src="../img/messanger/manager.svg" alt="Manager" class="img-fluid align-top rounded-circle border border-dark manager-img m-1">
+                            <div id="" class="d-inline-block">
+                                <span id="messageSender" class="text-warning">vlad99</span>
                                 <div class="text-light">Online</div>
                             </div>
                         </div>
-                        <div class="messenger__body">
-                            <div class="messages overflow-auto bg-dark p-2">
-                                <div class="message-wrap">
-                                    <div class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">
-                                        Hello!
-                                    </div>
+                        <div id="" class="messenger__body">
+                            <div id="messengerBody" class="messages overflow-auto bg-dark p-2">
+                                <div id="receiveMessageBlock" class="message-wrap d-none">
+                                    <div class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">Hello!</div>
                                 </div>
-                                <div class="message-wrap">
-                                    <div class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
-                                        Hello!
-                                    </div>
-                                </div>
-                                <div class="message-wrap">
-                                    <div class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">
-                                        Can
-                                        I help you?
-                                        !
-                                    </div>
-                                </div>
-                                <div class="message-wrap">
-                                    <div class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
-                                        Yes, you can!
-                                    </div>
-                                </div>
-                                <div class="message-wrap">
-                                    <div class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">
-                                        How?
-                                    </div>
-                                </div>
-                                <div class="message-wrap">
-                                    <div class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
-                                        Please tell me how your bank client management works? I don't understand how to
-                                        manage my client
-                                        menu!
-                                    </div>
-                                </div>
-                                <div class="message-wrap">
-                                    <div class="send-message text-break text-left jumbotron d-inline-block m-1 p-1 bg-secondary">
-                                        Ok,
-                                        just a
-                                        minute...
-                                    </div>
-                                </div>
-                                <div class="message-wrap">
-                                    <div class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">
-                                        I'm waiting!
-                                    </div>
+                                <div id="sendMessageBlock" class="message-wrap d-none">
+                                    <div class="receive-message text-break text-right jumbotron float-right d-inline-block m-1 p-1 bg-secondary">Hello!</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="messenger__footer p-2" style="height: 60px;">
-                            <form action=""
-                                  class="form send-form d-block mx-auto p-1 d-inline-flex bg-light border border-secondary rounded"
-                                  style="width: 480px;">
-                                <div class="paperclip d-inline-block"><img src="../img/messanger/smile.svg"
-                                                                           class="paperclip-img"
-                                                                           alt="Smiles"></div>
-                                <textarea class="send-area border-0 bg-light w-100" name="" id="" cols="20"
-                                          rows="1"></textarea>
-                                <input type="submit" class="send-button border-0 bg-light" value="Send">
+                        <div id="messengerFooter" class="messenger__footer p-2">
+                            <form action="" class="form send-form d-block mx-auto p-1 d-inline-flex bg-light border border-secondary rounded">
+                                <div class="paperclip d-inline-block"><img src="../img/messanger/smile.svg" class="paperclip-img" alt="Smiles"></div>
+                                <textarea class="send-area border-0 bg-light" name="" id="sendMessage" cols="20" rows="1"></textarea>
+                                <button id="sendButton" type="button" class="send-button border-0 bg-light" value="Send">Send</button>
                             </form>
                         </div>
                     </div>

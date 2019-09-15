@@ -57,10 +57,6 @@ function refreshManagerAccessToken() {
     });
 }
 
-function logout() {
-
-}
-
 function clearClientsInfoTable() {
     var doc = document;
     var tableRows = doc.querySelector("#clientInfoTable").children;
@@ -254,6 +250,9 @@ function showActiveClientsList(activeUsers) {
     clearActiveClientsInfoTable();
     var activeClientsElement = doc.getElementById("activeClients");
     var activeClientCard = doc.getElementById("activeClientCard");
+    if (activeUsers.length != 0) {
+        activeClientCard.classList.remove("d-none");
+    }
 
     for(var i = 0; i < activeUsers.length; i++){
         var user = activeUsers[i];
@@ -267,6 +266,204 @@ function showActiveClientsList(activeUsers) {
         activeClientsElement.appendChild(activeClientCardClone);
     }
     activeClientsElement.removeChild(activeClientsElement.lastChild);
+}
+
+function sendMessage() {
+    var messageBody = doc.getElementById("sendMessage").value;
+    var receiver = doc.getElementById("messageSender").innerText;
+    var jsonSend = {};
+    jsonSend["type"] = "PRIVATE";
+    jsonSend["receiver"] = receiver;
+    jsonSend["message"] = messageBody;
+    ws.send(JSON.stringify(jsonSend));
+
+    var messengerBody = doc.getElementById("messengerBody");
+    var sendMessageElement = doc.getElementById("sendMessageBlock");
+    var sendMessageElementClone = sendMessageElement.cloneNode(true);
+    sendMessageElementClone.classList.remove("d-none");
+    messengerBody.appendChild(sendMessageElementClone);
+
+    doc.querySelector("#messengerBody div:last-child div").innerText = messageBody;
+    doc.getElementById("messengerBody").scrollTop = doc.getElementById("messengerBody").scrollHeight;
+    doc.getElementById("sendMessage").value = "";
+}
+
+function sendComment() {
+    var messageBody = document.getElementById("sendComment").value;
+    var jsonSend = {};
+    jsonSend["type"] = "COMMENT";
+    jsonSend["message"] = messageBody;
+    ws.send(JSON.stringify(jsonSend));
+
+    doc.getElementById("sendComment").value = "";
+}
+
+function sendLogout() {
+    var jsonSend = {};
+    jsonSend["type"] = "LOGOUT";
+    ws.send(JSON.stringify(jsonSend));
+    window.location.href = "../../index.php";
+}
+
+function homeWebSocketFunction(ws) {
+    doc.getElementById("sendCommentButton").addEventListener("click", sendComment);
+    window.addEventListener("unload", sendLogout);
+    doc.getElementById("logoLink").addEventListener("click", sendLogout);
+
+    ws.onopen = function () {
+        console.log("socket connection establish");
+    };
+
+    ws.onclose = function (event) {
+        if (event.wasClean) {
+            console.log("disconnected");
+        } else {
+            switch (event.status) {
+                case '401': {
+                    refreshManagerAccessToken();
+                    ws = new SockJS("http://127.0.0.1:8087/manager-socket?Authorization=" + getManagerAccessToken());
+                    break;
+                }
+                default: {
+                    doc.getElementById("errorMessage").value = event.status;
+                }
+            }
+        }
+    };
+
+    ws.onerror = function (event) {
+        switch (event.status) {
+            case '401': {
+                refreshManagerAccessToken();
+                ws = new SockJS("http://127.0.0.1:8087/manager-socket?Authorization=" + getManagerAccessToken());
+                break;
+            }
+            default: {
+                doc.getElementById("errorMessage").value = event.status;
+            }
+        }
+    };
+
+    ws.onmessage = function (event) {
+        var receiveJson = JSON.parse(event.data);
+        switch (receiveJson.type) {
+            case "PRIVATE": {
+                var menuElementList = doc.querySelector("#navbarSupportedContent ul").childNodes;
+                var menuElement = menuElementList[3];
+                menuElement.classList.add("new-message-icon");
+                break;
+            }
+
+            case "COMMENT": {
+                var messageSender = receiveJson.sender;
+                var messageBody = receiveJson.message;
+
+
+                var comments = doc.getElementById("comments");
+                var sendCommentElement = doc.getElementById("sendCommentBlock");
+                var sendCommentElementClone = sendCommentElement.cloneNode(true);
+                sendCommentElementClone.classList.remove("d-none");
+                sendCommentElementClone.classList.add("d-flex");
+                comments.insertBefore(sendCommentElementClone, comments.childNodes[0]);
+
+                doc.querySelector("#comments div:first-child div div").innerText = messageBody;
+                doc.querySelector("#comments div:first-child div span").innerText = messageSender;
+                doc.getElementById("sendComment").value = "";
+                break;
+            }
+        }
+    }
+}
+
+function clientsWebSocketFunction(ws) {
+    doc.getElementById("sendButton").addEventListener("click", sendMessage);
+    doc.getElementById("sendCommentButton").addEventListener("click", sendComment);
+    window.addEventListener("unload", sendLogout);
+    doc.getElementById("logoLink").addEventListener("click", sendLogout);
+
+    ws.onopen = function () {
+        console.log("socket connection establish");
+    };
+
+    ws.onclose = function (event) {
+        if (event.wasClean) {
+            console.log("disconnected");
+        } else {
+            switch (event.status) {
+                case '401': {
+                    refreshManagerAccessToken();
+                    ws = new SockJS("http://127.0.0.1:8087/manager-socket?Authorization=" + getManagerAccessToken());
+                    break;
+                }
+                default: {
+                    doc.getElementById("errorMessage").value = event.status;
+                }
+            }
+        }
+    };
+
+    ws.onerror = function (event) {
+        switch (event.status) {
+            case '401': {
+                refreshManagerAccessToken();
+                ws = new SockJS("http://127.0.0.1:8087/manager-socket?Authorization=" + getManagerAccessToken());
+                break;
+            }
+            default: {
+                doc.getElementById("errorMessage").value = event.status;
+            }
+        }
+    };
+
+    ws.onmessage = function (event) {
+        var receiveJson = JSON.parse(event.data);
+        switch (receiveJson.type) {
+            case "ACTIVE_CLIENT_LIST":{
+                var activeUsers = receiveJson.activeUsers;
+                showActiveClientsList(activeUsers);
+                break;
+            }
+
+            case "PRIVATE": {
+                var menuElementList = doc.querySelector("#navbarSupportedContent ul").childNodes;
+                var menuElement = menuElementList[3];
+                menuElement.classList.add("new-message-icon");
+                doc.getElementById("pills-settings-tab").classList.add("new-message-icon");
+
+                var messageSender = receiveJson.sender;
+                var messageBody = receiveJson.message;
+                doc.getElementById("messageSender").innerText = messageSender;
+
+                var messengerBody = doc.getElementById("messengerBody");
+                var receiveMessageElement = doc.getElementById("receiveMessageBlock");
+                var receiveMessageElementClone = receiveMessageElement.cloneNode(true);
+                receiveMessageElementClone.classList.remove("d-none");
+                messengerBody.appendChild(receiveMessageElementClone);
+
+                doc.querySelector("#messengerBody div:last-child div").innerText = messageBody;
+                doc.getElementById("messengerBody").scrollTop = doc.getElementById("messengerBody").scrollHeight;
+                break;
+            }
+
+            case "COMMENT": {
+                var messageSender = receiveJson.sender;
+                var messageBody = receiveJson.message;
+
+
+                var comments = doc.getElementById("comments");
+                var sendCommentElement = doc.getElementById("sendCommentBlock");
+                var sendCommentElementClone = sendCommentElement.cloneNode(true);
+                sendCommentElementClone.classList.remove("d-none");
+                sendCommentElementClone.classList.add("d-flex");
+                comments.insertBefore(sendCommentElementClone, comments.childNodes[0]);
+
+                doc.querySelector("#comments div:first-child div div").innerText = messageBody;
+                doc.querySelector("#comments div:first-child div span").innerText = messageSender;
+                doc.getElementById("sendComment").value = "";
+                break;
+            }
+        }
+    }
 }
 
 function connectToClient(client) {

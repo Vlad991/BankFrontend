@@ -58,50 +58,17 @@
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
+                        <tbody id="clientInfoTable">
+                        <tr id="clientInfo">
                             <th scope="row">1</th>
-                            <td>vlad99</td>
-                            <td>Vladyslav</td>
-                            <td>Kuzma</td>
-                            <td>14/10/1999</td>
-                            <td>Ukraine, Kiev, Malosemelna 13</td>
-                            <td>vladkuzma99@gmail.com</td>
-                            <td>+380 66 287 33 82</td>
-                            <th scope="col"><button class="btn btn-outline-light">BLOCK</button></th>
-                        </tr>
-                        <tr class="bg-success">
-                            <th scope="row">1</th>
-                            <td>vlad99</td>
-                            <td>Vladyslav</td>
-                            <td>Kuzma</td>
-                            <td>14/10/1999</td>
-                            <td>Ukraine, Kiev, Malosemelna 13</td>
-                            <td>vladkuzma99@gmail.com</td>
-                            <td>+380 66 287 33 82</td>
-                            <th scope="col"><button class="btn btn-outline-light">BLOCK</button></th>
-                        </tr>
-                        <tr class="">
-                            <th scope="row">1</th>
-                            <td>vlad99</td>
-                            <td>Vladyslav</td>
-                            <td>Kuzma</td>
-                            <td>14/10/1999</td>
-                            <td>Ukraine, Kiev, Malosemelna 13</td>
-                            <td>vladkuzma99@gmail.com</td>
-                            <td>+380 66 287 33 82</td>
-                            <th scope="col"><button class="btn btn-outline-light">BLOCK</button></th>
-                        </tr>
-                        <tr class="bg-danger">
-                            <th scope="row">1</th>
-                            <td>vlad99</td>
-                            <td>Vladyslav</td>
-                            <td>Kuzma</td>
-                            <td>14/10/1999</td>
-                            <td>Ukraine, Kiev, Malosemelna 13</td>
-                            <td>vladkuzma99@gmail.com</td>
-                            <td>+380 66 287 33 82</td>
-                            <th scope="col"><button class="btn btn-outline-light">UNBLOCK</button></th>
+                            <td class="table__login">vlad99</td>
+                            <td class="table__name">Vladyslav</td>
+                            <td class="table__surname">Kuzma</td>
+                            <td class="table__date">14/10/1999</td>
+                            <td class="table__address">Ukraine, Kiev, Malosemelna 13</td>
+                            <td class="table__email">vladkuzma99@gmail.com</td>
+                            <td class="table__phone">+380 66 287 33 82</td>
+                            <td><button class="btn btn-outline-light table__action">BLOCK</button></td>
                         </tr>
                         </tbody>
                     </table>
@@ -121,42 +88,15 @@
                             <th scope="col">Status</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
+                        <tbody id="cardsInfoTable">
+                        <tr id="cardInfo">
                             <th scope="row">1</th>
-                            <td>1414 1234 5678 1234</td>
-                            <td>14/22</td>
-                            <td>345</td>
-                            <td>1000$</td>
-                            <td>Kuzma Vladyslav</td>
-                            <th scope="col"><button class="btn btn-outline-light">OPENED</button></th>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>1414 1234 5678 1234</td>
-                            <td>14/22</td>
-                            <td>345</td>
-                            <td>1000$</td>
-                            <td>Kuzma Vladyslav</td>
-                            <th scope="col"><button class="btn btn-outline-light">OPENED</button></th>
-                        </tr>
-                        <tr class="">
-                            <th scope="row">1</th>
-                            <td>1414 1234 5678 1234</td>
-                            <td>14/22</td>
-                            <td>345</td>
-                            <td>1000$</td>
-                            <td>Kuzma Vladyslav</td>
-                            <th scope="col"><button class="btn btn-outline-light">OPENED</button></th>
-                        </tr>
-                        <tr class="bg-danger">
-                            <th scope="row">1</th>
-                            <td>1414 1234 5678 1234</td>
-                            <td>14/22</td>
-                            <td>345</td>
-                            <td>1000$</td>
-                            <td>Kuzma Vladyslav</td>
-                            <th scope="col"><button class="btn btn-outline-light">BLOCKED</button></th>
+                            <td class="table__number">1414 1234 5678 1234</td>
+                            <td class="table__date">14/22</td>
+                            <td class="table__code">345</td>
+                            <td class="table__sum">1000$</td>
+                            <td class="table__name">Kuzma Vladyslav</td>
+                            <td><button class="table__status btn btn-outline-light">OPENED</button></td>
                         </tr>
                         </tbody>
                     </table>
@@ -164,7 +104,7 @@
             </div>
             <div class="tab-pane fade" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">
                 <div class="div-page">
-                    <p class="text-light">Here should be some manager settings.</p>
+                    <p class="text-light">Here should be some admin settings.</p>
                 </div>
             </div>
         </div>
@@ -183,6 +123,7 @@
 
 <script src="../js/jquery-3.4.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="../js/main-functions.js"></script>
 <script src="../js/main.js"></script>
 <script src="../js/admin/admin-functions.js"></script>
