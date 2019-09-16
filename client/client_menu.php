@@ -37,8 +37,8 @@
     ?>
 
     <div class="row w-100">
-        <div class="col-2 mt-5 ml-3">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="col- col-md-2 mt-5 ml-3">
+            <div class="nav flex-md-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="v-pills-info-tab" data-toggle="pill" href="#v-pills-info" role="tab"
                    aria-controls="v-pills-info" aria-selected="true">Personal Info</a>
                 <a class="nav-link" id="v-pills-cards-tab" data-toggle="pill" href="#v-pills-cards" role="tab"
@@ -50,10 +50,10 @@
                 <span id="errorMessage" class="text-danger"></span>
             </div>
         </div>
-        <div class="col-8">
+        <div class="col- col-md-8">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-info" role="tabpanel" aria-labelledby="v-pills-info-tab">
-                    <div class="div-page p-5">
+                    <div class="div-page p-4 p-md-5">
                         <div class="">Login: <span id="clientLogin"></span></div>
                         <div class="">Name: <span id="clientName"></span></div>
                         <div class="">Surname: <span id="clientSurname"></span></div>
@@ -64,15 +64,15 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-cards" role="tabpanel" aria-labelledby="v-pills-cards-tab">
-                    <div class="div-page p-5">
+                    <div class="div-page p-4 p-md-5">
                         <nav class="">
                             <ul id="cardList" class="navbar-nav">
                                 <li id="creditCard" class="position-relative">
-                                    <div class="credit-card p-3 jumbotron">
-                                        <div class="credit-card__bank d-inline-block ml-2 mr-5 text-light">
-                                            <img class="w-25 mr-2" src="../img/menu/logo.svg" alt="Logo">MyBank
+                                    <div class="credit-card p-3 p-md-3 jumbotron">
+                                        <div class="credit-card__bank d-inline-block ml-0 ml-md-2 mr-0 mr-md-5 text-light">
+                                            <img class="w-25 mr-2 mr-md-2" src="../img/menu/logo.svg" alt="Logo">MyBank
                                         </div>
-                                        <div class="credit-card__type d-inline-block ml-4 text-light"> Credit card "Universal"</div>
+                                        <div class="credit-card__type d-inline-block ml-0 ml-md-4 text-light"> Credit card "Universal"</div>
                                         <h3 class="credit-card__number position-absolute text-light">???? ???? ???? ????</h3>
                                         <div class="credit-card__date text-light position-relative">??/??</div>
                                         <div class="credit-card__name text-light position-relative">?????? ??????</div>
@@ -83,12 +83,12 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-something" role="tabpanel" aria-labelledby="v-pills-something-tab">
-                    <div class="div-page p-5">
+                    <div class="div-page p-4 p-md-5">
                         <p>Here can be some more information about client.</p>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    <div class="div-page p-5">
+                    <div class="div-page p-4 p-md-5">
                         <p>Here should be some client settings.</p>
                     </div>
                 </div>

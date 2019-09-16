@@ -9,5 +9,5 @@ function myLoad() {
     doc.getElementById("pills-card-tab").addEventListener("click", showCreditCardList);
 
 // WebSocket
-//     clientsWebSocketFunction(ws);
+     homeWebSocketFunction(ws);
 };

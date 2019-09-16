@@ -17,3 +17,8 @@
     background: #6c857d;
 }
 
+@media screen and (max-width: 960px) {
+    .div-page {
+    }
+}
+

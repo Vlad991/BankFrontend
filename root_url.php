@@ -1,6 +1,6 @@
 <?php
-$frontendServerHost = "192.168.0.104:80";
-$authServerHost = "192.168.0.104:8080";
-$cardServerHost = "192.168.0.104:8086";
-$mainServerHost = "192.168.0.104:8087";
+$frontendServerHost = "127.0.0.1:80";
+$authServerHost = "127.0.0.1:8080";
+$cardServerHost = "127.0.0.1:8086";
+$mainServerHost = "127.0.0.1:8087";
 ?>
