@@ -11,7 +11,7 @@ function sendLogin() {
     $.ajax({
         type: "POST",
         contentType: "application/JSON",
-        url: 'http://127.0.0.1:8087/registration',
+        url: 'http://' + mainServerHost + '/registration',
         crossOrigin: true,
         data: JSON.stringify({
             "login": doc.getElementById("login").value,

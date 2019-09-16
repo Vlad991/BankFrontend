@@ -1,6 +1,6 @@
 <nav class="navigation row navbar navbar-expand-lg sticky-top navbar-dark w-100">
     <div class="col-3 col-sm-1 col-lg-1 order-1">
-        <a id="logoLink" href="http://localhost/index.php" class="navbar-brand"><img class="logo-img" src="/img/menu/logo.svg" alt="Logo"></a>
+        <a id="logoLink" href="http://<?= $frontendServerHost ?>/index.php" class="navbar-brand"><img class="logo-img" src="/img/menu/logo.svg" alt="Logo"></a>
     </div>
     <div class="col-3 col-sm-2 col-lg-auto order-3 order-lg-2">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,14 +28,14 @@
             ?>
         </ul>
     </div>
-    <div class="col-6 col-sm-3 col-lg-3 offset-lg-2 offset-sm-5 row justify-content-between order-2 order-lg-4 p-0">
-        <div class="col-lg-4 col-8 h-100 d-block">
-            <a href="http://localhost/index.php" class="d-block w-100 mx-auto">
+    <div class="col-6 col-sm-3 col-lg-3 offset-lg-2 offset-md-1 offset-sm-5 row justify-content-between order-2 order-lg-4 p-0">
+        <div class="col-lg-3 col-8 h-100 d-block">
+            <a href="http://<?= $frontendServerHost ?>/index.php" class="d-block w-100 mx-auto">
                 <img class="profile-img mx-auto d-block" src="/img/menu/profile.svg" alt="Profile">
                 <div id="headerLogin" class="text-light text-center login mx-auto">Log in!</div>
             </a>
         </div>
-        <form action="" class="form-inline col-lg-8 col-4">
+        <form action="" class="form-inline col-lg-9 col-4">
             <input type="text" class="form-control w-75 text-light bg-transparent mx-2 d-lg-block d-none" placeholder="Search" aria-label="Search">
             <button class="bg-transparent border-0" type="submit">
                 <img class="loupe" src="/img/menu/search.svg" alt="Search">

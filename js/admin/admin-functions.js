@@ -35,7 +35,7 @@ function refreshAdminAccessToken() {
     $.ajax({
         type: "POST",
         contentType: 'application/x-www-form-urlencoded',
-        url: 'http://127.0.0.1:8080/auth/realms/bank/protocol/openid-connect/token',
+        url: 'http://' + authServerHost + '/auth/realms/bank/protocol/openid-connect/token',
         dataType: 'json',
         data: jQuery.param({
             grant_type: "refresh_token",
@@ -78,7 +78,7 @@ function changeClientStatus(target) {
         $.ajax({
             type: "PATCH",
             contentType: 'application/JSON',
-            url: 'http://127.0.0.1:8087/admin/block/' + clientLogin,
+            url: 'http://' + mainServerHost + '/admin/block/' + clientLogin,
             crossOrigin: true,
             data: "ADVERTISING",
             headers: {
@@ -109,7 +109,7 @@ function changeClientStatus(target) {
         $.ajax({
             type: "DELETE",
             contentType: 'application/JSON',
-            url: 'http://127.0.0.1:8087/admin/block/' + clientLogin,
+            url: 'http://' + mainServerHost + '/admin/block/' + clientLogin,
             crossOrigin: true,
             headers: {
                 "Authorization": "bearer " + getAdminAccessToken()
@@ -144,7 +144,7 @@ function showClientsInfo() {
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/admin/clients',
+        url: 'http://' + mainServerHost + '/admin/clients',
         dataType: 'json',
         crossOrigin: true,
         headers: {
@@ -220,7 +220,7 @@ function showCreditCardList() {
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/admin/cards',
+        url: 'http://' + mainServerHost + '/admin/cards',
         dataType: 'json',
         headers: {
             "Authorization": "bearer " + getAdminAccessToken(),
@@ -282,7 +282,7 @@ function changeCardStatus(target) {
     $.ajax({
         type: "PUT",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/admin/' + cardNumber + '/change',
+        url: 'http://' + mainServerHost + '/admin/' + cardNumber + '/change',
         crossOrigin: true,
         headers: {
             "Authorization": "bearer " + getAdminAccessToken()
@@ -348,7 +348,7 @@ function homeWebSocketFunction(ws) {
             switch (event.status) {
                 case '401': {
                     refreshAdminAccessToken();
-                    ws = new SockJS("http://127.0.0.1:8087/admin-socket?Authorization=" + getAdminAccessToken());
+                    ws = new SockJS("http://" + mainServerHost + "/admin-socket?Authorization=" + getAdminAccessToken());
                     break;
                 }
                 default: {
@@ -362,7 +362,7 @@ function homeWebSocketFunction(ws) {
         switch (event.status) {
             case '401': {
                 refreshAdminAccessToken();
-                ws = new SockJS("http://127.0.0.1:8087/admin-socket?Authorization=" + getAdminAccessToken());
+                ws = new SockJS("http://" + mainServerHost + "/admin-socket?Authorization=" + getAdminAccessToken());
                 break;
             }
             default: {

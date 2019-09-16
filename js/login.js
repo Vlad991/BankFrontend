@@ -13,7 +13,7 @@ function sendLoginPassword() {
     $.ajax({
         type: "POST",
         contentType: 'application/x-www-form-urlencoded',
-        url: 'http://127.0.0.1:8080/auth/realms/bank/protocol/openid-connect/token',
+        url: 'http://' + authServerHost +'/auth/realms/bank/protocol/openid-connect/token',
         crossOrigin: true,
         data: jQuery.param({
             grant_type: "password",

@@ -12,6 +12,13 @@
             webkit-box-shadow: 0 0 0 30px #161616 inset !important;
         }
     </style>
+    <script type="text/javascript">
+        <?php include("../root_url.php") ?>
+        var frontendServerHost = "<?php echo $frontendServerHost; ?>";
+        var authServerHost = "<?php echo $authServerHost; ?>";
+        var cardServerHost = "<?php echo $cardServerHost; ?>";
+        var mainServerHost = "<?php echo $mainServerHost; ?>";
+    </script>
 </head>
 <body>
 <div class="container-fluid">

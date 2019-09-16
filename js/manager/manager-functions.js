@@ -35,7 +35,7 @@ function refreshManagerAccessToken() {
     $.ajax({
         type: "POST",
         contentType: 'application/x-www-form-urlencoded',
-        url: 'http://127.0.0.1:8080/auth/realms/bank/protocol/openid-connect/token',
+        url: 'http://' + authServerHost + '/auth/realms/bank/protocol/openid-connect/token',
         dataType: 'json',
         data: jQuery.param({
             grant_type: "refresh_token",
@@ -74,7 +74,7 @@ function showClientsInfo() {
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/manager/clients',
+        url: 'http://' + mainServerHost + '/manager/clients',
         dataType: 'json',
         crossOrigin: true,
         headers: {
@@ -140,7 +140,7 @@ function showCreditCardList() {
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/manager/cards',
+        url: 'http://' + mainServerHost + '/manager/cards',
         dataType: 'json',
         headers: {
             "Authorization": "bearer " + getManagerAccessToken(),
@@ -202,7 +202,7 @@ function changeCardStatus(target) {
     $.ajax({
         type: "PUT",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/manager/' + cardNumber + '/change',
+        url: 'http://' + mainServerHost + '/manager/' + cardNumber + '/change',
         crossOrigin: true,
         headers: {
             "Authorization": "bearer " + getManagerAccessToken()
@@ -321,7 +321,7 @@ function homeWebSocketFunction(ws) {
             switch (event.status) {
                 case '401': {
                     refreshManagerAccessToken();
-                    ws = new SockJS("http://127.0.0.1:8087/manager-socket?Authorization=" + getManagerAccessToken());
+                    ws = new SockJS("http://" + mainServerHost + "/manager-socket?Authorization=" + getManagerAccessToken());
                     break;
                 }
                 default: {
@@ -335,7 +335,7 @@ function homeWebSocketFunction(ws) {
         switch (event.status) {
             case '401': {
                 refreshManagerAccessToken();
-                ws = new SockJS("http://127.0.0.1:8087/manager-socket?Authorization=" + getManagerAccessToken());
+                ws = new SockJS("http://" + mainServerHost + "/manager-socket?Authorization=" + getManagerAccessToken());
                 break;
             }
             default: {
@@ -392,7 +392,7 @@ function clientsWebSocketFunction(ws) {
             switch (event.status) {
                 case '401': {
                     refreshManagerAccessToken();
-                    ws = new SockJS("http://127.0.0.1:8087/manager-socket?Authorization=" + getManagerAccessToken());
+                    ws = new SockJS("http://" + mainServerHost + "/manager-socket?Authorization=" + getManagerAccessToken());
                     break;
                 }
                 default: {
@@ -406,7 +406,7 @@ function clientsWebSocketFunction(ws) {
         switch (event.status) {
             case '401': {
                 refreshManagerAccessToken();
-                ws = new SockJS("http://127.0.0.1:8087/manager-socket?Authorization=" + getManagerAccessToken());
+                ws = new SockJS("http://" + mainServerHost + "/manager-socket?Authorization=" + getManagerAccessToken());
                 break;
             }
             default: {

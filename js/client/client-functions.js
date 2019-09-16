@@ -43,7 +43,7 @@ function refreshClientAccessToken() {
     $.ajax({
         type: "POST",
         contentType: 'application/x-www-form-urlencoded',
-        url: 'http://127.0.0.1:8080/auth/realms/bank/protocol/openid-connect/token',
+        url: 'http://' + authServerHost + '/auth/realms/bank/protocol/openid-connect/token',
         dataType: 'json',
         data: jQuery.param({
             grant_type: "refresh_token",
@@ -84,7 +84,7 @@ function refreshCreditCardAccessToken() {
     $.ajax({
         type: "POST",
         contentType: 'application/x-www-form-urlencoded',
-        url: 'http://127.0.0.1:8080/auth/realms/credit-card/protocol/openid-connect/token',
+        url: 'http://' + authServerHost + '/auth/realms/credit-card/protocol/openid-connect/token',
         dataType: 'json',
         data: jQuery.param({
             grant_type: "refresh_token",
@@ -110,7 +110,7 @@ function showClientInfo() {
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/client/' + getLogin() + '/info',
+        url: 'http://' + mainServerHost + '/client/' + getLogin() + '/info',
         dataType: 'json',
         crossOrigin: true,
         headers: {
@@ -133,7 +133,7 @@ function showClientInfo() {
             switch (xhr.status) {
                 case 0:
                     refreshClientAccessToken();
-                    // showClientInfo();
+//                    showClientInfo();
                     break;
                 default: {
                     var errorJson = xhr.status;
@@ -150,7 +150,7 @@ function showCreditCardList() {
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/client/' + getLogin() + '/cards',
+        url: 'http://' + mainServerHost + '/client/' + getLogin() + '/cards',
         dataType: 'json',
         headers: {
             "Authorization": "bearer " + getClientAccessToken(),
@@ -183,7 +183,7 @@ function showCreditCardList() {
             switch (xhr.status) {
                 case 0:
                     refreshClientAccessToken();
-//                    showCreditCardList();
+                    showCreditCardList();
                     break;
                 default: {
                     var errorJson = xhr.status;
@@ -205,7 +205,7 @@ function showCreditCardInfo() {
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8087/card/' + getCardNumber() + '/info',
+        url: 'http://' + mainServerHost + '/card/' + getCardNumber() + '/info',
         dataType: 'json',
         headers: {
             "Authorization": "bearer " + getClientAccessToken(),
@@ -225,7 +225,7 @@ function showCreditCardInfo() {
             switch (xhr.status) {
                 case 0:
                     refreshClientAccessToken();
-//                    showCreditCardInfo();
+                    showCreditCardInfo();
                     break;
                 default: {
                     var errorJson = xhr.status;
@@ -244,80 +244,6 @@ function sendMoney() {
     var sum = doc.getElementById("sum").value;
     var pin = doc.getElementById("pinToSend").value;
 
-//     $.ajax({
-//         type: "POST",
-//         contentType: 'application/x-www-form-urlencoded',
-//         url: 'http://127.0.0.1:8080/auth/realms/credit-card/protocol/openid-connect/token',
-//         crossOrigin: true,
-//         data: jQuery.param({
-//             grant_type: "password",
-//             client_id: "ADMIN-UI",
-//             username: senderCardNumber,
-//             password: pin
-//         }),
-//
-//         success: function (xhr, ajaxOptions, thrownError) {
-//             var accessToken = xhr.access_token;
-//             var refreshToken = xhr.refresh_token;
-//             setCreditCardAccessToken(accessToken);
-//             setCreditCardRefreshToken(refreshToken);
-//
-//             var array_access_token = accessToken.split('.');
-//             var base64Url = array_access_token[1];
-//             var accessTokenJSON = JSON.parse(window.atob(base64Url));
-//             var roles = accessTokenJSON.resource_access["card-web"].roles;
-//
-//             // if (!roles[0].includes("ROLE_OWNER")) {
-//             //     window.location.href = "http://127.0.0.1/client/home.html";
-//             //     doc.getElementById("errorMessage").innerText = "Error: Incorrect pin!";
-//             // } todo
-//             console.log("success");
-//
-//             $.ajax({
-//                 type: "PUT",
-//                 contentType: 'application/JSON',
-//                 url: 'http://127.0.0.1:8086/card/' + senderCardNumber + '/send',
-//                 dataType: 'json',
-//                 crossOrigin: true,
-//                 headers: {
-//                     "Authorization": "bearer " + getCreditCardAccessToken(),
-//                 },
-//                 data: JSON.stringify({
-//                     "senderCardNumber": senderCardNumber,
-//                     "receiverCardNumber": receiverCardNumber,
-//                     "sum": sum
-//                 }),
-//
-//                 success: function (data, textstatus, error) {
-//                     console.log("success");
-//                     doc.getElementById("resultMessage").innerText = "Result: success!";
-//                 },
-//
-//                 error: function (xhr, ajaxOptions, thrownError) {
-//                     switch (xhr.status) {
-//                         case 0:
-//                             refreshCreditCardAccessToken();
-// //                    sendMoney();
-//                             break;
-//                         default: {
-//                             var errorJson = xhr.status;
-//                             var message = errorJson.message;
-//                             document.getElementById("errorMessage").innerText = message;
-//                         }
-//                     }
-//                 }
-//             });
-//
-//         },
-//
-//         error: function (xhr, ajaxOptions, thrownError) {
-//             console.log(xhr.status);
-//             var errorJson = JSON.parse(xhr.responseText);
-//             var message = errorJson.message;
-//             doc.getElementById("errorMessage").innerText = message;
-//         }
-//     });
-
     getCardTokensFromAuthServer();
 
     doSendMoneyRequest();
@@ -333,7 +259,7 @@ function getCardTokensFromAuthServer() {
     $.ajax({
         type: "POST",
         contentType: 'application/x-www-form-urlencoded',
-        url: 'http://127.0.0.1:8080/auth/realms/credit-card/protocol/openid-connect/token',
+        url: 'http://' + authServerHost + '/auth/realms/credit-card/protocol/openid-connect/token',
         crossOrigin: true,
         data: jQuery.param({
             grant_type: "password",
@@ -354,7 +280,7 @@ function getCardTokensFromAuthServer() {
             var roles = accessTokenJSON.resource_access["card-web"].roles;
 
             // if (!roles[0].includes("ROLE_OWNER")) {
-            //     window.location.href = "http://127.0.0.1/client/home.html";
+            //     window.location.href = "http://' + frontendServerHost + '/client/home.html";
             //     doc.getElementById("errorMessage").innerText = "Error: Incorrect pin!";
             // } todo
             console.log("success");
@@ -378,7 +304,7 @@ function doSendMoneyRequest() {
     $.ajax({
         type: "PUT",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8086/card/' + senderCardNumber + '/send',
+        url: 'http://' + cardServerHost + '/card/' + senderCardNumber + '/send',
         headers: {
             "Authorization": "bearer " + getCreditCardAccessToken(),
         },
@@ -417,7 +343,7 @@ function blockCard() {
     $.ajax({
         type: "POST",
         contentType: 'application/x-www-form-urlencoded',
-        url: 'http://127.0.0.1:8080/auth/realms/credit-card/protocol/openid-connect/token',
+        url: 'http://' + authServerHost + '/auth/realms/credit-card/protocol/openid-connect/token',
         crossOrigin: false,
         data: jQuery.param({
             grant_type: "password",
@@ -455,7 +381,7 @@ function blockCard() {
     $.ajax({
         type: "PUT",
         contentType: 'application/JSON',
-        url: 'http://127.0.0.1:8086/card/' + cardNumber + '/block',
+        url: 'http://' + cardServerHost + '/card/' + cardNumber + '/block',
         headers: {
             "Authorization": "bearer " + getCreditCardAccessToken()
         },
@@ -523,18 +449,21 @@ function dragElement(elmnt) {
 }
 
 function showMessenger(element) {
-    $(element).click(function(){
-        if ($(element).hasClass("hide")) {
-            $(element).removeClass("hide");
-            $("#messengerBody").slideDown();
-            $("#messengerFooter").slideDown();
-            element.parentNode.style.height = "337px";
-        } else {
-            $(element).addClass("hide");
-            $("#messengerBody").slideUp();
-            setTimeout("", 1000);
-            $("#messengerFooter").slideUp();
-            element.parentNode.style.height = "60px";
+    $(element).click(function () {
+        if (!$("#messenger").hasClass("messenger-in")) {
+            setTimeout(function () {
+                $("#messenger").addClass('messenger-in');
+            }, 200);
+        }
+    });
+}
+
+function hideMessenger(element) {
+    $(element).click(function () {
+        if ($("#messenger").hasClass("messenger-in")) {
+            setTimeout(function () {
+                $("#messenger").removeClass('messenger-in');
+            }, 200);
         }
     });
 }
@@ -593,7 +522,7 @@ function mainWebSocketFunction(ws) {
             switch (event.status) {
                 case '401': {
                     refreshClientAccessToken();
-                    ws = new SockJS("http://127.0.0.1:8087/client-socket?Authorization=" + getClientAccessToken());
+                    ws = new SockJS('http://' + mainServerHost + '/client-socket?Authorization=' + getClientAccessToken());
                     break;
                 }
                 default: {
@@ -607,7 +536,7 @@ function mainWebSocketFunction(ws) {
         switch (event.status) {
             case '401': {
                 refreshClientAccessToken();
-                ws = new SockJS("http://127.0.0.1:8087/client-socket?Authorization=" + getClientAccessToken());
+                ws = new SockJS("http://" + mainServerHost + "/client-socket?Authorization=" + getClientAccessToken());
                 break;
             }
             default: {

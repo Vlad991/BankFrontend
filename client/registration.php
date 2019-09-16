@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 <!--    <link rel="stylesheet" href="css/mdb.css">-->
     <link rel="stylesheet" href="../css/main.css">
+    <script type="text/javascript">
+        <?php include("../root_url.php") ?>
+        var frontendServerHost = "<?php echo $frontendServerHost; ?>";
+        var authServerHost = "<?php echo $authServerHost; ?>";
+        var cardServerHost = "<?php echo $cardServerHost; ?>";
+        var mainServerHost = "<?php echo $mainServerHost; ?>";
+    </script>
 </head>
 <body>
 <div class="container-fluid">

@@ -26,7 +26,7 @@ a:hover {
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active  {
+input:-webkit-autofill:active {
     /* -webkit-box-shadow: 0 0 0 30px #161616 inset !important; */
     /* -webkit-box-shadow: 0 0 0 30px #fff inset !important; */
     /* -webkit-text-fill-color: #000; */
@@ -83,7 +83,7 @@ input:-webkit-autofill:active  {
 /*//////////////////////////////////////////////////////..LOGIN../////////////////////////////////////////////////////*/
 
 .header {
-    height: 100px;
+    max-height: 100px;
     /* background: #b63363; */
     /* background: #faaa19; */
 }
@@ -103,13 +103,25 @@ input:-webkit-autofill:active  {
     background: #000;
 }
 
+@media screen and (max-width: 480px) {
+    .form {
+        width: 90%;
+    }
+
+    .header {
+        max-height: 150px;
+        width: 90%;
+    }
+}
+
 /*//////////////////////////////////////////////////////..MESSENGER../////////////////////////////////////////////////////*/
 
 .container-fluid__messenger {
     position: fixed;
     z-index: 100;
     right: 20px;
-    bottom: 0;
+    bottom: 20px;
+    margin-bottom: 0;
 }
 
 .messenger {
@@ -177,6 +189,113 @@ input:-webkit-autofill:active  {
 
 .send-button:focus {
     outline: none;
+}
+
+.messenger-faded {
+    transition: all 150ms ease;
+    height: 54px;
+    width: 54px;
+    border-radius: 50%;
+}
+
+.messenger-faded #messengerHeader {
+    width: 54px;
+    height: 54px;
+    border-radius: 50% !important;
+    background: #0b7cff !important;
+    transition: all 150ms ease;
+}
+
+.messenger-faded #messengerHeader img {
+    background: #fff;
+}
+
+.messenger-faded #messengerHeader div {
+    display: none !important;
+    transition: all 150ms ease;
+}
+
+.messenger-faded #messengerBody {
+    height: 0;
+    padding: 0 !important;
+    transition: all 150ms ease;
+}
+
+.messenger-faded #messengerFooter {
+    height: 0;
+    width: 0;
+    transition: all 150ms ease;
+}
+
+.messenger-faded #messengerFooter button {
+    height: 0;
+    width: 0;
+    font-size: 0;
+    opacity: 0;
+    transition: all 150ms ease;
+}
+
+.messenger-faded #messengerFooter form {
+    height: 0;
+    width: 0;
+    display: none !important;
+    transition: all 150ms ease;
+}
+
+.messenger-faded #messengerFooter img {
+    opacity: 0;
+}
+
+.messenger-faded.messenger-in {
+    transition: all 150ms ease;
+    border-radius: .3em;
+    height: 337px;
+    width: 250px;
+}
+
+.messenger-faded.messenger-in #messengerFooter {
+    height: 57px;
+    width: 100%;
+    transition: all 150ms ease;
+}
+
+.messenger-faded.messenger-in #messengerFooter button {
+    height: 26px;
+    width: 51px;
+    font-size: 16px;
+    opacity: 1;
+    transition: all 150ms ease;
+}
+
+.messenger-faded.messenger-in #messengerFooter form {
+    display: flex !important;
+    transition: all 150ms ease;
+}
+
+.messenger-faded.messenger-in #messengerFooter img {
+    opacity: 1;
+}
+
+.messenger-faded.messenger-in #messengerBody {
+    height: 220px;
+    padding: .5rem !important;
+    transition: all 150ms ease;
+}
+
+.messenger-faded.messenger-in #messengerHeader div {
+    display: inline-block !important;
+    transition: all 150ms ease;
+}
+
+.messenger-faded.messenger-in #messengerHeader {
+    border-top-left-radius: .25em !important;
+    border-top-right-radius: .25em !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    width: 100%;
+    height: 60px;
+    background: #6c757d !important;
+    transition: all 150ms ease;
 }
 
 /*///////////////////////////////////////////////////..CREDIT CARD..//////////////////////////////////////////////////*/

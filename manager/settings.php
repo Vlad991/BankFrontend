@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="../css/client_menu.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script type="text/javascript">
+        <?php include("../root_url.php") ?>
+        var frontendServerHost = "<?php echo $frontendServerHost; ?>";
+        var authServerHost = "<?php echo $authServerHost; ?>";
+        var cardServerHost = "<?php echo $cardServerHost; ?>";
+        var mainServerHost = "<?php echo $mainServerHost; ?>";
+    </script>
 </head>
 <body>
 <div class="container-fluid">

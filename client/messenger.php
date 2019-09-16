@@ -1,9 +1,9 @@
-<div id="messenger" class="container-fluid__messenger messenger jumbotron p-0 shadow">
+<div id="messenger" class="container-fluid__messenger messenger jumbotron p-0 shadow messenger-faded">
     <div id="messengerHeader" class="messenger__header p-0 rounded-top bg-secondary">
-        <img src="../img/messanger/manager.svg" alt="Manager"
-             class="img-fluid align-top rounded-circle border border-dark manager-img m-1">
+        <img id="messengerImage" src="../img/messanger/manager.svg" alt="Manager"
+             class="img-fluid align-top rounded-circle border border-primary manager-img m-1">
         <div id="" class="d-inline-block">
-            Manager <span id="messageSender" class="text-warning">vlad99</span>
+            Manager <span id="messageSender" class="text-warning">vlad99</span><br>
             <div class="text-light">Online</div>
         </div>
     </div>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div id="messengerFooter" class="messenger__footer p-2">
-        <form action="" class="form send-form d-block mx-auto p-1 d-inline-flex bg-light border border-secondary rounded">
+        <form action="" class="form send-form d-block mx-auto mb-0 p-1 d-inline-flex bg-light border border-secondary rounded w-100">
             <div class="paperclip d-inline-block"><img src="../img/messanger/smile.svg" class="paperclip-img" alt="Smiles"></div>
             <textarea class="send-area border-0 bg-light" name="" id="sendMessage" cols="20" rows="1"></textarea>
             <button id="sendButton" type="button" class="send-button border-0 bg-light" value="Send">Send</button>
