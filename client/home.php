@@ -43,7 +43,7 @@
 
     <div id="errorMessage" class="container text-danger"></div>
 
-    <p class="jumbotron container bg-secondary">MyBank - is my Java Spring Web Application. In this app I use similarity
+    <p class="jumbotron container bg-secondary row col-10 offset-1">MyBank - is my Java Spring Web Application. In this app I use similarity
         of REST microservice architecture (Authorization Keycloak Service and Main Business Logic Service) that
         connected with JMS using Kafka. Frontend is written in pure JavaScript using Only JQuery for ajax requests.</p>
 

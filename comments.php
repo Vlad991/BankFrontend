@@ -12,6 +12,6 @@
     </div>
     <form action="" class="form p-0 w-100 m-0 mt-5">
         <textarea name="" id="sendComment" cols="30" rows="5" class="w-100 p-3 border-light text-light mb-4" placeholder="Leave your comment" style="resize: none; border-radius: 5px; background: rgba(255,255,255,0.1); outline: none"></textarea>
-        <button id="sendCommentButton" type="button" class="btn btn-dark btn-outline-success w-100">Send Comment</button>
+        <button id="sendCommentButton" type="button" class="btn btn-dark btn-outline-success">Send Comment</button>
     </form>
 </div>

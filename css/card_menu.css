@@ -1,8 +1,9 @@
 .div-page {
-    min-height: 600px;
+    min-height: 300px;
     background: #161616;
     /* color: #faab17; */
     color: #fff;
+    margin-top: 30px;
 }
 
 .active-page {
