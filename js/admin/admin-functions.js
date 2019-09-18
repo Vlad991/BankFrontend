@@ -8,11 +8,11 @@ function getRandomColor() {
 }
 
 function getLogin() {
-    return window.localStorage.getItem("adminLogin");
+    return window.localStorage.getItem("login");
 }
 
 function setLogin(login) {
-    window.localStorage.setItem("adminLogin", login);
+    window.localStorage.setItem("login", login);
 }
 
 function getAdminAccessToken() {

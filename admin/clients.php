@@ -55,7 +55,7 @@
         </ul>
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
-                <div class="div-page p-0">
+                <div class="div-page p-0 table-responsive">
                     <table class="table table-hover table-dark">
                         <thead class="thead-light">
                         <tr>
@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-card" role="tabpanel" aria-labelledby="pills-card-tab">
-                <div class="div-page">
+                <div class="div-page table-responsive">
                     <table class="table table-hover table-dark">
                         <thead class="thead-light">
                         <tr>

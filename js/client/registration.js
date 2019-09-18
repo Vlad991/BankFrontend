@@ -16,7 +16,7 @@ function sendLogin() {
         data: JSON.stringify({
             "login": doc.getElementById("login").value,
             "name": doc.getElementById("name").value,
-            "surname": doc.getElementById("name").value,
+            "surname": doc.getElementById("surname").value,
             "birthday": {
                 "day": doc.getElementById("day").value,
                 "month": doc.getElementById("month").value,

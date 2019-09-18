@@ -54,13 +54,13 @@
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-info" role="tabpanel" aria-labelledby="v-pills-info-tab">
                     <div class="div-page p-4 p-md-5">
-                        <div class="row col-12 rounded"><div class="col-5">Login:</div><span id="clientLogin" class="col-5 offset-2 text-warning"></span></div>
-                        <div class="row col-12 mt-3 rounded"><div class="col-5">Name:</div><span id="clientName" class="col-5 offset-2 text-warning"></span></div>
-                        <div class="row col-12 mt-3  rounded"><div class="col-5">Surname:</div><span id="clientSurname" class="col-5 offset-2 text-warning"></span></div>
-                        <div class="row col-12 mt-3 rounded"><div class="col-5">Birthday:</div><span id="clientBirthday" class="col-5 offset-2 text-warning"></span></div>
-                        <div class="row col-12 mt-3 rounded"><div class="col-5">Address:</div><span id="clientAddress" class="col-5 offset-2 text-warning"></span></div>
-                        <div class="row col-12 mt-3 rounded"><div class="col-5">Email:</div><span id="clientEmail" class="col-5 offset-2 text-warning"></span></div>
-                        <div class="row col-12 mt-3 rounded"><div class="col-5">Phone:</div><span id="clientPhone" class="col-5 offset-2 text-warning"></span></div>
+                        <div class="row col-12 rounded"><div class="col-5">Login:</div><span id="clientLogin" class="col-5 text-warning"></span></div>
+                        <div class="row col-12 mt-3 rounded"><div class="col-5">Name:</div><span id="clientName" class="col-5 text-warning"></span></div>
+                        <div class="row col-12 mt-3  rounded"><div class="col-5">Surname:</div><span id="clientSurname" class="col-5 text-warning"></span></div>
+                        <div class="row col-12 mt-3 rounded"><div class="col-5">Birthday:</div><span id="clientBirthday" class="col-5 text-warning"></span></div>
+                        <div class="row col-12 mt-3 rounded"><div class="col-5">Address:</div><span id="clientAddress" class="col-5 text-warning"></span></div>
+                        <div class="row col-12 mt-3 rounded"><div class="col-5">Email:</div><span id="clientEmail" class="col-5 text-warning"></span></div>
+                        <div class="row col-12 mt-3 rounded"><div class="col-5">Phone:</div><span id="clientPhone" class="col-5 text-warning"></span></div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-cards" role="tabpanel" aria-labelledby="v-pills-cards-tab">

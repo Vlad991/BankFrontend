@@ -32,7 +32,7 @@
     include("../navigation.php");
     ?>
 
-    <p class="jumbotron container bg-secondary my-5">Here can be some manager settings.</p>
+    <p class="jumbotron container bg-secondary my-5 row col-10 offset-1">Here can be some manager settings.</p>
 
     <!--  Comments  -->
     <?php include("../comments.php") ?>

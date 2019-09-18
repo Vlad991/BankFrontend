@@ -37,7 +37,7 @@
     include("../header.php");
     ?>
 
-    <p class="jumbotron container bg-secondary">MyBank - is my Java Spring Web Application. In this app I use similarity
+    <p class="jumbotron container bg-secondary row col-10 offset-1">MyBank - is my Java Spring Web Application. In this app I use similarity
         of REST microservice architecture (Authorization Keycloak Service and Main Business Logic Service) that
         connected with JMS using Kafka. Frontend is written in pure Java.</p>
 
@@ -56,8 +56,8 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="../js/main-functions.js"></script>
-<script src="../js/main.js"></script>
 <script src="../js/admin/admin-functions.js"></script>
+<script src="../js/main.js"></script>
 <script src="../js/admin/home.js"></script>
 </body>
 </html>
