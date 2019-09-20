@@ -5,7 +5,7 @@
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/png" href="favicon.png"/>
 
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" media="all" type="text/css" href="/css/main.css">
@@ -34,20 +34,24 @@
     include("./navigation.php");
     ?>
 
+    <div id="errorMessage" class="alert alert-danger fixed-bottom hide w-50 mx-auto" role="alert"></div>
+
     <!--  Header  -->
     <?php
     $headerText = "Welcome to MyBank!";
     include("./header.php");
     ?>
 
-    <form class="mx-auto form jumbotron" action="">
+    <form id="loginForm" class="mx-auto form jumbotron" action="">
         <div class="form-group">
             <label for="login">Login:</label>
             <input type="text" class="form-control" id="login">
+            <div id="loginError" class="small text-danger"></div>
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
             <input type="password" class="form-control" id="password">
+            <div id="passwordError" class="small text-danger"></div>
         </div>
         <div class="form-group form-check">
             <label class="form-check-label">
@@ -56,7 +60,6 @@
         </div>
         <button id="loginButton" type="button" class="btn btn-dark w-100">Login</button>
         <a href="client/registration.php" class="nav-link mt-2 text-dark">Not registered yet?</a>
-        <span id="errorMessage" class="text-danger"></span>
     </form>
 
     <!--  Footer  -->

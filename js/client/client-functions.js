@@ -137,7 +137,8 @@ function showClientInfo() {
                     break;
                 default: {
                     var errorJson = xhr.status;
-                    var message = errorJson.message;
+                    message = errorJson.error_description;
+                    console.log(xhr.responseText);
                     document.getElementById("errorMessage").innerText = "Error: " + message;
                 }
             }
@@ -187,7 +188,8 @@ function showCreditCardList() {
                     break;
                 default: {
                     var errorJson = xhr.status;
-                    var message = errorJson.message;
+                    message = errorJson.error_description;
+                    console.log(xhr.responseText);
                     document.getElementById("errorMessage").innerText = message;
                 }
             }
@@ -229,7 +231,8 @@ function showCreditCardInfo() {
                     break;
                 default: {
                     var errorJson = xhr.status;
-                    var message = errorJson.message;
+                    message = errorJson.error_description;
+                    console.log(xhr.responseText);
                     document.getElementById("errorMessage").innerText = message;
                 }
             }
@@ -289,7 +292,8 @@ function getCardTokensFromAuthServer() {
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status);
             var errorJson = JSON.parse(xhr.responseText);
-            var message = errorJson.message;
+            message = errorJson.error_description;
+            console.log(xhr.responseText);
             doc.getElementById("errorMessage").innerText = message;
         }
     });
@@ -327,7 +331,8 @@ function doSendMoneyRequest() {
                     break;
                 default: {
                     var errorJson = xhr.status;
-                    var message = errorJson.message;
+                    message = errorJson.error_description;
+                    console.log(xhr.responseText);
                     document.getElementById("errorMessage").innerText = message;
                 }
             }
@@ -373,7 +378,8 @@ function blockCard() {
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status);
             var errorJson = JSON.parse(xhr.responseText);
-            var message = errorJson.message;
+            message = errorJson.error_description;
+            console.log(xhr.responseText);
             doc.getElementById("errorMessage").innerText = message;
         }
     });
@@ -399,7 +405,8 @@ function blockCard() {
                     break;
                 default: {
                     var errorJson = xhr.status;
-                    var message = errorJson.message;
+                    message = errorJson.error_description;
+                    console.log(xhr.responseText);
                     document.getElementById("errorMessage").innerText = message;
                 }
             }

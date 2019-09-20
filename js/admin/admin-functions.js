@@ -99,7 +99,8 @@ function changeClientStatus(target) {
                         break;
                     default: {
                         var errorJson = xhr.status;
-                        var message = errorJson.message;
+                        message = errorJson.error_description;
+console.log(xhr.responseText);
                         document.getElementById("errorMessage").innerText = message;
                     }
                 }
@@ -129,7 +130,8 @@ function changeClientStatus(target) {
                         break;
                     default: {
                         var errorJson = xhr.status;
-                        var message = errorJson.message;
+                        message = errorJson.error_description;
+console.log(xhr.responseText);
                         document.getElementById("errorMessage").innerText = message;
                     }
                 }
@@ -195,7 +197,8 @@ function showClientsInfo() {
                     break;
                 default: {
                     var errorJson = xhr.status;
-                    var message = errorJson.message;
+                    message = errorJson.error_description;
+console.log(xhr.responseText);
                     document.getElementById("errorMessage").innerText = message;
                 }
             }
@@ -265,7 +268,8 @@ function showCreditCardList() {
                     break;
                 default: {
                     var errorJson = xhr.status;
-                    var message = errorJson.message;
+                    message = errorJson.error_description;
+console.log(xhr.responseText);
                     document.getElementById("errorMessage").innerText = message;
                 }
             }
@@ -307,7 +311,8 @@ function changeCardStatus(target) {
                     break;
                 default: {
                     var errorJson = xhr.status;
-                    var message = errorJson.message;
+                    message = errorJson.error_description;
+console.log(xhr.responseText);
                     document.getElementById("errorMessage").innerText = message;
                 }
             }

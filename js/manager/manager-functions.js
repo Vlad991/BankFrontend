@@ -115,7 +115,8 @@ function showClientsInfo() {
                     break;
                 default: {
                     var errorJson = xhr.status;
-                    var message = errorJson.message;
+                    message = errorJson.error_description;
+                    onsole.log(xhr.responseText);
                     document.getElementById("errorMessage").innerText = message;
                 }
             }
@@ -185,7 +186,8 @@ function showCreditCardList() {
                     break;
                 default: {
                     var errorJson = xhr.status;
-                    var message = errorJson.message;
+                    message = errorJson.error_description;
+                    console.log(xhr.responseText);
                     document.getElementById("errorMessage").innerText = message;
                 }
             }
@@ -227,7 +229,8 @@ function changeCardStatus(target) {
                     break;
                 default: {
                     var errorJson = xhr.status;
-                    var message = errorJson.message;
+                    message = errorJson.error_description;
+                    console.log(xhr.responseText);
                     document.getElementById("errorMessage").innerText = message;
                 }
             }
@@ -254,7 +257,7 @@ function showActiveClientsList(activeUsers) {
         activeClientCard.classList.remove("d-none");
     }
 
-    for(var i = 0; i < activeUsers.length; i++){
+    for (var i = 0; i < activeUsers.length; i++) {
         var user = activeUsers[i];
 
         doc.querySelector("#activeClients div:last-child .card-title").innerText = user;
@@ -418,7 +421,7 @@ function clientsWebSocketFunction(ws) {
     ws.onmessage = function (event) {
         var receiveJson = JSON.parse(event.data);
         switch (receiveJson.type) {
-            case "ACTIVE_CLIENT_LIST":{
+            case "ACTIVE_CLIENT_LIST": {
                 var activeUsers = receiveJson.activeUsers;
                 showActiveClientsList(activeUsers);
                 break;
