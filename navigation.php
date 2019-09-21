@@ -1,4 +1,4 @@
-<nav class="navigation row navbar navbar-expand-lg sticky-top navbar-dark w-100">
+<nav class="navigation row navbar navbar-expand-lg sticky-top navbar-dark w-100" style="z-index: 10000;">
     <div class="col-3 col-sm-1 col-lg-1 order-1">
         <a id="logoLink" href="http://<?= $frontendServerHost ?>/index.php" class="navbar-brand"><img class="logo-img" src="/img/menu/logo.svg" alt="Logo"></a>
     </div>

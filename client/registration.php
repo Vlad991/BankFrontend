@@ -57,77 +57,95 @@
                     <div id="surnameError" class="small text-danger position-absolute fixed-bottom ml-4"></div>
                 </div>
             </div>
-            <div class="form-group mb-0">
-                <label class="" for="day">Birthday:</label><br>
-                <div class="row m-0 justify-content-between">
-                    <div class="col-4 position-relative">
-                        <input type="text" class="form-control form-inline text-dark mb-4 w-100" id="day" placeholder="Day">
+            <div class="form-group px-0 mb-0 w-100">
+                <label class="" for="day">Birthday:</label>
+                <div class="row w-100 m-0 justify-content-between">
+                    <div class="col- col-md-4 position-relative mt-3 mt-md-0 p-0 pr-md-3 pl-md-0">
+                        <input type="text" class="form-control form-inline text-dark mb-4 w-100" id="day"
+                               placeholder="Day">
                         <div id="dayError" class="small text-danger position-absolute fixed-bottom ml-2"></div>
                     </div>
-                    <div class="col-4 position-relative">
-                        <input type="text" class="form-control form-inline text-dark mb-4 w-100" id="month" placeholder="Month">
+                    <div class="col- col-md-4 position-relative mt-3 mt-md-0 p-0 px-md-3">
+                        <input type="text" class="form-control form-inline text-dark mb-4 w-100" id="month"
+                               placeholder="Month">
                         <div id="monthError" class="small text-danger position-absolute fixed-bottom ml-2"></div>
                     </div>
-                    <div class="col-4 position-relative">
-                        <input type="text" class="form-control form-inline text-dark mb-4 w-100" id="year" placeholder="Year">
+                    <div class="col- col-md-4 position-relative mt-3 mt-md-0 p-0 pl-md-3 pr-md-0">
+                        <input type="text" class="form-control form-inline text-dark mb-4 w-100" id="year"
+                               placeholder="Year">
                         <div id="yearError" class="small text-danger position-absolute fixed-bottom ml-2"></div>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group px-0 mb-0 w-100">
                 <label class="" for="country">Address:</label><br>
                 <div class="row w-100 m-0 justify-content-between">
-                    <div class="col-5">
-                        <input type="text" class="form-control form-inline text-dark" id="country"
-                               placeholder="Country">
-                        <div id="countryError" class="small text-danger"></div>
-                    </div>
-                    <div class="col-5">
-                        <input type="text" class="form-control form-inline text-dark" id="city" placeholder="City">
-                        <div id="cityError" class="small text-danger"></div>
-                    </div>
-                </div>
-                <div class="row w-100 m-0 mt-3 justify-content-between">
-                    <div class="col-5">
-                        <input type="text" class="form-control form-inline text-dark" id="street" placeholder="Street">
-                        <div id="streetError" class="small text-danger"></div>
-                    </div>
-                    <div class="col-5">
-                        <input type="text" class="form-control form-inline text-dark" id="postcode"
-                               placeholder="Postcode">
-                        <div id="postcodeError" class="small text-danger"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="" for="email">Email:</label>
-                <input type="text" class="form-control text-dark" id="email" placeholder="Email">
-                <div id="emailError" class="small text-danger"></div>
-            </div>
-            <div class="form-group">
-                <label class="" for="phone">Phone:</label>
-                <!--                <input type="text" class="form-control text-dark" id="phone" placeholder="Phone">-->
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <button id="phonePrefix" class="btn btn-outline-secondary dropdown-toggle" type="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+380 (UA)
-                        </button>
-                        <div id="phoneDropDown" class="dropdown-menu">
-                            <a class="dropdown-item" href="#">+380 (UA)</a>
-                            <a class="dropdown-item" href="#">+780 (RU)</a>
-                            <a class="dropdown-item" href="#">+333 (EU)</a>
+                    <div class="col- col-md-6 p-0">
+                        <div class="row m-0 justify-content-between pr-md-5">
+                            <div class="col- col-md-5 position-relative p-0 mt-3 mt-md-0">
+                                <input type="text" class="form-control form-inline text-dark mb-4 w-100" id="country"
+                                       placeholder="Country">
+                                <div id="countryError"
+                                     class="small text-danger position-absolute fixed-bottom ml-2"></div>
+                            </div>
+                            <div class="col- col-md-5 position-relative p-0 mt-3 mt-md-0">
+                                <input type="text" class="form-control form-inline text-dark mb-4 w-100" id="city"
+                                       placeholder="City">
+                                <div id="cityError" class="small text-danger position-absolute fixed-bottom ml-2"></div>
+                            </div>
                         </div>
                     </div>
-                    <input id="phone" type="text" class="form-control" aria-label="Text input with dropdown button">
+                    <div class="col- col-md-6 p-0">
+                        <div class="row m-0 justify-content-between pl-md-5">
+                            <div class="col- col-md-5 position-relative p-0 mt-3 mt-md-0">
+                                <input type="text" class="form-control form-inline text-dark mb-4 w-100" id="street"
+                                       placeholder="Street">
+                                <div id="streetError"
+                                     class="small text-danger position-absolute fixed-bottom ml-2"></div>
+                            </div>
+                            <div class="col- col-md-5 position-relative p-0 mt-3 mt-md-0">
+                                <input type="text" class="form-control form-inline text-dark mb-4 w-100" id="postcode"
+                                       placeholder="Postcode">
+                                <div id="postcodeError"
+                                     class="small text-danger position-absolute fixed-bottom ml-2"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="phoneError" class="small text-danger"></div>
             </div>
-            <div class="form-group">
-                <label class="" for="password">Password:</label>
-                <input type="password" class="form-control text-dark" id="password" placeholder="Password">
-                <div id="passwordError" class="small text-danger"></div>
-                <div id="passwordWarning" class="small text-warning"></div>
-                <div id="passwordSuccess" class="small text-success"></div>
+            <div class="row w-100 mx-auto">
+                <div class="form-group col- col-md-6 position-relative mb-0 px-0 pr-md-3">
+                    <label class="" for="email">Email:</label>
+                    <input type="text" class="form-control text-dark mb-4 w-100" id="email" placeholder="Email">
+                    <div id="emailError" class="small text-danger position-absolute fixed-bottom ml-2"></div>
+                </div>
+                <div class="form-group col- col-md-6 position-relative mb-0 px-0 pl-md-3">
+                    <label class="" for="phone">Phone:</label>
+                    <div class="input-group mb-4 w-100">
+                        <div class="input-group-prepend">
+                            <button id="phonePrefix" class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+380 (UA)
+                            </button>
+                            <div id="phoneDropDown" class="dropdown-menu">
+                                <a class="dropdown-item" href="#">+380 (UA)</a>
+                                <a class="dropdown-item" href="#">+780 (RU)</a>
+                                <a class="dropdown-item" href="#">+333 (EU)</a>
+                            </div>
+                        </div>
+                        <input id="phone" type="text" class="form-control" aria-label="Text input with dropdown button">
+                    </div>
+                    <div id="phoneError" class="small text-danger position-absolute fixed-bottom ml-2"></div>
+                </div>
+            </div>
+            <div class="row w-100 mx-auto">
+                <div class="form-group col- col-md-6 position-relative mb-0 px-0 pr-md-3">
+                    <label class="" for="password">Password:</label>
+                    <input type="password" class="form-control text-dark mb-4 w-100" id="password"
+                           placeholder="Password">
+                    <div id="passwordError" class="small text-danger position-absolute fixed-bottom ml-2"></div>
+                    <div id="passwordWarning" class="small text-warning position-absolute fixed-bottom ml-2"></div>
+                    <div id="passwordSuccess" class="small text-success position-absolute fixed-bottom ml-2"></div>
+                </div>
             </div>
             <button id="registerButton" type="button" class="btn btn-dark w-100 mt-3">Register</button>
         </form>

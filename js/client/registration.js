@@ -74,15 +74,15 @@ function registerNewUser() {
 
 function validateRegistrationData() {
     var result = true;
-    if (!validateComponentLengthAndOneWord("login", false, 3, 15, "Login must have from 3 to 15 characters and contains from one word!") ||
+    if (!validateComponentLengthAndOneWord("login", false, 3, 15, "Login must have from 3 to 15 characters!") ||
         !validateComponentStartsWithLetterAndContainsLettersAndDigits("login", "Login must start with letter, and contains no symbols!")) {
         result = false;
     }
-    if (!validateComponentLengthAndOneWord("name", false, 2, 20, "Name must have from 3 to 15 characters and contains only one word!") ||
+    if (!validateComponentLengthAndOneWord("name", false, 3, 20, "Name must have from 3 to 15 characters!") ||
         !validateComponentOnlyLetters("name", "Name contains only letters!")) {
         result = false;
     }
-    if (!validateComponentLengthAndOneWord("surname", false, 2, 20, "Surname must have from 3 to 15 characters and contains only one word!") ||
+    if (!validateComponentLengthAndOneWord("surname", false, 3, 20, "Surname must have from 3 to 15 characters!") ||
         !validateComponentOnlyLetters("surname", "Surname contains only letters!")) {
         result = false;
     }
@@ -102,7 +102,7 @@ function validateRegistrationData() {
         result = false;
     }
     if (!validateComponentOnlyLetters("street", "Incorrect street!") ||
-        !validateComponentLengthAndOneWord("street", false, 2, 20, "Incorrect street")) {
+        !validateComponentLengthAndOneWord("street", false, 3, 20, "Incorrect street")) {
         result = false;
     }
     if (!validatePostCode("postcode", "Incorrect postcode!")) {
@@ -158,7 +158,7 @@ function addValidationEvents() {
     });
     doc.getElementById("street").addEventListener("keyup", function (event) {
         removeRedMessage("street");
-        validateComponentLengthAndOneWord("street", false, 2, 20, "Incorrect street");
+        validateComponentLengthAndOneWord("street", false, 3, 20, "Incorrect street");
         validateComponentOnlyLetters("street", "Incorrect street!");
     });
     doc.getElementById("postcode").addEventListener("keyup", function (event) {
