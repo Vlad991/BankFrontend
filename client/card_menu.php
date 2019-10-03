@@ -54,10 +54,9 @@
         </div>
         <div class="col- col-md-8">
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                     aria-labelledby="v-pills-home-tab">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                     <div class="div-page p-3 p-md-5">
-                        <div class="credit-card p-3 jumbotron d-inline-block position-relative">
+                        <div class="credit-card p-3 jumbotron d-none position-relative">
                             <div class="credit-card__bank d-inline-block ml-2 mr-5 text-light">
                                 <img class="w-25 mr-2" src="../img/menu/logo.svg" alt="Logo">MyBank
                             </div>

@@ -1,3 +1,5 @@
+var doc = document;
+
 function getRandomColor() {
     var color = "";
     for (var i = 0; i < 3; i++) {
@@ -86,7 +88,7 @@ function refreshCreditCardAccessToken() {
         contentType: 'application/x-www-form-urlencoded',
         url: 'http://' + authServerHost + '/auth/realms/credit-card/protocol/openid-connect/token',
         dataType: 'json',
-        data: jQuery.param({
+        data: $.param({
             grant_type: "refresh_token",
             client_id: "ADMIN-UI",
             refresh_token: getCreditCardRefreshToken()
@@ -97,21 +99,21 @@ function refreshCreditCardAccessToken() {
             var refreshToken = tokens.refresh_token;
             setCreditCardAccessToken(accessToken);
             setCreditCardRefreshToken(refreshToken);
+            console.log("Credit card token is refreshed!");
         },
 
         error: function (xhr, ajaxOptions, thrownError) {
-            window.location.href = "../../index.php";
+//            window.location.href = "../../index.php";
+            console.log("Can't refresh credit card token!");
         }
     });
 }
 
 function showClientInfo() {
-    var doc = document;
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
         url: 'http://' + mainServerHost + '/client/' + getLogin() + '/info',
-        dataType: 'json',
         crossOrigin: true,
         headers: {
             "Authorization": "bearer " + getClientAccessToken(),
@@ -139,7 +141,7 @@ function showClientInfo() {
                     var errorJson = xhr.status;
                     message = errorJson.error_description;
                     console.log(xhr.responseText);
-                    document.getElementById("errorMessage").innerText = "Error: " + message;
+                    doc.getElementById("errorMessage").innerText = "Error: " + message;
                 }
             }
         }
@@ -147,7 +149,6 @@ function showClientInfo() {
 }
 
 function showCreditCardList() {
-    var doc = document;
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
@@ -190,7 +191,7 @@ function showCreditCardList() {
                     var errorJson = xhr.status;
                     message = errorJson.error_description;
                     console.log(xhr.responseText);
-                    document.getElementById("errorMessage").innerText = message;
+                    doc.getElementById("errorMessage").innerText = message;
                 }
             }
         }
@@ -203,7 +204,6 @@ function goToCreditCardMenu(cardNumber) {
 }
 
 function showCreditCardInfo() {
-    var doc = document;
     $.ajax({
         type: "GET",
         contentType: 'application/JSON',
@@ -216,6 +216,7 @@ function showCreditCardInfo() {
             var cardInfo = data;
             console.log(cardInfo);
 
+            doc.querySelector("div.credit-card").classList.add("d-inline-block");
             doc.querySelector("#cardNumber").innerText = cardInfo.number;
             doc.querySelector("#cardDate").innerText =
                 ((cardInfo.date.month < 10) ? ("0" + cardInfo.date.month) : cardInfo.date.month) + "/" + cardInfo.date.year;
@@ -233,7 +234,7 @@ function showCreditCardInfo() {
                     var errorJson = xhr.status;
                     message = errorJson.error_description;
                     console.log(xhr.responseText);
-                    document.getElementById("errorMessage").innerText = message;
+                    doc.getElementById("errorMessage").innerText = message;
                 }
             }
         }
@@ -241,22 +242,11 @@ function showCreditCardInfo() {
 }
 
 function sendMoney() {
-    var doc = document;
-    var senderCardNumber = doc.getElementById("senderCard").value;
-    var receiverCardNumber = doc.getElementById("receiverCard").value;
-    var sum = doc.getElementById("sum").value;
-    var pin = doc.getElementById("pinToSend").value;
-
-    getCardTokensFromAuthServer();
-
-    doSendMoneyRequest();
+    getCardTokensFromAuthServerAndSendMoney();
 }
 
-function getCardTokensFromAuthServer() {
-    var doc = document;
+function getCardTokensFromAuthServerAndSendMoney() {
     var senderCardNumber = doc.getElementById("senderCard").value;
-    var receiverCardNumber = doc.getElementById("receiverCard").value;
-    var sum = doc.getElementById("sum").value;
     var pin = doc.getElementById("pinToSend").value;
 
     $.ajax({
@@ -264,7 +254,8 @@ function getCardTokensFromAuthServer() {
         contentType: 'application/x-www-form-urlencoded',
         url: 'http://' + authServerHost + '/auth/realms/credit-card/protocol/openid-connect/token',
         crossOrigin: true,
-        data: jQuery.param({
+        dataType: 'json',
+        data: $.param({
             grant_type: "password",
             client_id: "ADMIN-UI",
             username: senderCardNumber,
@@ -282,25 +273,31 @@ function getCardTokensFromAuthServer() {
             var accessTokenJSON = JSON.parse(window.atob(base64Url));
             var roles = accessTokenJSON.resource_access["card-web"].roles;
 
-            // if (!roles[0].includes("ROLE_OWNER")) {
-            //     window.location.href = "http://' + frontendServerHost + '/client/home.html";
-            //     doc.getElementById("errorMessage").innerText = "Error: Incorrect pin!";
-            // } todo
-            console.log("success");
+            var message = "Get credit card tokens";
+            if (!roles[0].includes("ROLE_OWNER")) {
+//                window.location.href = 'http://' + frontendServerHost + '/client/home.html';
+                message = "Error: Your card is blocked!";
+                doc.getElementById("errorMessage").innerText = message;
+                $("#errorMessage").show();
+                $("#errorMessage").alert();
+            }
+            console.log(message);
+            doSendMoneyRequest();
         },
 
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status);
             var errorJson = JSON.parse(xhr.responseText);
             message = errorJson.error_description;
-            console.log(xhr.responseText);
+            console.log("Can't get credit card tokens: " + xhr.responseText);
             doc.getElementById("errorMessage").innerText = message;
+            $("#errorMessage").show();
+            $("#errorMessage").alert();
         }
     });
 }
 
 function doSendMoneyRequest() {
-    var doc = document;
     var senderCardNumber = doc.getElementById("senderCard").value;
     var receiverCardNumber = doc.getElementById("receiverCard").value;
     var sum = doc.getElementById("sum").value;
@@ -319,21 +316,24 @@ function doSendMoneyRequest() {
         }),
 
         success: function (data, textstatus, error) {
-            console.log("success");
-            doc.getElementById("resultMessage").innerText = "Result: success!";
+            var message = "Result: money has been sent!";
+            console.log(message);
+            doc.getElementById("resultMessage").innerText = message;
+            setTimeout(function(){
+                window.location.reload();
+            }, 2000);
         },
 
         error: function (xhr, ajaxOptions, thrownError) {
             switch (xhr.status) {
                 case 0:
                     refreshCreditCardAccessToken();
-//                    sendMoney();
                     break;
                 default: {
                     var errorJson = xhr.status;
                     message = errorJson.error_description;
-                    console.log(xhr.responseText);
-                    document.getElementById("errorMessage").innerText = message;
+                    console.log("Can't do send money request: " + xhr.responseText);
+                    doc.getElementById("resultMessage").innerText = message;
                 }
             }
         }
@@ -341,7 +341,6 @@ function doSendMoneyRequest() {
 }
 
 function blockCard() {
-    var doc = document;
     var cardNumber = doc.getElementById("actionsCard").value;
     var pin = doc.getElementById("pinToBlock").value;
 
@@ -407,7 +406,7 @@ function blockCard() {
                     var errorJson = xhr.status;
                     message = errorJson.error_description;
                     console.log(xhr.responseText);
-                    document.getElementById("errorMessage").innerText = message;
+                    doc.getElementById("errorMessage").innerText = message;
                 }
             }
         }
@@ -415,44 +414,44 @@ function blockCard() {
 }
 
 function dragElement(elmnt) {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "Header")) {
-        // if present, the header is where you move the DIV from:
-        document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
-    } else {
-        // otherwise, move the DIV from anywhere inside the DIV:
-        elmnt.onmousedown = dragMouseDown;
-    }
-
-    function dragMouseDown(e) {
-        e = e || window.event;
-        // e.preventDefault();
-        // get the mouse cursor position at startup:
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e = e || window.event;
-        // e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // set the element's new position:
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
+    // var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    // if (doc.getElementById(elmnt.id + "Header")) {
+    //     // if present, the header is where you move the DIV from:
+    //     doc.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
+    // } else {
+    //     // otherwise, move the DIV from anywhere inside the DIV:
+    //     elmnt.onmousedown = dragMouseDown;
+    // }
+    //
+    // function dragMouseDown(e) {
+    //     e = e || window.event;
+    //     // e.preventDefault();
+    //     // get the mouse cursor position at startup:
+    //     pos3 = e.clientX;
+    //     pos4 = e.clientY;
+    //     doc.onmouseup = closeDragElement;
+    //     // call a function whenever the cursor moves:
+    //     doc.onmousemove = elementDrag;
+    // }
+    //
+    // function elementDrag(e) {
+    //     e = e || window.event;
+    //     // e.preventDefault();
+    //     // calculate the new cursor position:
+    //     pos1 = pos3 - e.clientX;
+    //     pos2 = pos4 - e.clientY;
+    //     pos3 = e.clientX;
+    //     pos4 = e.clientY;
+    //     // set the element's new position:
+    //     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    //     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    // }
+    //
+    // function closeDragElement() {
+    //     // stop moving when mouse button is released:
+    //     doc.onmouseup = null;
+    //     doc.onmousemove = null;
+    // }
 }
 
 function showMessenger(element) {
@@ -460,6 +459,10 @@ function showMessenger(element) {
         if (!$("#messenger").hasClass("messenger-in")) {
             setTimeout(function () {
                 $("#messenger").addClass('messenger-in');
+            }, 200);
+        } else if ($("#messenger").hasClass("messenger-in")) {
+            setTimeout(function () {
+                $("#messenger").removeClass('messenger-in');
             }, 200);
         }
     });
@@ -496,7 +499,7 @@ function sendMessage() {
 }
 
 function sendComment() {
-    var messageBody = document.getElementById("sendComment").value;
+    var messageBody = doc.getElementById("sendComment").value;
     var jsonSend = {};
     jsonSend["type"] = "COMMENT";
     jsonSend["message"] = messageBody;

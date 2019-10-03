@@ -42,8 +42,8 @@ function registerNewUser() {
             }),
 
             success: function (xhr, ajaxOptions, thrownError) {
+                console.log("Registration success!");
                 window.location.href = '../../index.php';
-                console.log("success");
             },
 
             error: function (xhr, ajaxOptions, thrownError) {
@@ -123,17 +123,17 @@ function validateRegistrationData() {
 function addValidationEvents() {
     doc.getElementById("login").addEventListener("keyup", function (event) {
         removeRedMessage("login");
-        validateComponentLengthAndOneWord("login", false, 3, 15, "Login must have from 3 to 15 characters and contains only one word!");
+        validateComponentLengthAndOneWord("login", false, 3, 15, "Login must have from 3 to 15 characters!");
         validateComponentStartsWithLetterAndContainsLettersAndDigits("login", "Login must start with letter, and contains no symbols!")
     });
     doc.getElementById("name").addEventListener("keyup", function (event) {
         removeRedMessage("name");
-        validateComponentLengthAndOneWord("name", false, 3, 20, "Name must have from 3 to 15 characters and contains only one word!");
+        validateComponentLengthAndOneWord("name", false, 3, 20, "Name must have from 3 to 15 characters!");
         validateComponentOnlyLetters("name", "Name contains only letters!");
     });
     doc.getElementById("surname").addEventListener("keyup", function (event) {
         removeRedMessage("surname");
-        validateComponentLengthAndOneWord("surname", false, 3, 20, "Surname must have from 3 to 15 characters and contains only one word!");
+        validateComponentLengthAndOneWord("surname", false, 3, 20, "Surname must have from 3 to 15 characters!");
         validateComponentOnlyLetters("surname", "Surname contains only letters!");
     });
     doc.getElementById("day").addEventListener("keyup", function (event) {
@@ -419,7 +419,7 @@ function validatePassword(elementId) {
     var result = true;
 
     var regExpStringFirst = '^([\\S]{8,50})$';
-    var regExpStringSecond = '^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$';
+    var regExpStringSecond = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{8,50}$';
     var regExpFirst = new RegExp(regExpStringFirst);
     var regExpSecond = new RegExp(regExpStringSecond);
     addGreenMessage(elementId, "Success");

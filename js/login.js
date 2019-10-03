@@ -22,7 +22,7 @@ function sendLoginPassword() {
             contentType: 'application/x-www-form-urlencoded',
             url: 'http://' + authServerHost + '/auth/realms/bank/protocol/openid-connect/token',
             crossOrigin: true,
-            data: jQuery.param({
+            data: $.param({
                 grant_type: "password",
                 client_id: "ADMIN-UI",
                 username: doc.getElementById("login").value,
