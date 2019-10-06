@@ -460,10 +460,6 @@ function showMessenger(element) {
             setTimeout(function () {
                 $("#messenger").addClass('messenger-in');
             }, 200);
-        } else if ($("#messenger").hasClass("messenger-in")) {
-            setTimeout(function () {
-                $("#messenger").removeClass('messenger-in');
-            }, 200);
         }
     });
 }
@@ -518,6 +514,12 @@ function sendLogout() {
 function mainWebSocketFunction(ws) {
     doc.getElementById("sendButton").addEventListener("click", sendMessage);
     doc.getElementById("sendCommentButton").addEventListener("click", sendComment);
+    doc.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+        return false;
+    });
     window.addEventListener("unload", sendLogout);
     doc.getElementById("logoLink").addEventListener("click", sendLogout);
 

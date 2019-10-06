@@ -262,9 +262,12 @@ function showActiveClientsList(activeUsers) {
 
         var lastActiveClientCard = doc.querySelector("#activeClients .card:last-child");
         lastActiveClientCard.querySelector(".card-title").innerText = user;
-        lastActiveClientCard.querySelector(".card-body__button").onclick = function (event) {
+        // lastActiveClientCard.querySelector(".card-body__button").onclick = function (event) {
+        //     connectToClient(user);
+        // };
+        $(lastActiveClientCard).on('click touchstart', '.card-body__button', function() {
             connectToClient(user);
-        };
+        });
         var activeClientCardClone = activeClientCard.cloneNode(true);
         activeClientCardClone.removeAttribute("id");
         activeClientsElement.appendChild(activeClientCardClone);
@@ -476,7 +479,7 @@ function clientsWebSocketFunction(ws) {
 }
 
 function connectToClient(client) {
-    console.log('connection to ' + client);
+    console.log('Connection to ' + client);
     window.localStorage.setItem("connectedClient", client);
     doc.getElementById("messageSender").innerText = client;
     doc.getElementById("pills-settings-tab").click();
