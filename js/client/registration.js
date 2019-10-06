@@ -418,7 +418,7 @@ function validatePassword(elementId) {
     var element = doc.getElementById(elementId);
     var result = true;
 
-    var regExpStringFirst = '^([\\S]{8,50})$';
+    var regExpStringFirst = '^([\\S]{3,50})$';
     var regExpStringSecond = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{8,50}$';
     var regExpFirst = new RegExp(regExpStringFirst);
     var regExpSecond = new RegExp(regExpStringSecond);
@@ -427,8 +427,8 @@ function validatePassword(elementId) {
         addYellowMessage(elementId, "Special character and number!");
         if (!regExpFirst.test(element.value)) {
             addRedMessage(elementId, "To short password!");
+            result = false;
         }
-        result = false;
     }
 
     return result;

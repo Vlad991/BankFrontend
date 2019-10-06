@@ -522,12 +522,12 @@ function mainWebSocketFunction(ws) {
     doc.getElementById("logoLink").addEventListener("click", sendLogout);
 
     ws.onopen = function () {
-        console.log("socket connection establish");
+        console.log("Socket connection establish!");
     };
 
     ws.onclose = function (event) {
         if (event.wasClean) {
-            console.log("disconnected");
+            console.log("Disconnected from socket!");
         } else {
             switch (event.status) {
                 case '401': {

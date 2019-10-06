@@ -239,11 +239,11 @@ function changeCardStatus(target) {
 }
 
 function clearActiveClientsInfoTable() {
-    var doc = document;
     var clientCards = doc.querySelector("#activeClients").children;
-    if (clientCards.length > 1) {
-        for (var i = 0; i < clientCards.length - 1; i++) {
-            doc.querySelector("#activeClients div:last-child").remove();
+    var clientCardsLength = clientCards.length;
+    if (clientCardsLength > 1) {
+        for (var i = 0; i < clientCardsLength - 1; i++) {
+            doc.querySelector("#activeClients").removeChild(doc.querySelector("#activeClients").lastChild);
         }
     }
 }
@@ -253,19 +253,20 @@ function showActiveClientsList(activeUsers) {
     clearActiveClientsInfoTable();
     var activeClientsElement = doc.getElementById("activeClients");
     var activeClientCard = doc.getElementById("activeClientCard");
-    if (activeUsers.length != 0) {
+    if (activeUsers.length !== 0) {
         activeClientCard.classList.remove("d-none");
     }
 
     for (var i = 0; i < activeUsers.length; i++) {
-        var user = activeUsers[i];
+        let user = activeUsers[i];
 
-        doc.querySelector("#activeClients div:last-child .card-title").innerText = user;
-        doc.querySelector("#activeClients div:last-child .card-body__button").addEventListener('click', function () {
+        var lastActiveClientCard = doc.querySelector("#activeClients .card:last-child");
+        lastActiveClientCard.querySelector(".card-title").innerText = user;
+        lastActiveClientCard.querySelector(".card-body__button").onclick = function (event) {
             connectToClient(user);
-        }, false);
-
+        };
         var activeClientCardClone = activeClientCard.cloneNode(true);
+        activeClientCardClone.removeAttribute("id");
         activeClientsElement.appendChild(activeClientCardClone);
     }
     activeClientsElement.removeChild(activeClientsElement.lastChild);
@@ -380,17 +381,22 @@ function homeWebSocketFunction(ws) {
 
 function clientsWebSocketFunction(ws) {
     doc.getElementById("sendButton").addEventListener("click", sendMessage);
+    doc.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    });
     doc.getElementById("sendCommentButton").addEventListener("click", sendComment);
     window.addEventListener("unload", sendLogout);
     doc.getElementById("logoLink").addEventListener("click", sendLogout);
 
     ws.onopen = function () {
-        console.log("socket connection establish");
+        console.log("Socket connection establish!");
     };
 
     ws.onclose = function (event) {
         if (event.wasClean) {
-            console.log("disconnected");
+            console.log("Socket is disconnected!");
         } else {
             switch (event.status) {
                 case '401': {
@@ -470,5 +476,8 @@ function clientsWebSocketFunction(ws) {
 }
 
 function connectToClient(client) {
-    //todo
+    console.log('connection to ' + client);
+    window.localStorage.setItem("connectedClient", client);
+    doc.getElementById("messageSender").innerText = client;
+    doc.getElementById("pills-settings-tab").click();
 }
